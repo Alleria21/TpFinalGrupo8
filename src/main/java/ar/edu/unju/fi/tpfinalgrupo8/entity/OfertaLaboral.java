@@ -1,18 +1,6 @@
 package ar.edu.unju.fi.tpfinalgrupo8.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -21,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
-@Table(name = "ofertas laborales")
+@Table(name = "ofertas_laborales")
 public class OfertaLaboral {
 	
 	@Id
@@ -92,14 +80,15 @@ public class OfertaLaboral {
 				inverseJoinColumns = @JoinColumn(name = "ciudadano_id")
 			) //ENCARGADO DE CREAR LA TABLA DE RELACION
 	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();
-	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(	name = "oferta_empleador",
-				joinColumns = @JoinColumn(name = "oferta_id"),
-				inverseJoinColumns = @JoinColumn(name = "empleador_id")
-			) //ENCARGADO DE CREAR LA TABLA DE RELACION
-	private List<Empleador> empleadores = new ArrayList<Empleador>();
 	*/
+
+
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "empleador_id")
+	//ENCARGADO DE CREAR LA TABLA DE RELACION
+	private Empleador empleador;
+
+
 	
 	public OfertaLaboral() {
 		// TODO Auto-generated constructor stub
@@ -107,7 +96,7 @@ public class OfertaLaboral {
 
 	public OfertaLaboral(int codigo, int cantidad_vacantes, String puesto_req, String puesto_resum, String disp_horaria,
 			String tareas_principales, int telefono, String email, String jornada, String requisitos, int salario,
-			String beneficios, boolean disponible) {
+			String beneficios, boolean disponible, Empleador empleador) {
 		super();
 		this.codigo = codigo;
 		this.cantidad_vacantes = cantidad_vacantes;
@@ -122,6 +111,7 @@ public class OfertaLaboral {
 		this.salario = salario;
 		this.beneficios = beneficios;
 		this.disponible = disponible;
+		this.empleador = empleador;
 	}
 
 	public long getId() {
@@ -235,7 +225,14 @@ public class OfertaLaboral {
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
-	
+
+	public Empleador getEmpleador() {
+		return empleador;
+	}
+
+	public void setEmpleador(Empleador empleador) {
+		this.empleador = empleador;
+	}
 }
 
 
