@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Listado de ofertas laborales</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+	<!--  <nav th:insert="layouts/header :: generalheader"></nav> -->
+
+	<div class="container">
+		<br />
+		<h3>Listado de Ofertas Laborales</h3>
+		
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  			<a th:href="@{/oferta/nuevo}" class="btn btn-primary" type="button">Nuevo</a>
+		</div>
+		
+		<div class="col-sm-12 col-md-10">
+			<table class="table" style="background-color: #a3e4d7;" border="1">
+				<tr style="text-align: center">
+					<th>Codigo</th>
+					<th>Cantidad de Vacantes</th>
+					<th>Puesto Requerido</th>
+					<th>Resumen del Puesto</th>
+					<th>Disponibilidad Horaria</th>
+					<th>Tareas Principales</th>
+					<th>Email</th>
+					<th>Telefono</th>
+					<th>Jornada</th>
+					<th>Requisitos</th>
+					<th>Salario</th>
+					<th>Beneficios</th>
+				</tr>
+				<tr th:each="oferta: ${unaOfertaLaboral}" style="text-align: center">
+					<td th:text="${oferta.codigo}"></td>
+					<td th:text="${oferta.cantidad_vacantes}"></td>
+					<td th:text="${oferta.puesto_req}"></td>
+					<td th:text="${oferta.puesto_resum}"></td>
+					<td th:text="${oferta.disp_horaria}"></td>
+					<td th:text="${oferta.tareas_principales}"></td>
+					<td th:text="${oferta.email}"></td>
+					<td th:text="${oferta.telefono}"></td>
+					<td th:text="${oferta.jornada}"></td>
+					<td th:text="${oferta.requisitos}"></td>
+					<td th:text="${oferta.salario}"></td>
+					<td th:text="${oferta.beneficios}"></td>
+					<td>
+						<a th:href="@{/oferta/editar/}+${curso.codigo}" id="editarOfertaLaboral" class="btn btn-warning">Editar</a>
+						<a th:href="@{/oferta/eliminar/}+${curso.codigo}" id="eliminarOfertaLaboral" class="btn btn-danger">Eliminar</a>
+					</td>
+				</tr>	
+			</table>
+		</div>
+	</div>
+	
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+	
+</body>
+</html>
