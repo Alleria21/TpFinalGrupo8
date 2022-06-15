@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.tpfinalgrupo8.service.imp;
+/*package ar.edu.unju.fi.tpfinalgrupo8.service.imp;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
 import ar.edu.unju.fi.tpfinalgrupo8.repository.CurriculumVitaeRepository;
@@ -23,7 +23,7 @@ public class CurriculumVitaeServiceImp implements ICurriculumVitaeService{
 	}
 	
 	@Override
-	public CurriculumVitae buscarPordni(Long dni) {
+	public CurriculumVitae buscarPorDNI(Long dni) {
 		return curriculumvitaeRepository.findById(dni).get();	
 	}
 	
@@ -37,4 +37,4 @@ public class CurriculumVitaeServiceImp implements ICurriculumVitaeService{
 	public void modificar(CurriculumVitae curriculumvitae) {
 		curriculumvitaeRepository.save(curriculumvitae);
 	}
-}
+}*/

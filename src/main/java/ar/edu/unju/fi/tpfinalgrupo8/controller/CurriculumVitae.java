@@ -40,12 +40,12 @@ public class CurriculumVitae {
 		}
 		
 		ModelAndView mav = new ModelAndView("redirect:/curriculumvitae/ListaCurriculumVitae");
-		if(curriculumVitaeService.guardar()) {
-			LOGGER.info("Se ha agregado una oferta laboral");
-		}else {
-			LOGGER.info("No se ha agregado una oferta laboral"); 
+		if(curriculumVitaeService.guardar(curriculumVitae)) {
+			LOGGER.info("Se ha agregado un curriculum vitae");
 		}
 		return mav;
+		
+		}
 	}
-	
-}*/
+	*/
+

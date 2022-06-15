@@ -1,7 +1,6 @@
-package ar.edu.unju.fi.tpfinalgrupo8.entity;
+/*package ar.edu.unju.fi.tpfinalgrupo8.entity;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
@@ -11,7 +10,9 @@ public class CurriculumVitae {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
+	@Column(name = "cv_id")
+	private long id;
+	
 	@NotEmpty(message = "Este campo no debe ser vacio ni nulo")
 	@Column(name = "cv_nombre")
 	public String name;
@@ -34,7 +35,7 @@ public class CurriculumVitae {
 	
 	@NotEmpty(message = "No debe ingresar un dato nulo")
 	@Column(name = "cv_exp_laboral")
-	public String exp_laboral;
+	public String expLaboral;
 	
 	@NotEmpty(message = "No debe ingresar un dato nulo")
 	@Column(name = "cv_educacion")
@@ -52,7 +53,7 @@ public class CurriculumVitae {
 	private List<Candidato>candidato;
 	Private Candidato candidato;*/
 	
-	public CurriculumVitae() {
+	/*public CurriculumVitae() {
 		
 	}
 
@@ -63,7 +64,7 @@ public class CurriculumVitae {
 		this.dni = dni;
 		this.telefono = telefono;
 		this.experencia = experencia;
-		this.exp_laboral = exp_laboral;
+		this.expLaboral = exp_laboral;
 		this.educacion = educacion;
 		this.idiomas = idiomas;
 		this.conocimientoinf = conocimientoinf;
@@ -109,12 +110,12 @@ public class CurriculumVitae {
 		this.experencia = experencia;
 	}
 
-	public String getExp_laboral() {
-		return exp_laboral;
+	public String getExpLaboral() {
+		return expLaboral;
 	}
 
-	public void setExp_laboral(String exp_laboral) {
-		this.exp_laboral = exp_laboral;
+	public void setExpLaboral(String exp_laboral) {
+		this.expLaboral = exp_laboral;
 	}
 
 	public String getEducacion() {
@@ -140,5 +141,5 @@ public class CurriculumVitae {
 	public void setConocimientoinf(String conocimientoinf) {
 		this.conocimientoinf = conocimientoinf;
 	}
-}
+}*/
 
