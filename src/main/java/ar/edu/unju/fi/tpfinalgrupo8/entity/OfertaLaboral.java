@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.tpfinalgrupo8.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
@@ -73,14 +76,14 @@ public class OfertaLaboral {
 	@Column(name = "oferta_disponible")
 	private boolean disponible;
 	
-	/*
+
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(	name = "oferta_ciudadano",
 				joinColumns = @JoinColumn(name = "oferta_id"),
 				inverseJoinColumns = @JoinColumn(name = "ciudadano_id")
 			) //ENCARGADO DE CREAR LA TABLA DE RELACION
 	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();
-	*/
+	
 
 
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
