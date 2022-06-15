@@ -25,22 +25,30 @@ public class OfertaLaboralServiceImp implements IOfertaLaboralService {
 
 	@Override
 	public boolean guardarOfertaLaboral(OfertaLaboral ofertaLaboral) {
-		ofertaLaboral.setDisponible(true);
+		OfertaLaboral oferta = ofertaLaboralRepository.findByCodigo(ofertaLaboral.getCodigo());
+		if(oferta==null) {
+			ofertaLaboral.setDisponible(true);
+			ofertaLaboralRepository.save(ofertaLaboral);
+			return true;
+		}
+		return false;
+		/*
 		if(ofertaLaboralRepository.save(ofertaLaboral) != null) {
 			return true;
 		}
 		return false;
+		*/
 	}
 
 	@Override
 	public void modificarOfertaLaboral(OfertaLaboral ofertaLaboral) {
 		OfertaLaboral oferta = ofertaLaboralRepository.findByCodigo(ofertaLaboral.getCodigo());
 		oferta.setCodigo(ofertaLaboral.getCodigo());
-		oferta.setCantidad_vacantes(ofertaLaboral.getCantidad_vacantes());
-		oferta.setPuesto_req(ofertaLaboral.getPuesto_req());
-		oferta.setPuesto_resum(ofertaLaboral.getPuesto_req());
-		oferta.setDisp_horaria(ofertaLaboral.getDisp_horaria());
-		oferta.setTareas_principales(ofertaLaboral.getTareas_principales());
+		oferta.setCantidadVacantes(ofertaLaboral.getCantidadVacantes());
+		oferta.setPuestoReq(ofertaLaboral.getPuestoReq());
+		oferta.setPuestoResum(ofertaLaboral.getPuestoReq());
+		oferta.setDispHoraria(ofertaLaboral.getDispHoraria());
+		oferta.setTareasPrincipales(ofertaLaboral.getTareasPrincipales());
 		oferta.setEmail(ofertaLaboral.getEmail());
 		oferta.setTelefono(ofertaLaboral.getTelefono());
 		oferta.setJornada(ofertaLaboral.getJornada());
@@ -60,7 +68,7 @@ public class OfertaLaboralServiceImp implements IOfertaLaboralService {
 
 	@Override
 	public List<OfertaLaboral> getListaOfertaLaboral() {
-		return ofertaLaboralRepository.ordenarPorCodigo();
+		return ofertaLaboralRepository.findByDisponible(true);
 	}
 
 	@Override

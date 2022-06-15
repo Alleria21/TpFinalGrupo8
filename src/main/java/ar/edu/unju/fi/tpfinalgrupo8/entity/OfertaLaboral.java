@@ -25,23 +25,23 @@ public class OfertaLaboral {
 	@Min(value = 1, message = "*La cantidad de vacantes debe ser mayor o igual a 1")
 	@Max(value = 150, message = "*La cantidad de vacantes debe ser menor o igual a 150")
 	@Column(name = "oferta_vacantes")
-	private int cantidad_vacantes;
+	private int cantidadVacantes;
 	
 	@NotEmpty(message = "*Debe ingresar un puesto requerido")
 	@Column(name = "oferta_puestoRequerido")
-	private String puesto_req;
+	private String puestoReq;
 	
 	@NotEmpty(message = "*Debe ingresar resumen del puesto")
 	@Column(name = "oferta_puestoRresumen")
-	private String puesto_resum;
+	private String puestoResum;
 	
 	@NotEmpty(message = "*Debe ingresar una disponibilidad horaria")
 	@Column(name = "oferta_dispHoraria")
-	private String disp_horaria;
+	private String dispHoraria;
 	
 	@NotEmpty(message = "*Debe ingresar al menos una tarea principal")
 	@Column(name = "oferta_tareasPrincipales")
-	private String tareas_principales;
+	private String tareasPrincipales;
 	
 	@Email(message = "Debe ingresar un correo electronico válido")
 	@NotNull(message = "El campo email no puede ser nulo")
@@ -94,16 +94,16 @@ public class OfertaLaboral {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OfertaLaboral(int codigo, int cantidad_vacantes, String puesto_req, String puesto_resum, String disp_horaria,
-			String tareas_principales, int telefono, String email, String jornada, String requisitos, int salario,
+	public OfertaLaboral(int codigo, int cantidadVacantes, String puestoReq, String puestoResum, String dispHoraria,
+			String tareasPrincipales, int telefono, String email, String jornada, String requisitos, int salario,
 			String beneficios, boolean disponible, Empleador empleador) {
 		super();
 		this.codigo = codigo;
-		this.cantidad_vacantes = cantidad_vacantes;
-		this.puesto_req = puesto_req;
-		this.puesto_resum = puesto_resum;
-		this.disp_horaria = disp_horaria;
-		this.tareas_principales = tareas_principales;
+		this.cantidadVacantes = cantidadVacantes;
+		this.puestoReq = puestoReq;
+		this.puestoResum = puestoResum;
+		this.dispHoraria = dispHoraria;
+		this.tareasPrincipales = tareasPrincipales;
 		this.telefono = telefono;
 		this.email = email;
 		this.jornada = jornada;
@@ -130,44 +130,44 @@ public class OfertaLaboral {
 		this.codigo = codigo;
 	}
 
-	public int getCantidad_vacantes() {
-		return cantidad_vacantes;
+	public int getCantidadVacantes() {
+		return cantidadVacantes;
 	}
 
-	public void setCantidad_vacantes(int cantidad_vacantes) {
-		this.cantidad_vacantes = cantidad_vacantes;
+	public void setCantidadVacantes(int cantidadVacantes) {
+		this.cantidadVacantes = cantidadVacantes;
 	}
 
-	public String getPuesto_req() {
-		return puesto_req;
+	public String getPuestoReq() {
+		return puestoReq;
 	}
 
-	public void setPuesto_req(String puesto_req) {
-		this.puesto_req = puesto_req;
+	public void setPuestoReq(String puestoReq) {
+		this.puestoReq = puestoReq;
 	}
 
-	public String getPuesto_resum() {
-		return puesto_resum;
+	public String getPuestoResum() {
+		return puestoResum;
 	}
 
-	public void setPuesto_resum(String puesto_resum) {
-		this.puesto_resum = puesto_resum;
+	public void setPuestoResum(String puestoResum) {
+		this.puestoResum = puestoResum;
 	}
 
-	public String getDisp_horaria() {
-		return disp_horaria;
+	public String getDispHoraria() {
+		return dispHoraria;
 	}
 
-	public void setDisp_horaria(String disp_horaria) {
-		this.disp_horaria = disp_horaria;
+	public void setDispHoraria(String dispHoraria) {
+		this.dispHoraria = dispHoraria;
 	}
 
-	public String getTareas_principales() {
-		return tareas_principales;
+	public String getTareasPrincipales() {
+		return tareasPrincipales;
 	}
 
-	public void setTareas_principales(String tareas_principales) {
-		this.tareas_principales = tareas_principales;
+	public void setTareasPrincipales(String tareasPrincipales) {
+		this.tareasPrincipales = tareasPrincipales;
 	}
 
 	public String getEmail() {

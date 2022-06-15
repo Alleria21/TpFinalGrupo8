@@ -56,10 +56,12 @@ public class OfertaLaboralController {
 			return mav;
 		}
 		
-		if(ofertaLaboralService.guardarOfertaLaboral(ofertaLaboral)) {
-			LOGGER.info("Se ha agregado una oferta laboral");                
-		}
 		ModelAndView mav = new ModelAndView("redirect:/oferta/ListaOfertasLaborales");
+		if(ofertaLaboralService.guardarOfertaLaboral(ofertaLaboral)) {
+			LOGGER.info("Se ha agregado una oferta laboral");
+		}else {
+			LOGGER.info("No se ha agregado una oferta laboral"); 
+		}
 		return mav;
 	}
 	
