@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Inicio de pagina</title>
+	<meta charset="UTF-8">
+	<title>Inicio de pagina</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
+
 <body>
-	<p>PAGINA EN CONSTRUCCION</p>
+	<nav th:replace="layouts/header :: headergeneral"></nav>
+	<br />
+
+	<div class="container">
+		<!-- inicia carousel -->
+		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+		  <div class="carousel-indicators">
+		    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  </div>
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="/images/trabajo01.jpeg" class="d-block w-100" alt="imagen1">
+		      <div class="carousel-caption d-none d-md-block" style="background-color: #B3CDE0;">
+		        <h4>Postulaciones disponibles</h4>
+		        <p>¿Buscas trabajo? Ofrecemos todo tipos de trabajos para que te postules.</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item">
+		      <img src="/images/trabajo02.png" class="d-block w-100" alt="imagen2">
+		      <div class="carousel-caption d-none d-md-block" style="background-color: #B3CDE0;">
+		        <h4>Nuestras ofertas de trabajo</h4>
+		        <p>Informate sobre las nuevas ofertas que ofrecemos para tí.</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item">
+		      <img src="/images/trabajo03.jpg" class="d-block w-100" alt="imagen3">
+		      <div class="carousel-caption d-none d-md-block" style="background-color: #B3CDE0;">
+		        <h4>Nuevos trabajos remotos</h4>
+		        <p>¿Deseas trabajar desde casa? Enterate de los empleos disponibles mas recientes</p>
+		      </div>
+		    </div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Anterior</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Siguiente</span>
+		  </button>
+		</div>
+	
+	</div>
+	<br />
+	
+	<footer th:replace="layouts/footer.html ::footergeneral"></footer>
+	
+	
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </body>
+
 </html>
