@@ -43,7 +43,8 @@ public class OfertaLaboralServiceImp implements IOfertaLaboralService {
 	@Override
 	public void modificarOfertaLaboral(OfertaLaboral ofertaLaboral) {
 		OfertaLaboral oferta = ofertaLaboralRepository.findByCodigo(ofertaLaboral.getCodigo());
-		oferta.setCodigo(ofertaLaboral.getCodigo());
+		ofertaLaboral.setId(oferta.getId());
+		/*oferta.setCodigo(ofertaLaboral.getCodigo());
 		oferta.setCantidadVacantes(ofertaLaboral.getCantidadVacantes());
 		oferta.setPuestoReq(ofertaLaboral.getPuestoReq());
 		oferta.setPuestoResum(ofertaLaboral.getPuestoReq());
@@ -54,9 +55,8 @@ public class OfertaLaboralServiceImp implements IOfertaLaboralService {
 		oferta.setJornada(ofertaLaboral.getJornada());
 		oferta.setRequisitos(ofertaLaboral.getRequisitos());
 		oferta.setSalario(ofertaLaboral.getSalario());
-		oferta.setBeneficios(ofertaLaboral.getBeneficios());
-		
-		ofertaLaboralRepository.save(oferta);
+		oferta.setBeneficios(ofertaLaboral.getBeneficios());*/
+		ofertaLaboralRepository.save(ofertaLaboral);
 	}
 
 	@Override
