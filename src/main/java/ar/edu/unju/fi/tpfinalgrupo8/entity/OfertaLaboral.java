@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.tpfinalgrupo8.entity;
 
+import ar.edu.unju.fi.tpfinalgrupo8.util.DisponibilidadHoraria;
+import ar.edu.unju.fi.tpfinalgrupo8.util.Jornada;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,10 +40,11 @@ public class OfertaLaboral {
 	@NotEmpty(message = "*Debe ingresar resumen del puesto")
 	@Column(name = "oferta_puestoRresumen")
 	private String puestoResum;
-	
-	@NotEmpty(message = "*Debe ingresar una disponibilidad horaria")
+
+	@NotNull( message = "*Debe ingresar disponibilidad horaria")
 	@Column(name = "oferta_dispHoraria")
-	private String dispHoraria;
+	@Enumerated(EnumType.STRING)
+	private DisponibilidadHoraria dispHoraria;
 	
 	@NotEmpty(message = "*Debe ingresar al menos una tarea principal")
 	@Column(name = "oferta_tareasPrincipales")
@@ -55,10 +59,11 @@ public class OfertaLaboral {
 	@NotNull(message = "El campo Telefono no puede ser nulo")
 	@Column(name = "oferta_telefono")
 	private int telefono;
-	
-	@NotEmpty(message = "*Debe ingresar una jornada laboral")
+
+	@NotNull(message = "*Debe ingresar una jornada laboral")
 	@Column(name = "oferta_jornada")
-	private String jornada;
+	@Enumerated(EnumType.STRING)
+	private Jornada jornada;
 	
 	@NotEmpty(message = "*Debe ingresar al menos un requisito necesario")
 	@Column(name = "oferta_requisitos")
@@ -97,23 +102,22 @@ public class OfertaLaboral {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OfertaLaboral(int codigo, int cantidadVacantes, String puestoReq, String puestoResum, String dispHoraria,
-			String tareasPrincipales, int telefono, String email, String jornada, String requisitos, int salario,
-			String beneficios, boolean disponible, Empleador empleador) {
-		super();
+	public OfertaLaboral(long id, int codigo, int cantidadVacantes, String puestoReq, String puestoResum, DisponibilidadHoraria dispHoraria, String tareasPrincipales, String email, int telefono, Jornada jornada, String requisitos, int salario, String beneficios, boolean disponible, List<Ciudadano> ciudadanos, Empleador empleador) {
+		this.id = id;
 		this.codigo = codigo;
 		this.cantidadVacantes = cantidadVacantes;
 		this.puestoReq = puestoReq;
 		this.puestoResum = puestoResum;
 		this.dispHoraria = dispHoraria;
 		this.tareasPrincipales = tareasPrincipales;
-		this.telefono = telefono;
 		this.email = email;
+		this.telefono = telefono;
 		this.jornada = jornada;
 		this.requisitos = requisitos;
 		this.salario = salario;
 		this.beneficios = beneficios;
 		this.disponible = disponible;
+		this.ciudadanos = ciudadanos;
 		this.empleador = empleador;
 	}
 
@@ -157,11 +161,11 @@ public class OfertaLaboral {
 		this.puestoResum = puestoResum;
 	}
 
-	public String getDispHoraria() {
+	public DisponibilidadHoraria getDispHoraria() {
 		return dispHoraria;
 	}
 
-	public void setDispHoraria(String dispHoraria) {
+	public void setDispHoraria(DisponibilidadHoraria dispHoraria) {
 		this.dispHoraria = dispHoraria;
 	}
 
@@ -189,11 +193,11 @@ public class OfertaLaboral {
 		this.telefono = telefono;
 	}
 
-	public String getJornada() {
+	public Jornada getJornada() {
 		return jornada;
 	}
 
-	public void setJornada(String jornada) {
+	public void setJornada(Jornada jornada) {
 		this.jornada = jornada;
 	}
 

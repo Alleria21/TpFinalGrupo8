@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.IOfertaLaboralService;
-import ar.edu.unju.fi.tpfinalgrupo8.util.ListaDispoHoraria;
-import ar.edu.unju.fi.tpfinalgrupo8.util.ListaJornada;
 
 @Controller
 @RequestMapping("/oferta")
@@ -29,17 +27,9 @@ public class OfertaLaboralController {
 	
 	private static final Log LOGGER = LogFactory.getLog(OfertaLaboral.class);
 	
-	@Autowired
-	private ListaDispoHoraria listaDispoHoraria;
-	
-	@Autowired
-	private ListaJornada listaJornada;
-	
 	@GetMapping("/nuevo")
 	public String getFormNuevoOfertaLaboralPage(Model model) {
 		model.addAttribute("oferta", ofertaLaboralService.getOfertaLaboral());
-		model.addAttribute("unHorario", listaDispoHoraria.getDispoHoraria());
-		model.addAttribute("unaJornada", listaJornada.getJornada());
 		LOGGER.info("Se ha asociado un objeto OfertaLaboral al formulario");
 		return "nuevo_ofertaLaboral";
 	}
@@ -51,8 +41,6 @@ public class OfertaLaboralController {
 			LOGGER.error("No se cumplen las reglas de validación");
 			ModelAndView mav = new ModelAndView("nuevo_ofertaLaboral");
 			mav.addObject("oferta", ofertaLaboral);
-			mav.addObject("unHorario", listaDispoHoraria.getDispoHoraria());
-			mav.addObject("unaJornada", listaJornada.getJornada());
 			return mav;
 		}
 		
@@ -77,8 +65,6 @@ public class OfertaLaboralController {
 		ModelAndView mav = new ModelAndView("edicion_ofertaLaboral");
 		OfertaLaboral ofertaLaboral = ofertaLaboralService.buscarOfertaLaboral(codigo);
 		mav.addObject("oferta", ofertaLaboral);
-		mav.addObject("unHorario", listaDispoHoraria.getDispoHoraria());
-		mav.addObject("unaJornada", listaJornada.getJornada());
 		return mav;
 	}
 	
@@ -90,8 +76,6 @@ public class OfertaLaboralController {
 			LOGGER.info("Ha ocurrido un error en la edicion" + ofertaLaboral);
 			ModelAndView mav = new ModelAndView("edicion_ofertaLaboral");
 			mav.addObject("oferta", ofertaLaboral);
-			mav.addObject("unHorario", listaDispoHoraria.getDispoHoraria());
-			mav.addObject("unaJornada", listaJornada.getJornada());
 			return mav; 
 		}
 		LOGGER.info("Se ha modificado una oferta laboral");
