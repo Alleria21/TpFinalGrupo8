@@ -49,7 +49,7 @@
 			
 			<div>
 				<label class="form-label">Seleccione Disponibilidad Horaria</label>
-				<select class="form-control mb-3"  id="dispHorariaId" >
+				<select class="form-control mb-3" th:field="*{dispHoraria}" id="dispHorariaId" >
 
 					<option th:each="dispHoraria : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.DisponibilidadHoraria).values()}" th:value="${dispHoraria}" th:text="${dispHoraria.displayValue}"></option>
 			  	</select>
@@ -64,7 +64,7 @@
 			
 			<div>
 				<label class="form-label">Seleccione tipo de Jornada</label>
-				<select class="form-control mb-3" id="jornadaId" >
+				<select class="form-control mb-3" th:field="*{jornada}" id="jornadaId" >
 					<option th:each="jornada : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.Jornada).values()}" th:value="${jornada}" th:text="${jornada.displayValue}"></option>
 			  	</select>
 			  	<div class="text-danger" th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></div>
