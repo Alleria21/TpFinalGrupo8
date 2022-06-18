@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Alta de oferta laboral</title>
@@ -12,6 +12,7 @@
 	<div class="container">
 		<br />
 		<form th:object="${oferta}" th:action="@{/oferta/agregar}" method="POST">
+
 		<div class="row mb-5 mt-5">
 		<div class="col-4"></div>
 		<div class="col-4 border border-dark">
@@ -47,9 +48,10 @@
 			</div>
 			
 			<div>
-				<select class="form-control mb-3" th:field="*{dispHoraria}" id="dispHorariaId">
-			  		<option value="0">Elija una disponibilidad horaria</option>
-			  		<option th:each="horarios: ${unHorario}" th:value="${horarios}" th:text="${horarios}"></option>
+				<label class="form-label">Seleccione Disponibilidad Horaria</label>
+				<select class="form-control mb-3"  id="dispHorariaId" >
+
+					<option th:each="dispHoraria : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.DisponibilidadHoraria).values()}" th:value="${dispHoraria}" th:text="${dispHoraria.displayValue}"></option>
 			  	</select>
 			  	<div class="text-danger" th:if="${#fields.hasErrors('dispHoraria')}" th:errors="*{dispHoraria}"></div>
 		  	</div>
@@ -61,9 +63,9 @@
 			</div>
 			
 			<div>
-				<select class="form-control mb-3" th:field="*{jornada}" id="jornadaId">
-			  		<option value="0">Elija una jornada</option>
-			  		<option th:each="jornadas: ${unaJornada}" th:value="${jornadas}" th:text="${jornadas}"></option>
+				<label class="form-label">Seleccione tipo de Jornada</label>
+				<select class="form-control mb-3" id="jornadaId" >
+					<option th:each="jornada : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.Jornada).values()}" th:value="${jornada}" th:text="${jornada.displayValue}"></option>
 			  	</select>
 			  	<div class="text-danger" th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></div>
 		  	</div>

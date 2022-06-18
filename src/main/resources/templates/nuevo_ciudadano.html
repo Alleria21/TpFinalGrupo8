@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Alta de Ciudadano</title>
@@ -34,17 +34,18 @@
 				</div>
 				
 				<div>
+					<label class="form-label">Estado Civil</label>
 					<select class="form-control mb-3" th:field="*{estadoCivil}" id="estadoId">
-				  		<option value="0">Estado Civil</option>
-				  		<option th:each="estados: ${unEstadoCivil}" th:value="${estados}" th:text="${estados}"></option>
+						<option th:each="estado : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.EstadoCivil).values()}" th:value="${estado}" th:text="${estado.displayValue}"></option>
 				  	</select>
 				  	<div class="text-danger" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></div>
 		  		</div>
 		  		
 		  		<div>
+					<label class="form-label">Provincia</label>
 		  				<select class="form-control mb-3" th:field="*{provincia}" id="provinciaId">
-				  		<option value="0">Provincia</option>
-				  		<option th:each="provincias: ${unaProvincia}" th:value="${provincias}" th:text="${provincias}"></option>
+
+							<option th:each="provincia : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.Provincias).values()}" th:value="${provincia}" th:text="${provincia.displayValue}"></option>
 				  		</select>
 				  		<div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
 		  		</div>

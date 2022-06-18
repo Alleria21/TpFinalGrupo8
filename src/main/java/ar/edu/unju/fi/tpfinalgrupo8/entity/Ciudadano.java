@@ -21,6 +21,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import ar.edu.unju.fi.tpfinalgrupo8.util.EstadoCivil;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -45,14 +46,16 @@ public class Ciudadano {
 	@Column(name="ciudadano_email")
 	private String email;
 	
-	@NotEmpty(message = "*Este campo no debe ser vacio ni nulo" )
+	@NotNull(message = "*Este campo no puede ser nulo" )
 	@Column(name="ciudadano_estadoCivil")
-	private String estadoCivil;
+	@Enumerated(EnumType.STRING)
+	private EstadoCivil estadoCivil;
 	
 	
-	@NotEmpty(message = "*Este campo no debe ser vacio ni nulo" )
+	@NotNull(message = "debe ingresar una provincia")
 	@Column(name="ciudadano_provincia")
-	private String provincia;
+	@Enumerated(EnumType.STRING)
+	private Provincias provincia;
 	
 	@Column(name="ciudadano_telefono")
 	private int telefono;
@@ -86,9 +89,8 @@ public class Ciudadano {
 	}
 
 
-	public Ciudadano(int dni, String email, String estadoCivil, String provincia, int telefono, LocalDate fechaNac,
-			String password,boolean estado) {
-		super();
+	public Ciudadano(long id, int dni, String email, EstadoCivil estadoCivil, Provincias provincia, int telefono, LocalDate fechaNac, String password, List<OfertaLaboral> ofertas, boolean estado) {
+		this.id = id;
 		this.dni = dni;
 		this.email = email;
 		this.estadoCivil = estadoCivil;
@@ -96,9 +98,9 @@ public class Ciudadano {
 		this.telefono = telefono;
 		this.fechaNac = fechaNac;
 		this.password = password;
-		this.estado=estado;
+		this.ofertas = ofertas;
+		this.estado = estado;
 	}
-
 
 	public int getDni() {
 		return dni;
@@ -120,25 +122,21 @@ public class Ciudadano {
 	}
 
 
-	public String getEstadoCivil() {
+	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
 	}
 
-
-	public void setEstadoCivil(String estadoCivil) {
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 
-
-	public String getProvincia() {
+	public Provincias getProvincia() {
 		return provincia;
 	}
 
-
-	public void setProvincia(String provincia) {
+	public void setProvincia(Provincias provincia) {
 		this.provincia = provincia;
 	}
-
 
 	public int getTelefono() {
 		return telefono;

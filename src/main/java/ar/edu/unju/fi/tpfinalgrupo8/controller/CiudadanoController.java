@@ -16,8 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
-import ar.edu.unju.fi.tpfinalgrupo8.util.ListaEstadoCivil;
-import ar.edu.unju.fi.tpfinalgrupo8.util.ListaProvincias;
+
 
 @Controller
 @RequestMapping("/ciudadano")
@@ -28,17 +27,10 @@ public class CiudadanoController {
 	@Autowired
 	private ICiudadanoService ciudadanoService;
 
-	@Autowired
-	private ListaEstadoCivil estadoCivil;
-	
-	@Autowired
-	private ListaProvincias listaProvincias;
 	
 	@GetMapping("/nuevo")
 	public String getCiudadano(Model model) {
 		model.addAttribute("ciudadano", ciudadanoService.getCiudadano());
-		model.addAttribute("unEstadoCivil", estadoCivil.getEstadoCivil());
-		model.addAttribute("unaProvincia", listaProvincias.getListaProvincias());
 		return "nuevo_ciudadano";
 	}
 	
@@ -49,8 +41,6 @@ public class CiudadanoController {
 			LOGGER.info("Error agregando un ciudadano");
 			ModelAndView mav= new ModelAndView("nuevo_ciudadano");
 			mav.addObject("ciudadano", ciudadano);
-			mav.addObject("unEstadoCivil", estadoCivil.getEstadoCivil());
-			mav.addObject("unaProvincia", listaProvincias.getListaProvincias());
 			return mav;
 		}
 		ModelAndView mav=new ModelAndView("redirect:/ciudadano/listaCiudadanos");
@@ -70,8 +60,6 @@ public class CiudadanoController {
 	public ModelAndView getEditarCiudadanoPage(@PathVariable(value="dni")int dni) {
 		ModelAndView mav = new ModelAndView("edicion_ciudadano");
 		mav.addObject("ciudadano", ciudadanoService.buscarCiudadano(dni));
-		mav.addObject("unEstadoCivil", estadoCivil.getEstadoCivil());
-		mav.addObject("unaProvincia", listaProvincias.getListaProvincias());
 		return mav;
 	}
 	@PostMapping("/modificar")
