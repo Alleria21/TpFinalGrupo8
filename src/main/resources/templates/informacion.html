@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Información</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<body>
+
+
+
+	<nav th:insert="layouts/header :: headergeneral"></nav>
+	
+	
+	<div class="card mb-3" style="max-width: 540px;">
+	  <div class="row g-0">
+		    <div class="col-md-4">
+		      <img th:src="@{/images/trabajo01.jpeg}" class="img-fluid rounded-start" alt="...">
+		    </div>
+		    
+		    <div th:each="oferta: ${unaOfertaLaboral}" class="col-md-8">
+		      <div class="card-body"  >
+		        <h5 class="card-title" 	th:text="${oferta.puestoResum}"></h5>
+		        <p class="card-text" 	th:text="${oferta.tareasPrincipales}"></p>
+		        <p class="card-text"	th:text="${oferta.puestoReq}"></p>
+		        <p class="card-text"	th:text="${oferta.requisitos}"></p>
+		        <p class="card-text"	th:text="${oferta.beneficios}"></p>
+		        <p class="card-text"	th:text="${oferta.salario}"></p>
+		        <p class="card-text"	th:text="${oferta.email}"></p>
+		        <p class="card-text"><small class="text-muted"> </small></p>
+		        <div>
+    				<a th:href="@{/oferta/confirmaPostulacion/}+${oferta.codigo}" class="btn btn-primary">Postular</a>
+  					<a th:href="@{/oferta/listaPostular}" class="btn btn-primary">Atras</a>
+    			</div>
+		      </div>
+		    </div>
+	  </div>
+	</div>
+
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+	
+</body>
+</html>

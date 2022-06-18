@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Listado de ofertas laborales</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+	<nav th:insert="layouts/header :: headergeneral"></nav>
+
+	<div class="container">
+		<br />
+		<h3>Listado de Ofertas Laborales</h3>
+		
+		
+		<br />
+		<div class="container">
+			<div class="row">
+				<div class="row">
+					<div th:each="oferta: ${unaOfertaLaboral}" class="col-3 m-4">
+						<div class="card" style="width: 18rem;">
+  							<img th:src="@{/images/trabajo01.jpeg}" class="card-img-top" alt="...">
+  							<div class="card-body">
+    							<h5 th:text="${oferta.puestoResum}" class="card-title"></h5>
+    							<p th:text="${oferta.puestoReq}" class="card-text"></p>
+    							<p th:text="${oferta.dispHoraria}" class="card-text"></p>
+    							<br />
+    							<div>
+    								<a th:href="@{/oferta/postular/}+${oferta.codigo}" class="btn btn-primary">Postular</a>
+  									<a th:href="@{/oferta/informacion/}+${oferta.codigo}" class="btn btn-primary">Mas Informacion</a>
+    							</div>
+  							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+	
+</body>
+</html>
