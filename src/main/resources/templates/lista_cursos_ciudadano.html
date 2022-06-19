@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Lista de cursos</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+	<nav th:replace="layouts/header :: headergeneral"></nav>
+
+		<br />
+		 <div style="text-align: center">
+		<h3 class="text-black center">Lista de Cursos</h3>
+		
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end me-3">
+  			<a th:href="@{/inicio}" class="btn btn-primary" type="button">Volver al inicio</a>
+		</div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="row">
+					<div th:each="curso : ${unCurso}" class="col-3 m-4">
+						<div class="card" style="width: 18rem;">
+  							<img th:src="@{/images/curso01.jpg}" class="card-img-top" alt="...">
+  							<div class="card-body">
+    							<h5 th:text="${curso.titulo}" class="card-title"></h5>
+    							<p>Categoria: </p>
+    								<p th:text="${curso.categoria}" class="card-text"></p>
+    							<p>Fecha de Incio: </p>
+    							<p th:text="${curso.fechaInicio}" class="card-text"></p>
+    							<p>Fecha de Finalizacion: </p>
+    							<p th:text="${curso.fechaFin}" class="card-text"></p>
+    							<p>Docente: Actividad Autoadministrada (Online)</p>
+    							<br />
+    							<div>
+    								<a th:href="@{/curso/inscripcion/}+${curso.codigo}" id="inscripcionCurso" class="btn btn-primary">Inscribirse</a>
+    							</div>
+  							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		<footer th:replace="layouts/footer.html ::footergeneral"></footer>
+		
+		
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+	
+</body>
+</html>
