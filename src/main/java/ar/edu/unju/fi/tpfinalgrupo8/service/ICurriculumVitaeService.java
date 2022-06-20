@@ -1,15 +1,18 @@
-/*package ar.edu.unju.fi.tpfinalgrupo8.service;
+package ar.edu.unju.fi.tpfinalgrupo8.service;
 
-import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
 import java.util.List;
 
+import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
+
 public interface ICurriculumVitaeService {
-	void guardar(CurriculumVitae curriculumvitae);
-	List<CurriculumVitae> listarTodos();
-	CurriculumVitae buscarPorDNI(Long dni);
-	void eliminar(Long dni);
-	void modificar(CurriculumVitae curriculumvitae);
-	//public Ciudadano getCiudadano();
-	//public List<Ciudadano> getListaCiudadano();
+	
+	//agregados a funcionar
+	
+	public CurriculumVitae getCurriculumVitae();
+	
+	public boolean guardarCurriculumVitae(CurriculumVitae curriculumVitae);
+	public void modificarCurriculumVitae(CurriculumVitae curriculumVitae);
+	public void eliminarCurriculumVitae(long dni);
+	public CurriculumVitae buscarCurriculumVitae(long dni);
+	public List<CurriculumVitae> obtenerCurriculumVitae();
 }
-*/

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Lista de Curriculum</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+	<nav th:insert="layouts/header :: headergeneral"></nav>
+	
+	
+	
+	<div class="container">
+		<br />
+		<h3>Listado de Curriculum</h3>
+		
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  			<a th:href="@{/curriculumVitae/nuevo}" class="btn btn-primary" type="button">Nuevo</a>
+		</div>
+		
+		<br />
+		<div class="col-sm-12 col-md-10">
+			<div class="container">
+			<table class="table table-striped" border="1">
+				<tr style="text-align: center">
+					<th>Dni</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Titulo</th>
+					<th>Telefono</th>
+					<th>Fecha de Nacimiento</th>
+					<th>Opciones</th>
+				</tr>
+				<tr th:each="cv: ${unCurriculumVitae}" style="text-align: center">
+					<td th:text="${cv.dni}"></td>
+					<td th:text="${cv.nombre}"></td>
+					<td th:text="${cv.apellido}"></td>					
+					<td th:text="${cv.tituloUniversitarioOSecundario}"></td>
+					<td th:text="${cv.telefono}"></td>
+					<td th:text="${cv.fechaNacimiento}"></td>
+					<td>
+						<a th:href="@{/curriculumVitae/editar/}+${cv.dni}" id="editarCurriculumVitae" class="btn btn-warning">Editar</a>
+						<a th:href="@{/curriculumVitae/eliminar/}+${cv.dni}" id="eliminarCurriculumVitae" class="btn btn-danger">Eliminar</a>
+					</td>
+				</tr>	
+			</table>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+  	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</body>
+</html>
