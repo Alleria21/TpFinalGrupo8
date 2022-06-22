@@ -27,29 +27,6 @@ public class CiudadanoController {
 	@Autowired
 	private ICiudadanoService ciudadanoService;
 
-	
-	@GetMapping("/nuevo")
-	public String getCiudadano(Model model) {
-		model.addAttribute("ciudadano", ciudadanoService.getCiudadano());
-		return "nuevo_ciudadano";
-	}
-	
-	@PostMapping("/guardar")
-	public ModelAndView getListaCiudadanosPage(@Validated @ModelAttribute("ciudadano")Ciudadano ciudadano, 
-			BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			LOGGER.info("Error agregando un ciudadano");
-			ModelAndView mav= new ModelAndView("nuevo_ciudadano");
-			mav.addObject("ciudadano", ciudadano);
-			return mav;
-		}
-		ModelAndView mav=new ModelAndView("redirect:/ciudadano/listaCiudadanos");
-		if(ciudadanoService.guardarCiudadano(ciudadano)) {
-			LOGGER.info("Se agregó un objeto al arrayList de alumnos");
-		}
-		return mav;
-	}
-	
 	@GetMapping("/listaCiudadanos")
 	public String getListaCargadaCiudadanos(Model model) {
 		model.addAttribute("unCiudadano", ciudadanoService.getListaCiudadano());

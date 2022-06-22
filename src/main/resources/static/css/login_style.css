@@ -1,0 +1,19 @@
+.btn{
+    width: 20rem;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right,#3b83ff,#B3CDE0);
+    color: white;
+}
+img{
+    margin-top: 3rem ;
+    height: 12rem;
+    width: auto;
+}
+
+button a{
+    color: white;
+    text-decoration: none;
+}

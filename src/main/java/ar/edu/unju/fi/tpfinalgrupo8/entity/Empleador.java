@@ -2,6 +2,7 @@ package ar.edu.unju.fi.tpfinalgrupo8.entity;
 
 
 import ar.edu.unju.fi.tpfinalgrupo8.util.Provincias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -18,7 +19,7 @@ public class Empleador {
     @Column(name = "id")
     private long id;
 
-    @NotEmpty(message = "Este campo no debe ser vacio ni nulo")
+    @Positive(message = "El cuit debe ser un numero valido")
     @Column(name = "cuit", nullable = false)
     private long cuit;
 
@@ -34,8 +35,8 @@ public class Empleador {
     @Column(name = "nombre_comercial")
     private String nombreComercial;
 
-    @NotEmpty(message = "Este campo no debe ser vacio ni nulo" )
     @Column(name = "inicio_actividad",nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate inicioActividad;
 
     @NotEmpty(message = "Este campo no debe ser vacio ni nulo" )
@@ -51,7 +52,7 @@ public class Empleador {
     private String domicilio;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "privincia")
+    @Column(name = "provincia")
     private Provincias provincia;
 
 

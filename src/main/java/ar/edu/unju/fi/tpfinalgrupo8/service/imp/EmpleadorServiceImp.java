@@ -4,6 +4,7 @@ import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
 import ar.edu.unju.fi.tpfinalgrupo8.repository.EmpleadorRepository;
 import ar.edu.unju.fi.tpfinalgrupo8.service.IEmpleadorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +13,16 @@ public class EmpleadorServiceImp implements IEmpleadorService {
 
     @Autowired
     private EmpleadorRepository empleadorRepository;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
-    public void guardar(Empleador empleador) {
-        empleadorRepository.save(empleador);
+    public boolean guardar(Empleador empleador) {
+        if(!empleadorRepository.existsByCuit(empleador.getCuit())) {
+            empleador.setPassword(passwordEncoder.encode(empleador.getPassword()));//codifica password
+            empleadorRepository.save(empleador);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -41,6 +48,13 @@ public class EmpleadorServiceImp implements IEmpleadorService {
 
     @Override
     public void modificar(Empleador empleador) {
+        empleador.setPassword(passwordEncoder.encode(empleador.getPassword()));//codifica password
         empleadorRepository.save(empleador);
     }
+
+    @Override
+    public Empleador buscarPorCuit(Long cuit) {
+        return empleadorRepository.findByCuit(cuit).get();
+    }
+
 }
