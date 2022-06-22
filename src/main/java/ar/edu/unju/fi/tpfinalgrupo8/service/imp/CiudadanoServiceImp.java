@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinalgrupo8.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,12 +10,14 @@ import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 import ar.edu.unju.fi.tpfinalgrupo8.repository.CiudadanoRepository;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 
+import static ar.edu.unju.fi.tpfinalgrupo8.security.MainSecurity.passwordEncoder;
+
 @Service
 public class CiudadanoServiceImp implements ICiudadanoService{
 
 	@Autowired
 	private CiudadanoRepository ciudadanoRepository;
-	
+
 	//@Autowired
 	//private OfertaLaboralRepository ofertaLaboralRepository;
 	
@@ -26,17 +29,19 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 	@Override
 	public boolean guardarCiudadano(Ciudadano ciudadano) {
 		
-		Ciudadano ciu=ciudadanoRepository.findByDni(ciudadano.getDni());
-		if(ciu==null) {
+		Optional<Ciudadano> ciu=ciudadanoRepository.findByDni(ciudadano.getDni());
+		if(ciu.isEmpty()) {
 			ciudadano.setEstado(true);
+			ciudadano.setPassword(passwordEncoder().encode(ciudadano.getPassword()));
 			ciudadanoRepository.save(ciudadano);
+			return true;
 		}
 		return false;
 	}
 
 	@Override
 	public void modificarCiudadano(Ciudadano ciudadano) {
-		Ciudadano ciud=ciudadanoRepository.findByDni(ciudadano.getDni());
+		Ciudadano ciud=ciudadanoRepository.findByDni(ciudadano.getDni()).get();
 		ciud.setEmail(ciudadano.getEmail());
 		ciud.setEstadoCivil(ciudadano.getEstadoCivil());
 		ciud.setFechaNac(ciudadano.getFechaNac());
@@ -63,7 +68,7 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 
 	@Override
 	public Ciudadano buscarCiudadano(int dni) {
-		return ciudadanoRepository.findByDni(dni);
+		return ciudadanoRepository.findByDni(dni).get();
 	}
 	
 
