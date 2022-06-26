@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -165,7 +166,14 @@ public class CurriculumVitae {
 	@Column(name = "cv_conocimientosInformaticos")
 	@Enumerated(EnumType.STRING)
 	private ConocimientoInformatico conocimientosInformaticos;
-
+	
+	
+	/*Curriculum personal del ciudadano
+	@OneToOne(cascade = CascadeType.All)
+	@JoinColumn(name="ciudadano_id");
+	private Ciudadano ciudadano_Curri;
+	
+	*/
 	public CurriculumVitae(long id, Ciudadano ciudadano, String nombre, String apellido, String email, long dni,
 			int cantidadDeHijos, LocalDate fechaNacimiento, EstadoCivil estadoCivil, long telefono,
 			EstadoVidaPadres estadoVidaPadres, Nacionalidad nacionalidad, Provincias provincias, String ciudad,

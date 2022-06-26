@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -86,6 +87,12 @@ public class Ciudadano {
 	@Column(name="estado")
 	private boolean estado;
 	
+	
+	/*Para su curriculum personal
+	@OneToOne(mappedBy = "ciudadano_Curri")
+	private CurriculumVitae curriculum;
+	
+	*/
 	
 	public Ciudadano() {
 		// TODO Auto-generated constructor stub
