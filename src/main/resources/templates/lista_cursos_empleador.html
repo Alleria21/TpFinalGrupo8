@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Lista de cursos</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/cards_style.css}">
 </head>
 <body>
 	<nav th:replace="layouts/header :: headergeneral"></nav>
@@ -14,7 +14,7 @@
 		<h3 class="text-black center">Lista de Cursos</h3>
 		
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end me-3">
-  			<a th:href="@{/curso/nuevo}" class="btn btn-primary" type="button">Nuevo</a>
+  			<a th:href="@{/curso/nuevo}" class="btn btn-primary px-3" type="button">Nuevo</a>
 		</div>
 		
 		<div class="container">
@@ -26,15 +26,18 @@
   							<div class="card-body">
     							<h5 th:text="${curso.titulo}" class="card-title"></h5>
     							<p>Categoria: </p>
-    								<p th:text="${curso.categoria}" class="card-text"></p>
+    							<p th:text="${curso.categoria}" class="card-text"></p>
+    							<br />
     							<p>Fecha de Incio: </p>
     							<p th:text="${curso.fechaInicio}" class="card-text"></p>
+    							<br />
     							<p>Fecha de Finalizacion: </p>
     							<p th:text="${curso.fechaFin}" class="card-text"></p>
+    							<br />
     							<p>Docente: Actividad Autoadministrada (Online)</p>
     							<br />
     							<div>
-    								<a th:href="@{/curso/editar/}+${curso.codigo}" id="editarCurso" class="btn btn-warning">Editar</a>
+    								<a th:href="@{/curso/editar/}+${curso.codigo}" id="editarCurso" class="btn btn-warning px-4">Editar</a>
 									<a th:href="@{/curso/eliminar/}+${curso.codigo}" id="eliminarCurso" class="btn btn-danger">Eliminar</a>
     							</div>
   							</div>
