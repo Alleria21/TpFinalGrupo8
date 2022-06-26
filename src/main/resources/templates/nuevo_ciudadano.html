@@ -7,20 +7,20 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
+		<!--  -->
 		<nav th:replace="layouts/header :: headergeneral"></nav>
 	 
-		<div class="container">
+		<div class="container-fluid">
+			<h3 class="mt-3 text-center ">Registro de Ciudadano</h3>
 			<br />
 			<form th:object="${ciudadano}" th:action="@{/register/ciudadano}" method="POST">
-			<div class="row mb-5 mt-5">
-			<div class="col-4"></div>
-			<div class="col-4 border border-dark">
-				<h3 class="mt-3 text-center ">Registro de Ciudadano</h3>
+		
+			<div class="row mb-3 mt-1  row-cols-1 row-cols-md-2 row-cols-lg-2">
+			
+			
+			<div class="col">
 					<input type="hidden" th:field="*{estado}"/>
 					<input type="hidden" th:field="*{id}"/>
-				<br />
-				<br />
-
 				<div class="form-floating mb-3">
 		  			<input th:field="*{dni}" type="number" class="form-control" id="dniId" placeholder="123 example">
 		  			<label for="dniId">DNI</label>
@@ -50,6 +50,10 @@
 				  		<div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
 		  		</div>
 		  		
+		  		</div>
+		  		
+		  		<div class="col">
+		  		
 		  		<div class="form-floating mb-3">
 		  			<input th:field="*{telefono}" type="number" class="form-control" id="telefonoId" placeholder="123 example">
 		  			<label for="telefonoId">TELEFONO</label>
@@ -58,7 +62,7 @@
 				
 				<div class="form-floating mb-3">
 		  			<input th:field="*{fechaNac}" type="date" class="form-control" id="fechaNacId" placeholder="YYYY-MM-dd">
-		  			<label for="fechaNacId">DNI</label>
+		  			<label for="fechaNacId">Fecha de Nacimiento</label>
 		  			<div class="text-danger" th:if="${#fields.hasErrors('fechaNac')}" th:errors="*{fechaNac}"></div>
 				</div>
 				
@@ -68,16 +72,22 @@
 		  			<div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 				</div>
 				
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				</div>
+				
+				</div>  <!-- Formata del form -->
+				
+				<div class="d-grid gap-2 d-md-flex justify-content-md-center">
 		  			<button class="btn btn-primary me-md-2" type="submit">Enviar</button>
 		  			<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Cancelar</a>
 				</div>
 			<br />
+	
+		
+				</form>
 			</div>
-			</div>
-		  	</form>
+		  	
 		  	<br />
-	  	</div>
+
 		
 		
 	
