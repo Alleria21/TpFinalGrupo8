@@ -91,7 +91,7 @@ public class OfertaLaboral {
 	
 
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne()
 	@JoinColumn(name = "empleador_id")
 	//ENCARGADO DE CREAR LA TABLA DE RELACION
 	private Empleador empleador;

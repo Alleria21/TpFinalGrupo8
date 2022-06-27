@@ -70,6 +70,11 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 	public Ciudadano buscarCiudadano(int dni) {
 		return ciudadanoRepository.findByDni(dni).get();
 	}
-	
+
+	@Override
+	public Optional<List<Ciudadano>> findByProvincia(String provincia) {
+		return ciudadanoRepository.findByProvincia(provincia);
+	}
+
 
 }

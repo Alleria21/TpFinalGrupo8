@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.tpfinalgrupo8.controller;
 
+import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,19 @@ public class OfertaLaboralController {
 	
 	private static final Log LOGGER = LogFactory.getLog(OfertaLaboral.class);
 	
-	@GetMapping("/nuevo")
-	public String getFormNuevoOfertaLaboralPage(Model model) {
-		model.addAttribute("oferta", ofertaLaboralService.getOfertaLaboral());
+	@GetMapping("/{id}/nuevo")
+	public String getFormNuevoOfertaLaboralPage(@PathVariable(value = "id")Long id,Model model) {
+		OfertaLaboral ofertaLaboral = new OfertaLaboral();
+		Empleador empleador = new Empleador();
+		empleador.setId(id);
+		ofertaLaboral.setEmpleador(empleador);
+		model.addAttribute("oferta", ofertaLaboral);
+		model.addAttribute("id",id);
 		LOGGER.info("Se ha asociado un objeto OfertaLaboral al formulario");
 		return "nuevo_ofertaLaboral";
 	}
 	
-	@PostMapping("/agregar")
+	@PostMapping("/{id}/agregar")
 	public ModelAndView getListaOfertaLaboralPage(@Validated @ModelAttribute("oferta")OfertaLaboral ofertaLaboral,
 	BindingResult bindingresult) {
 		if(bindingresult.hasErrors()){

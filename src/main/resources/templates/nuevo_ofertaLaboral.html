@@ -11,12 +11,16 @@
 	
 <div class="container-fluid">
 	<h3 class="my-3 text-center ">Alta de Oferta Laboral</h3>
-	<form th:object="${oferta}" th:action="@{/oferta/agregar}" method="POST">
+	<form th:object="${oferta}" th:action="@{/oferta/{id}/agregar}" method="POST">
 		<div class="row mb-3 mt-1  row-cols-1 row-cols-md-2 row-cols-lg-2">
 			<div class="col">
 				<input type="hidden" th:field="*{disponible}"/>
 				<input type="hidden" th:field="*{id}"/>
-				
+
+				<div class="form-floating mb-3">
+					<input th:field="*{empleador.id}" type="number" class="form-control" id="id" readonly />
+					<label for="id">Id Empleador</label>
+				</div>
 				<div class="form-floating mb-3">
 		  			<input th:field="*{codigo}" type="number" class="form-control" id="codigoId" placeholder="123 example">
 		  			<label for="codigoId">Codigo</label>

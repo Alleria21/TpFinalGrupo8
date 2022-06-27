@@ -10,65 +10,71 @@
 <nav th:replace="layouts/header :: headergeneral"></nav>
 
 <div class="container-fluid">
-    <h3 class="my-3 text-center ">Registro de Empleador</h3>
+    <h3 class="my-3 titulo ">Registro de Empleador</h3>
     <form th:object="${empleador}" th:action="@{/register/empleador}" method="POST">
 
         <div class="row mb-3 mt-1  row-cols-1 row-cols-md-2 row-cols-lg-2 ">
-            <div class="col">
+            <div class="col px-5">
                 <div class="form-floating mb-3">
                     <input th:field="*{cuit}" type="number" class="form-control" id="cuitId">
-                    <label for="cuitId">Cuit</label>
+                    <label class="form-label" for="cuitId">Cuit</label>
                     <div class="text-danger" th:if="${#fields.hasErrors('cuit')}" th:errors="*{cuit}"></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input th:field="*{password}" type="password" class="form-control" id="passwordId">
-                    <label for="passwordId">Password</label>
+                    <label class="form-label" for="passwordId">Password</label>
                     <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input th:field="*{razonSocial}" type="text" class="form-control" id="razonSocialId">
-                    <label for="razonSocialId">Razon Social</label>
+                    <label class="form-label" for="razonSocialId">Razon Social</label>
                     <div class="text-danger" th:if="${#fields.hasErrors('razonSocial')}"
                          th:errors="*{razonSocial}"></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input th:field="*{nombreComercial}" type="text" class="form-control" id="nombreComercialId">
-                    <label for="nombreComercialId">Nombre Comercial</label>
+                    <label class="form-label" for="nombreComercialId">Nombre Comercial</label>
                     <div class="text-danger" th:if="${#fields.hasErrors('nombreComercial')}"
                          th:errors="*{nombreComercial}"></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input th:field="*{inicioActividad}" type="date" class="form-control" id="inicioActividadId">
-                    <label for="inicioActividadId">Inicio Actividad</label>
+                    <label class="form-label" for="inicioActividadId">Inicio Actividad</label>
                     <div class="text-danger" th:if="${#fields.hasErrors('inicioActividad')}"
                          th:errors="*{inicioActividad}"></div>
                 </div>
+                <div class=" form-floating mb-3 ">
+                    <input th:field="*{descripcion}" type="text" class="form-control" id="descripcionId">
+                    <label class="form-label" for="descripcionId">Descripcion</label>
+                    <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
+                         th:errors="*{descripcion}"></div>
+                </div>
             </div>
-            <div class="col">
+            <div class="col px-5">
 				<div class="form-floating mb-3">
 					<input th:field="*{paginaWeb}" type="text" class="form-control" id="paginaWebId">
-					<label for="paginaWebId">Pagina Web</label>
+					<label class="form-label" for="paginaWebId">Pagina Web</label>
 					<div class="text-danger" th:if="${#fields.hasErrors('paginaWeb')}" th:errors="*{paginaWeb}"></div>
 				</div>
 				<div class="form-floating mb-3">
 					<input th:field="*{email}" type="email" class="form-control" id="emailId">
-					<label for="emailId">Email</label>
+					<label class="form-label" for="emailId">Email</label>
 					<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 				</div>
 
 				<div class="form-floating mb-3">
 					<input th:field="*{telefono}" type="number" class="form-control" id="telefonoId"
 						   placeholder="123 example">
-					<label for="telefonoId">Telefono</label>
+					<label class="form-label" for="telefonoId">Telefono</label>
 					<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
 				</div>
                 <div class="form-floating mb-3">
                     <input th:field="*{domicilio}" type="text" class="form-control" id="domicilioId">
-                    <label for="domicilioId">Domicilio</label>
+                    <label class="form-label" for="domicilioId">Domicilio</label>
                     <div class="text-danger" th:if="${#fields.hasErrors('domicilio')}" th:errors="*{domicilio}"></div>
                 </div>
 
@@ -83,12 +89,7 @@
                 </div>
 
             </div>
-			<div class="col-12 form-floating mb-3">
-				<input th:field="*{descripcion}" type="text" class="form-control" id="descripcionId">
-				<label for="descripcionId">Descripcion</label>
-				<div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
-					 th:errors="*{descripcion}"></div>
-			</div>
+
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
             <button class="btn btn-primary me-md-2 px-3" type="submit">Enviar</button>

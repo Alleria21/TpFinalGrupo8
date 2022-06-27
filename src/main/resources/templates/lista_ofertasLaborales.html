@@ -13,10 +13,6 @@
 <div style="text-align: center">
 	<h3 class="text-black center">Lista de Ofertas Laborales</h3>
 	
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end me-3">
- 			<a th:href="@{/oferta/nuevo}" class="btn btn-primary px-3" type="button">Nuevo</a>
-	</div>
-	
 	<div class="container">
 		<div class="row">
 			<div class="row">
@@ -37,10 +33,12 @@
    							<p>Vacantes:</p>
    							<p th:text="${oferta.cantidadVacantes}" class="card-text"></p>
    							<br />
+								<!--
    							<div>
    								<a th:href="@{/oferta/editar/}+${oferta.codigo}" id="editarOferta" class="btn btn-warning px-4">Editar</a>
 								<a th:href="@{/oferta/eliminar/}+${oferta.codigo}" id="eliminarOferta" class="btn btn-danger">Eliminar</a>
    							</div>
+   							-->
  							</div>
 					</div>
 				</div>

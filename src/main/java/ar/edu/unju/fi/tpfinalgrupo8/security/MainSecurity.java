@@ -41,6 +41,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login", "/register/**").permitAll()
+                //.antMatchers("/oferta/nuevo").hasAuthority("EMPLEADOR")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login")//.loginProcessingUrl("/empleador_login")
                 .permitAll()
