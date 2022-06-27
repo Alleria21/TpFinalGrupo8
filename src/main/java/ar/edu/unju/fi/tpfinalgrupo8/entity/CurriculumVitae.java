@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -56,7 +57,7 @@ public class CurriculumVitae {
 	private String apellido;
 	
 	@Email
-	@NotEmpty(message="Este campo debe estar completo")
+	//@NotEmpty(message="Este campo debe estar completo")
 	@Column(name = "cv_mail")
 	private String email;
 	
@@ -64,9 +65,6 @@ public class CurriculumVitae {
 	@Min(value=1000000, message="*El N° de DNI debe ser mayor a 1.000.000")
 	@Column(name = "DNI", length = 9, nullable = true)
 	private long dni;
-	
-	@Column(name = "cv_hijos")
-	private int cantidadDeHijos;
 	
 	@NotNull(message = "*Debe ingresar una fecha") 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -81,10 +79,6 @@ public class CurriculumVitae {
 	@Min(value=1000, message="Ingrese un valor valido")
 	@Column(name = "cv_telefono")
 	private long telefono;
-	
-	@Column(name = "cv_padres")
-	@Enumerated(EnumType.STRING)
-	private EstadoVidaPadres estadoVidaPadres;
 	
 	//Datos personales del ciudadano en relacion al lugar de nacimiento
 	
@@ -112,7 +106,7 @@ public class CurriculumVitae {
 	@Enumerated(EnumType.STRING)
 	private Nacionalidad paisDeResidencia;
 	
-	@NotNull(message="Debe completar este parámetro")
+	//@NotNull(message="Debe completar este parámetro")
 	@Column(name = "cv_provinciaResidencia", nullable = true)
 	@Enumerated(EnumType.STRING)
 	private Provincias provinciaDeResidencia;
@@ -128,11 +122,6 @@ public class CurriculumVitae {
 
 	//Datos personales del usuario en relacion a la educacion
 	
-	@NotNull(message="Debe completar este parámetro")
-	@Column(name = "cv_educacion")
-	@Enumerated(EnumType.STRING)
-	private NivelEducacion educacion;
-	
 	@Column(name = "cv_logros")
 	private String logrosObtenidos;
 
@@ -140,18 +129,16 @@ public class CurriculumVitae {
 	@Column(name = "cv_egresoSecundario")
 	private String escuelaColegioSecundario;
 	
-	@NotNull(message = "*Debe ingresar una fecha") 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "*Debe ingresar una año") 
 	@Column(name = "cv_fechaEgresoSec")
-	private LocalDate fechaEgresadoSecundaria;
+	private int fechaEgresadoSecundaria;
 	
 	@Column(name = "cv_egresoFacultad")
 	private String escualaUniversidadFacultad;
 	
-	@NotNull(message = "*Debe ingresar una fecha") 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "*Debe ingresar una año") 
 	@Column(name = "cv_fechaEgresoFac")
-	private LocalDate fechaEgresadoUniversidad;
+	private int fechaEgresadoUniversidad;
 
 	@NotNull(message="Debe completar este parámetro")
 	@Column(name = "cv_titulo")
@@ -165,14 +152,21 @@ public class CurriculumVitae {
 	@Column(name = "cv_conocimientosInformaticos")
 	@Enumerated(EnumType.STRING)
 	private ConocimientoInformatico conocimientosInformaticos;
-
+	
+	
+	/*Curriculum personal del ciudadano
+	@OneToOne(cascade = CascadeType.All)
+	@JoinColumn(name="ciudadano_id");
+	private Ciudadano ciudadano_Curri;
+	
+	*/
 	public CurriculumVitae(long id, Ciudadano ciudadano, String nombre, String apellido, String email, long dni,
 			int cantidadDeHijos, LocalDate fechaNacimiento, EstadoCivil estadoCivil, long telefono,
 			EstadoVidaPadres estadoVidaPadres, Nacionalidad nacionalidad, Provincias provincias, String ciudad,
 			String domicilio, Nacionalidad paisDeResidencia, Provincias provinciaDeResidencia, String ciudadResidencia,
 			String experienciaLaboral, NivelEducacion educacion, String logrosObtenidos,
-			String escuelaColegioSecundario, LocalDate fechaEgresadoSecundaria, String escualaUniversidadFacultad,
-			LocalDate fechaEgresadoUniversidad, String tituloUniversitarioOSecundario, String idiomas,
+			String escuelaColegioSecundario, int fechaEgresadoSecundaria, String escualaUniversidadFacultad,
+			int fechaEgresadoUniversidad, String tituloUniversitarioOSecundario, String idiomas,
 			ConocimientoInformatico conocimientosInformaticos, boolean estado) {
 		super();
 		this.id = id;
@@ -181,11 +175,9 @@ public class CurriculumVitae {
 		this.apellido = apellido;
 		this.email = email;
 		this.dni = dni;
-		this.cantidadDeHijos = cantidadDeHijos;
 		this.fechaNacimiento = fechaNacimiento;
 		this.estadoCivil = estadoCivil;
 		this.telefono = telefono;
-		this.estadoVidaPadres = estadoVidaPadres;
 		this.nacionalidad = nacionalidad;
 		this.provincias = provincias;
 		this.ciudad = ciudad;
@@ -194,7 +186,6 @@ public class CurriculumVitae {
 		this.provinciaDeResidencia = provinciaDeResidencia;
 		this.ciudadResidencia = ciudadResidencia;
 		this.experienciaLaboral = experienciaLaboral;
-		this.educacion = educacion;
 		this.logrosObtenidos = logrosObtenidos;
 		this.escuelaColegioSecundario = escuelaColegioSecundario;
 		this.fechaEgresadoSecundaria = fechaEgresadoSecundaria;
@@ -258,14 +249,6 @@ public class CurriculumVitae {
 		this.dni = dni;
 	}
 
-	public int getCantidadDeHijos() {
-		return cantidadDeHijos;
-	}
-
-	public void setCantidadDeHijos(int cantidadDeHijos) {
-		this.cantidadDeHijos = cantidadDeHijos;
-	}
-
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -288,14 +271,6 @@ public class CurriculumVitae {
 
 	public void setTelefono(long telefono) {
 		this.telefono = telefono;
-	}
-
-	public EstadoVidaPadres getEstadoVidaPadres() {
-		return estadoVidaPadres;
-	}
-
-	public void setEstadoVidaPadres(EstadoVidaPadres estadoVidaPadres) {
-		this.estadoVidaPadres = estadoVidaPadres;
 	}
 
 	public Nacionalidad getNacionalidad() {
@@ -362,14 +337,6 @@ public class CurriculumVitae {
 		this.experienciaLaboral = experienciaLaboral;
 	}
 
-	public NivelEducacion getEducacion() {
-		return educacion;
-	}
-
-	public void setEducacion(NivelEducacion educacion) {
-		this.educacion = educacion;
-	}
-
 	public String getLogrosObtenidos() {
 		return logrosObtenidos;
 	}
@@ -386,11 +353,11 @@ public class CurriculumVitae {
 		this.escuelaColegioSecundario = escuelaColegioSecundario;
 	}
 
-	public LocalDate getFechaEgresadoSecundaria() {
+	public int getFechaEgresadoSecundaria() {
 		return fechaEgresadoSecundaria;
 	}
 
-	public void setFechaEgresadoSecundaria(LocalDate fechaEgresadoSecundaria) {
+	public void setFechaEgresadoSecundaria(int fechaEgresadoSecundaria) {
 		this.fechaEgresadoSecundaria = fechaEgresadoSecundaria;
 	}
 
@@ -402,11 +369,11 @@ public class CurriculumVitae {
 		this.escualaUniversidadFacultad = escualaUniversidadFacultad;
 	}
 
-	public LocalDate getFechaEgresadoUniversidad() {
+	public int getFechaEgresadoUniversidad() {
 		return fechaEgresadoUniversidad;
 	}
 
-	public void setFechaEgresadoUniversidad(LocalDate fechaEgresadoUniversidad) {
+	public void setFechaEgresadoUniversidad(int fechaEgresadoUniversidad) {
 		this.fechaEgresadoUniversidad = fechaEgresadoUniversidad;
 	}
 
