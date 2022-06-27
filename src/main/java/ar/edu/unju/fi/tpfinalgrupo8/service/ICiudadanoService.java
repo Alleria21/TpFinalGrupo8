@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinalgrupo8.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 
@@ -12,4 +13,5 @@ public interface ICiudadanoService {
 	public void eliminarCiudadano(int dni);
 	public List<Ciudadano> getListaCiudadano();
 	public Ciudadano buscarCiudadano(int dni);
+	Optional<List<Ciudadano>> findByProvincia(String provincia) ;
 }

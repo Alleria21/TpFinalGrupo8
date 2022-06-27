@@ -63,7 +63,7 @@ public class Empleador {
     private String descripcion;
 
     //TODO : revisar cascada
-    @OneToMany(mappedBy = "empleador")
+    @OneToMany(mappedBy = "empleador", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
     private List<OfertaLaboral> ofertasLaborales;
 
     public Empleador() {

@@ -20,5 +20,6 @@ public interface CiudadanoRepository extends JpaRepository<Ciudadano, Long>{
 	
 	@Query("select c from Ciudadano c order by c.dni")
 	public List<Ciudadano> ordenarPorDni();
+	Optional<List<Ciudadano>> findByProvincia(String provincia);
 	
 }
