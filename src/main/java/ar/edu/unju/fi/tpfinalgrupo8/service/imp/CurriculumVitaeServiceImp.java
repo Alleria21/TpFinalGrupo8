@@ -35,18 +35,15 @@ public class CurriculumVitaeServiceImp implements ICurriculumVitaeService {
 		CurriculumVitae cv = curriculumVitaeImp.findByDni(curriculumVitae.getDni());
 		cv.setNombre(curriculumVitae.getNombre());
 		cv.setApellido(curriculumVitae.getApellido());
-		cv.setCantidadDeHijos(curriculumVitae.getCantidadDeHijos());
 		cv.setCiudad(curriculumVitae.getCiudad());
 		cv.setCiudadano(curriculumVitae.getCiudadano());
 		cv.setCiudadResidencia(curriculumVitae.getCiudadResidencia());
 		cv.setConocimientosInformaticos(curriculumVitae.getConocimientosInformaticos());
 		cv.setDomicilio(curriculumVitae.getDomicilio());
-		cv.setEducacion(curriculumVitae.getEducacion());
 		cv.setEmail(curriculumVitae.getEmail());	
 		cv.setEscualaUniversidadFacultad(curriculumVitae.getEscualaUniversidadFacultad());
 		cv.setEscuelaColegioSecundario(curriculumVitae.getEscuelaColegioSecundario());
 		cv.setEstadoCivil(curriculumVitae.getEstadoCivil());
-		cv.setEstadoVidaPadres(curriculumVitae.getEstadoVidaPadres());
 		cv.setExperienciaLaboral(curriculumVitae.getExperienciaLaboral());
 		cv.setFechaEgresadoSecundaria(curriculumVitae.getFechaEgresadoSecundaria());
 		cv.setFechaEgresadoUniversidad(curriculumVitae.getFechaEgresadoUniversidad());
