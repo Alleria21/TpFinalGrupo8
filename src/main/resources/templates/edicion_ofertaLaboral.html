@@ -9,104 +9,108 @@
 <body>
 	<!--  <nav th:insert="layouts/header :: generalheader"></nav>  -->
 	
-	<div class="container">
-		<br />
-		<br />
-		<form th:object="${oferta}" th:action="@{/oferta/modificar}" method="POST">
-		<div class="row mb-5 mt-5">
-		<div class="col-4"></div>
-		<div class="col-4 border border-dark">
-			<h3 class="mt-3">Edicion De Oferta Laboral</h3>
+	<div class="container-fluid">
+	<h3 class="my-3 text-center ">Alta de Oferta Laboral</h3>
+	<form th:object="${oferta}" th:action="@{/oferta/agregar}" method="POST">
+		<div class="row mb-3 mt-1  row-cols-1 row-cols-md-2 row-cols-lg-2 ">
+			<div class="col">
 				<input type="hidden" th:field="*{disponible}"/>
 				<input type="hidden" th:field="*{id}"/>
 				
-			<div class="form-floating mb-3">
-				<input type="hidden" th:field="*{codigo}" />
-	  			<input th:field="*{codigo}" type="number" class="form-control" id="codigoId" placeholder="123 example">
-	  			<label for="codigoId">Codigo</label>
-			</div>
-			
-			<div class="form-floating mb-3">
-	  			<input th:field="*{cantidadVacantes}" type="number" class="form-control" id="cantVacantesId" placeholder="123 example">
-	  			<label for="cantVacantesId">Cantidad de vacantes</label>
-	  			<div class="text-danger" th:if="${#fields.hasErrors('cantidadVacantes')}" th:errors="*{cantidadVacantes}"></div>
-			</div>
-			
-			<div class="form-floating mb-3">
-	  			<input th:field="*{puestoReq}" type="text" class="form-control" id="puestoReqId" placeholder="position required">
-	  			<label for="puestoReqId">Puesto Requerido</label>
-	  			<div class="text-danger" th:if="${#fields.hasErrors('puestoReq')}" th:errors="*{puestoReq}"></div>
-			</div>
-			
-			<div class="form-floating mb-3">
-	  			<input th:field="*{puestoResum}" type="text" class="form-control" id="puestoResumId" placeholder="summary position">
-	  			<label for="puestoResumId">Resumen del puesto</label>
-	  			<div class="text-danger" th:if="${#fields.hasErrors('puestoResum')}" th:errors="*{puestoResum}"></div>
-			</div>
-			
-			<div>
-				<label class="form-label">Seleccione Disponibilidad Horaria</label>
-				<select class="form-control mb-3" th:field="*{dispHoraria}" id="dispHorariaId" >
-					<option th:each="dispHoraria : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.DisponibilidadHoraria).values()}" th:value="${dispHoraria}" th:text="${dispHoraria.displayValue}"></option>
-				</select>
-			  	<div class="text-danger" th:if="${#fields.hasErrors('dispHoraria')}" th:errors="*{dispHoraria}"></div>
+				<div class="form-floating mb-3">
+					<input type="hidden" th:field="*{codigo}" />
+	  				<input th:field="*{codigo}" type="number" class="form-control" id="codigoId" disabled="disabled">
+	  				<label for="codigoId">Codigo</label>
+				</div>
+				
+				<div class="form-floating mb-3">
+		  			<input th:field="*{cantidadVacantes}" type="number" class="form-control" id="cantVacantesId" placeholder="123 example">
+		  			<label for="cantVacantesId">Cantidad de vacantes</label>
+		  			<div class="text-danger" th:if="${#fields.hasErrors('cantidadVacantes')}" th:errors="*{cantidadVacantes}"></div>
+				</div>
+				
+				<div class="form-floating mb-3">
+		  			<input th:field="*{puestoReq}" type="text" class="form-control" id="puestoReqId" placeholder="position required">
+		  			<label for="puestoReqId">Puesto requerido</label>
+		  			<div class="text-danger" th:if="${#fields.hasErrors('puestoReq')}" th:errors="*{puestoReq}"></div>
+				</div>
+				
+				<div class="form-floating mb-3">
+		  			<input th:field="*{puestoResum}" type="text" class="form-control" id="puestoResumId" placeholder="summary position">
+		  			<label for="puestoResumId">Resumen del puesto</label>
+		  			<div class="text-danger" th:if="${#fields.hasErrors('puestoResum')}" th:errors="*{puestoResum}"></div>
+				</div>
+				
+				<div>
+					<label class="form-label">Seleccione tipo de Jornada</label>
+					<select class="form-control mb-3" th:field="*{jornada}" id="jornadaId" >
+						<option th:each="jornada : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.Jornada).values()}" th:value="${jornada}" th:text="${jornada.displayValue}"></option>
+				  	</select>
+				  	<div class="text-danger" th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></div>
+			  	</div>
+				
 		  	</div>
 		  	
-			<div class="form-floating mb-3">
-	  			<input th:field="*{tareasPrincipales}" type="text" class="form-control" id="tareasPrincipalesId" placeholder="main tasks">
-	  			<label for="tareasPrincipalesId">Tareas principales</label>
-	  			<div class="text-danger" th:if="${#fields.hasErrors('tareasPrincipales')}" th:errors="*{tareasPrincipales}"></div>
+		  	<div class="col">
+				<div class="form-floating mb-3">
+		  			<input th:field="*{tareasPrincipales}" type="text" class="form-control" id="tareasPrincipalesId" placeholder="main tasks">
+		  			<label for="tareasPrincipalesId">Tareas principales</label>
+		  			<div class="text-danger" th:if="${#fields.hasErrors('tareasPrincipales')}" th:errors="*{tareasPrincipales}"></div>
+				</div>
+			  	
+			  	<div class="form-floating mb-3">
+		  			<input th:field="*{requisitos}" type="text" class="form-control" id="requisitosId" placeholder="requirements">
+		  			<label for="requisitosId">Requisitos</label>
+		  			<div class="text-danger" th:if="${#fields.hasErrors('requisitos')}" th:errors="*{requisitos}"></div>
+				</div>
+			  	
+			  	<div class="form-floating mb-3">
+		  			<input th:field="*{salario}" type="number" class="form-control" id="salarioId" placeholder="$25000 example">
+		  			<label for="salarioId">Salario</label>
+		  			<div class="text-danger" th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></div>
+				</div>
+			  	
+			  	<div class="form-floating mb-3">
+		  			<input th:field="*{beneficios}" type="text" class="form-control" id="beneficiosId" placeholder="benefits">
+		  			<label for="beneficiosId">Beneficios</label>
+		  			<div class="text-danger" th:if="${#fields.hasErrors('beneficios')}" th:errors="*{beneficios}"></div>
+				</div>
+				
+				<div>
+					<label class="form-label">Seleccione Disponibilidad Horaria</label>
+					<select class="form-control mb-3" th:field="*{dispHoraria}" id="dispHorariaId" >
+	
+						<option th:each="dispHoraria : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.DisponibilidadHoraria).values()}" th:value="${dispHoraria}" th:text="${dispHoraria.displayValue}"></option>
+				  	</select>
+				  	<div class="text-danger" th:if="${#fields.hasErrors('dispHoraria')}" th:errors="*{dispHoraria}"></div>
+			  	</div>
+			  	
 			</div>
+			<br />
 			
-			<div class="form-floating mb-3">
-	  			<input th:field="*{email}" type="email" class="form-control" id="emailId" placeholder="example@gmail.com">
-	  			<label for="emailId">Email</label>
-	  			<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+			<div class="container">
+				<h5 class="mt-3">Datos de contacto</h5>
+				<div class="form-floating mb-3">
+		  			<input th:field="*{email}" type="email" class="form-control" id="emailId" placeholder="example@gmail.com">
+		  			<label for="emailId">Email</label>
+		  			<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				</div>
+				
+				<div class="form-floating mb-3">
+	  				<input th:field="*{telefono}" type="number" class="form-control" id="telefonoId" placeholder="388-12345678 example">
+	  				<label for="telefonoId">Telefono</label>
+	  				<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+				</div>
 			</div>
-			
-			<div class="form-floating mb-3">
-  				<input th:field="*{telefono}" type="number" class="form-control" id="telefonoId" placeholder="388-12345678 example">
-  				<label for="telefonoId">Telefono</label>
-  				<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
-			</div>
-			
-			<div>
-				<label class="form-label">Seleccione tipo de Jornada</label>
-				<select class="form-control mb-3" th:field="*{jornada}" id="jornadaId" >
-					<option th:each="jornada : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.Jornada).values()}" th:value="${jornada}" th:text="${jornada.displayValue}"></option>
-				</select>
-			  	<div class="text-danger" th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></div>
-		  	</div>
-		  	
-		  	<div class="form-floating mb-3">
-	  			<input th:field="*{requisitos}" type="text" class="form-control" id="requisitosId" placeholder="requirements">
-	  			<label for="requisitosId">Requisitos</label>
-	  			<div class="text-danger" th:if="${#fields.hasErrors('requisitos')}" th:errors="*{requisitos}"></div>
-			</div>
-		  	
-		  	<div class="form-floating mb-3">
-	  			<input th:field="*{salario}" type="number" class="form-control" id="salarioId" placeholder="$25000 example">
-	  			<label for="salarioId">Salario</label>
-	  			<div class="text-danger" th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></div>
-			</div>
-		  	
-		  	<div class="form-floating mb-3">
-	  			<input th:field="*{beneficios}" type="text" class="form-control" id="beneficiosId" placeholder="benefits">
-	  			<label for="beneficiosId">Beneficios</label>
-	  			<div class="text-danger" th:if="${#fields.hasErrors('beneficios')}" th:errors="*{beneficios}"></div>
-			</div>
-		  	
-			
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  			<button class="btn btn-primary me-md-2" type="submit">Editar</button>
-  			<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Cancelar</a>
-		</div>
-		<br />
-		</div>
-		</div>
-	  	</form>
+				<br />
+				</div>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+	  				<button class="btn btn-primary me-md-2 px-3" type="submit">Enviar</button>
+	  				<a th:href="@{/inicio}" class="btn btn-secondary px-3" type="button">Cancelar</a>
+				</div>
+			</form>
+		  </div>
 	  	<br />
-  	</div>
   	
   	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>

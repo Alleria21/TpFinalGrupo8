@@ -40,10 +40,12 @@
 					<td th:text="${c.provincia}"></td>
 					<td th:text="${c.telefono}"></td>
 					<td th:text="${c.fechaNac}"></td>
+					
+					<!--  Esto solo se debe presentar a un ciudadano q este interesado en eliminar su cuenta de la pagina web
 					<td>
 						<a th:href="@{/ciudadano/editar/}+${c.dni}" id="editarOfertaLaboral" class="btn btn-warning">Editar</a>
 						<a th:href="@{/ciudadano/eliminar/}+${c.dni}" id="eliminarOfertaLaboral" class="btn btn-danger">Eliminar</a>
-					</td>
+					</td> -->
 				</tr>	
 			</table>
 			</div>
