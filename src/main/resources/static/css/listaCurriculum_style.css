@@ -1,0 +1,17 @@
+img{
+    height: 250px;
+    width: 250px;
+}
+
+.btn{
+    margin-bottom: 2em;
+    margin-right: 0.5em;
+}
+
+p{
+	display: inline
+}
+
+h5{
+	display: inline-block
+}
