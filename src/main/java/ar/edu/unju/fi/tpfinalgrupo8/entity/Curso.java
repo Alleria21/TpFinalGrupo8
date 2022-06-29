@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
@@ -71,18 +72,25 @@ public class Curso {
 	@Column(name = "curso_disponible")
 	private boolean disponible;
 	
+	/*
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(	name = "curso_ciudadano",
 				joinColumns = @JoinColumn(name = "curso_id"),
 				inverseJoinColumns = @JoinColumn(name = "ciudadano_id")
 			)
 	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();
+	*/
+	
+	@ManyToOne()
+	@JoinColumn(name = "ciudadano_id")
+	//ENCARGADO DE CREAR LA TABLA DE RELACION
+	private Ciudadano ciudadano;
 	
 	public Curso() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Curso(long id, int codigo, String titulo, Categoria categoria, LocalDate fechaInicio, LocalDate fechaFin, int horas, Modalidad modalidad, boolean disponible, List<Ciudadano> ciudadanos) {
+	public Curso(long id, int codigo, String titulo, Categoria categoria, LocalDate fechaInicio, LocalDate fechaFin, int horas, Modalidad modalidad, boolean disponible, Ciudadano ciudadano) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -93,7 +101,7 @@ public class Curso {
 		this.horas = horas;
 		this.modalidad = modalidad;
 		this.disponible = disponible;
-		this.ciudadanos = ciudadanos;
+		this.ciudadano = ciudadano;
 	}
 
 	public long getId() {
@@ -168,12 +176,14 @@ public class Curso {
 		this.disponible = disponible;
 	}
 
-	public List<Ciudadano> getCiudadanos() {
-		return ciudadanos;
+	public Ciudadano getCiudadano() {
+		return ciudadano;
 	}
 
-	public void setCiudadanos(List<Ciudadano> ciudadanos) {
-		this.ciudadanos = ciudadanos;
+	public void setCiudadano(Ciudadano ciudadano) {
+		this.ciudadano = ciudadano;
 	}
+
+	
 	
 }

@@ -13,9 +13,9 @@ import org.springframework.stereotype.Repository;
 public interface CiudadanoRepository extends JpaRepository<Ciudadano, Long>{
 
 	@Query("delete from Ciudadano d where d.dni = ?1")
-	public void deleteByDni(int dni);
+	public void deleteByDni(long dni);
 	
-	public Optional<Ciudadano> findByDni(int dni);
+	public Optional<Ciudadano> findByDni(long dni);
 	public List<Ciudadano> findByEstado(boolean estado);
 	
 	@Query("select c from Ciudadano c order by c.dni")

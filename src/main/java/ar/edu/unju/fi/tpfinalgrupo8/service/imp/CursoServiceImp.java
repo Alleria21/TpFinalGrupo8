@@ -38,6 +38,14 @@ public class CursoServiceImp implements ICursoService {
 	}
 
 	@Override
+	public boolean guardarInscripto(Curso curso) {
+		Curso curs = cursoRepository.findByCodigo(curso.getCodigo());
+		curso.setId(curs.getId());
+		cursoRepository.save(curso);
+		return true;
+	}
+	
+	@Override
 	public void eliminarCurso(int codigo) {
 		Curso curso = buscarCurso(codigo);
 		curso.setDisponible(false);

@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Curso;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICursoService;
 
 @Controller
@@ -27,14 +31,19 @@ public class CursoController {
 	
 	private static final Log LOGGER = LogFactory.getLog(Curso.class);
 	
-	@GetMapping("/nuevo")
-	public String getFormNuevoCursoPage(Model model) {
-		model.addAttribute("curso", cursoService.getCurso());
+	@GetMapping("/{id}/nuevo")
+	public String getCursoPage(@PathVariable(value = "id")Long id,Model model) {
+		Curso curso = new Curso();
+		Ciudadano ciudadano = new Ciudadano();
+		ciudadano.setId(id);
+		curso.setCiudadano(ciudadano);
+		model.addAttribute("curso", curso);
+		model.addAttribute("id",id);
 		LOGGER.info("Se ha asociado un objeto Curso al formulario");
 		return "nuevo_curso";
 	}
 	
-	@PostMapping("/agregar")
+	@PostMapping("/{id}/agregar")
 	public ModelAndView getListaCursoPage(@Validated @ModelAttribute("curso")Curso curso,
 	BindingResult bindingresult) {
 		if(bindingresult.hasErrors()){
@@ -46,7 +55,7 @@ public class CursoController {
 		
 		ModelAndView mav = new ModelAndView("redirect:/curso/ListaCursos");
 		if(cursoService.guardarCurso(curso)) {
-			LOGGER.info("Se ha agregado un curso");
+			LOGGER.info("Se ha agregado un cursp");
 		}else {
 			LOGGER.info("No se ha agregado un curso"); 
 		}
@@ -60,10 +69,11 @@ public class CursoController {
 		return mav;
 	}
 	
-	@GetMapping("/ListaCursos")
-	public ModelAndView getListaCursos() {
+	@GetMapping("/ListaCursos/{id}")
+	public ModelAndView getListaCursos(@PathVariable(value = "id")Long id) {
 		ModelAndView mav = new ModelAndView("lista_cursos_ciudadano");
 		mav.addObject("unCurso", cursoService.getListaCurso());
+		mav.addObject("id",id);
 		return mav;
 	}
 	

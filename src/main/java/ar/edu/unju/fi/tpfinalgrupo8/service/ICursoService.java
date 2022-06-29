@@ -12,4 +12,5 @@ public interface ICursoService {
 	public Curso buscarCurso(int codigo);
 	//public Ciudadano getCiudadano();
 	//public List<Ciudadano> getListaCiudadano();
+	boolean guardarInscripto(Curso curso);
 }
