@@ -4,16 +4,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -41,7 +43,7 @@ public class Ciudadano {
 	
 	@Min(value=1000000, message="*El n° de DNI debe ser mayor a 1.000.000")
 	@Column(name="ciudadano_dni")
-	private int dni;
+	private long dni;
 	
 	@Email
 	@Column(name="ciudadano_email")
@@ -81,8 +83,12 @@ public class Ciudadano {
 	@ManyToMany(mappedBy="ciudadanos")
 	private List<OfertaLaboral> ofertas=new ArrayList<OfertaLaboral>();
 	
-	@ManyToMany(mappedBy="ciudadanos")
-	private List<Curso> cursos=new ArrayList<Curso>();
+	//@ManyToMany(mappedBy="ciudadanos")
+	//private List<Curso> cursos=new ArrayList<Curso>();
+	
+	//Agregando relacion reciente
+	@OneToMany(mappedBy = "ciudadano", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
+    private List<Curso> unCurso;
 	
 	@Column(name="estado")
 	private boolean estado;
@@ -99,6 +105,7 @@ public class Ciudadano {
 	}
 
 
+	/*
 	public Ciudadano(long id, int dni, String email, EstadoCivil estadoCivil, Provincias provincia, int telefono, LocalDate fechaNac, String password, List<OfertaLaboral> ofertas, List<Curso> cursos, boolean estado) {
 		this.id = id;
 		this.dni = dni;
@@ -112,19 +119,20 @@ public class Ciudadano {
 		this.cursos = cursos;
 		this.estado = estado;
 	}
+	*/
 
-	public int getDni() {
+	public String getEmail() {
+		return email;
+	}
+
+
+	public long getDni() {
 		return dni;
 	}
 
 
-	public void setDni(int dni) {
+	public void setDni(long dni) {
 		this.dni = dni;
-	}
-
-
-	public String getEmail() {
-		return email;
 	}
 
 
@@ -188,13 +196,17 @@ public class Ciudadano {
 		this.ofertas = ofertas;
 	}
 	
-	public List<Curso> getCursos() {
-		return cursos;
+	
+
+	public List<Curso> getUnCurso() {
+		return unCurso;
 	}
 
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
+
+	public void setUnCurso(List<Curso> unCurso) {
+		this.unCurso = unCurso;
 	}
+
 
 	public boolean isEstado() {
 		return estado;

@@ -10,8 +10,8 @@ public interface ICiudadanoService {
 	public Ciudadano getCiudadano();
 	public boolean guardarCiudadano(Ciudadano ciudadano);
 	public void modificarCiudadano(Ciudadano ciudadano);
-	public void eliminarCiudadano(int dni);
+	public void eliminarCiudadano(long dni);
 	public List<Ciudadano> getListaCiudadano();
-	public Ciudadano buscarCiudadano(int dni);
+	public Ciudadano buscarCiudadano(long dni);
 	Optional<List<Ciudadano>> findByProvincia(String provincia) ;
 }

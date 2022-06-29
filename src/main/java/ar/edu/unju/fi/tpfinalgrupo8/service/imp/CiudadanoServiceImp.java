@@ -54,7 +54,7 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 	}
 
 	@Override
-	public void eliminarCiudadano(int dni) {
+	public void eliminarCiudadano(long dni) {
 		Ciudadano ciudadano=buscarCiudadano(dni);
 		ciudadano.setEstado(false);
 		ciudadanoRepository.save(ciudadano);
@@ -67,7 +67,7 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 	}
 
 	@Override
-	public Ciudadano buscarCiudadano(int dni) {
+	public Ciudadano buscarCiudadano(long dni) {
 		return ciudadanoRepository.findByDni(dni).get();
 	}
 

@@ -3,6 +3,8 @@ package ar.edu.unju.fi.tpfinalgrupo8.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.Curso;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
+import ar.edu.unju.fi.tpfinalgrupo8.service.ICursoService;
 
 
 @Controller
@@ -26,6 +32,9 @@ public class CiudadanoController {
 	
 	@Autowired
 	private ICiudadanoService ciudadanoService;
+	
+	@Autowired
+	private ICursoService cursoService;
 
 	@GetMapping("/listaCiudadanos")
 	public String getListaCargadaCiudadanos(Model model) {
@@ -60,6 +69,39 @@ public class CiudadanoController {
 		return mav;
 	}
 	
-		
+	@GetMapping("/welcome")
+    public ModelAndView welcomePage(@AuthenticationPrincipal User user){
+        ModelAndView modelAndView= new ModelAndView("welcomeCiudadano");
+        Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
+        LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
+        modelAndView.addObject("ciudadano",ciudadano);
+        modelAndView.addObject("curso", ciudadano.getUnCurso());
+        return modelAndView;
+    }
 	
+	@GetMapping("/welcome/misCursos")
+    public ModelAndView welcomeCursosPage(@AuthenticationPrincipal User user){
+        ModelAndView modelAndView= new ModelAndView("welcomeMisCursosCiudadano");
+        Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
+        LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
+        modelAndView.addObject("ciudadano",ciudadano);
+        modelAndView.addObject("curso", ciudadano.getUnCurso());
+        return modelAndView;
+    }
+	
+	@GetMapping("/{id}/inscribirse/{idCurso}")
+	public ModelAndView getCursoInscripcionPage(@PathVariable(value = "id")Long id,@PathVariable(value = "idCurso")int idCurso) {
+		Curso cursoEncontrado = cursoService.buscarCurso(idCurso);
+		Ciudadano ciudadano = new Ciudadano();
+		ciudadano.setId(id);
+		cursoEncontrado.setCiudadano(ciudadano);
+		if(cursoService.guardarInscripto(cursoEncontrado)) {
+			LOGGER.info("Se ha agregado un Curso");
+		}else {
+			LOGGER.info("No se ha agregado un Curso"); 
+		}
+		ModelAndView mav = new ModelAndView("redirect:/ciudadano/welcome");
+		LOGGER.info("Se ha asociado un objeto Curso al Ciudadano");
+		return mav;
+	}
 }

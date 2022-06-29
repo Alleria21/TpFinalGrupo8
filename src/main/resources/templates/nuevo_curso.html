@@ -11,7 +11,7 @@
 	
 	<div class="container">
 		<br />
-		<form th:object="${curso}" th:action="@{/curso/agregar}" method="POST">
+		<form th:object="${curso}" th:action="@{/curso/}+${1}+@{/agregar}" method="POST">
 
 		<div class="row mb-5 mt-5">
 		<div class="col-4"></div>
