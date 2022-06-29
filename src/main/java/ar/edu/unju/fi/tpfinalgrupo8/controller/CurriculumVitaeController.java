@@ -19,6 +19,7 @@ import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
+import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICurriculumVitaeService;
 
 
@@ -32,6 +33,8 @@ public class CurriculumVitaeController {
 	@Autowired
 	private ICurriculumVitaeService curriculumVitaeService;
 	
+	@Autowired
+	private ICiudadanoService ciudadanoService;
 	/*
 	@GetMapping("/nuevo")
 	public String agregar(Model model) {
@@ -40,11 +43,14 @@ public class CurriculumVitaeController {
 	}*/
 	@GetMapping("/{id}/nuevo")
 	public String getFormNuevoOfertaLaboralPage(@PathVariable(value = "id")Long id,Model model) {
-		CurriculumVitae curriculumVitae = new CurriculumVitae();
 		Ciudadano ciudadano = new Ciudadano();
+		CurriculumVitae curriculumVitae = new CurriculumVitae();
 		ciudadano.setId(id);
-		curriculumVitae.setCiudadano(ciudadano);
+		Ciudadano ciudadanoEncontrado = ciudadanoService.buscarCiudadanoPorId(ciudadano.getId());
+		LOGGER.info(ciudadanoEncontrado.getEmail());
+		curriculumVitae.setCiudadano(ciudadanoEncontrado);
 		model.addAttribute("curriculumVitae", curriculumVitae);
+		model.addAttribute("ciudadano", ciudadanoEncontrado);
 		model.addAttribute("id",id);
 		LOGGER.info("Se ha asociado un objeto Curriculum al formulario");
 		return "nuevo_curriculumVitae";

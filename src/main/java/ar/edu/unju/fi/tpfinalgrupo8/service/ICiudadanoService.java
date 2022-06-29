@@ -14,4 +14,5 @@ public interface ICiudadanoService {
 	public List<Ciudadano> getListaCiudadano();
 	public Ciudadano buscarCiudadano(long dni);
 	Optional<List<Ciudadano>> findByProvincia(String provincia) ;
+	Ciudadano buscarCiudadanoPorId(long id);
 }

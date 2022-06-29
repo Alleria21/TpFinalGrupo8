@@ -18,6 +18,8 @@ public interface CiudadanoRepository extends JpaRepository<Ciudadano, Long>{
 	public Optional<Ciudadano> findByDni(long dni);
 	public List<Ciudadano> findByEstado(boolean estado);
 	
+	public Optional<Ciudadano> findById(long id);
+	
 	@Query("select c from Ciudadano c order by c.dni")
 	public List<Ciudadano> ordenarPorDni();
 	Optional<List<Ciudadano>> findByProvincia(String provincia);
