@@ -82,6 +82,7 @@ public class OfertaLaboral {
 	private boolean disponible;
 	
 
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(	name = "oferta_ciudadano",
 				joinColumns = @JoinColumn(name = "oferta_id"),
@@ -90,6 +91,7 @@ public class OfertaLaboral {
 	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();
 	
 
+	
 
 	@ManyToOne()
 	@JoinColumn(name = "empleador_id")

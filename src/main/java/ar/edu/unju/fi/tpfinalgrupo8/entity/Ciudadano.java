@@ -80,8 +80,19 @@ public class Ciudadano {
 			)
 	private List<OfertaLaboral> ofertas=new ArrayList<OfertaLaboral>();
 	*/
+	
+	
+	
+	
+	
 	@ManyToMany(mappedBy="ciudadanos")
 	private List<OfertaLaboral> ofertas=new ArrayList<OfertaLaboral>();
+	
+	
+	
+	
+	
+	
 	
 	//@ManyToMany(mappedBy="ciudadanos")
 	//private List<Curso> cursos=new ArrayList<Curso>();

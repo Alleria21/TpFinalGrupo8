@@ -59,7 +59,7 @@ public class CurriculumVitae {
 	
 	@NotNull(message="Este campo debe estar completo")
 	@Min(value=1000000, message="*El N° de DNI debe ser mayor a 1.000.000")
-	@Column(name = "DNI", length = 9, nullable = true)
+	@Column(name = "DNI",  nullable = true)
 	private long dni;
 	
 	@NotNull(message = "*Debe ingresar una fecha") 
