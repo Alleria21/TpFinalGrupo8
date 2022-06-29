@@ -38,10 +38,6 @@ public class CurriculumVitae {
 	@Column(name = "cv_id")
 	private long id;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "ciudadano_id")
-	private Ciudadano ciudadano;
-	
 	@Column(name="ESTADO")
 	public boolean estado;
 	
@@ -153,13 +149,12 @@ public class CurriculumVitae {
 	@Enumerated(EnumType.STRING)
 	private ConocimientoInformatico conocimientosInformaticos;
 	
+	@OneToOne()
+	@JoinColumn(name = "ciudadano_id")
+	private Ciudadano ciudadano;
 	
-	/*Curriculum personal del ciudadano
-	@OneToOne(cascade = CascadeType.All)
-	@JoinColumn(name="ciudadano_id");
-	private Ciudadano ciudadano_Curri;
 	
-	*/
+	
 	public CurriculumVitae(long id, Ciudadano ciudadano, String nombre, String apellido, String email, long dni,
 			int cantidadDeHijos, LocalDate fechaNacimiento, EstadoCivil estadoCivil, long telefono,
 			EstadoVidaPadres estadoVidaPadres, Nacionalidad nacionalidad, Provincias provincias, String ciudad,
@@ -408,4 +403,7 @@ public class CurriculumVitae {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
+	
+	
 }

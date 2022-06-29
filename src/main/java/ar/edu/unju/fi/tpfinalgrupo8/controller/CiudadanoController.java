@@ -75,10 +75,18 @@ public class CiudadanoController {
         Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
         LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
         modelAndView.addObject("ciudadano",ciudadano);
-        modelAndView.addObject("curso", ciudadano.getUnCurso());
+       // modelAndView.addObject("curriculum", ciudadano.getCurriculum());
         return modelAndView;
     }
-	
+	@GetMapping("/welcome/miCurriculum")
+    public ModelAndView welcomeCurriculumPage(@AuthenticationPrincipal User user){
+        ModelAndView modelAndView= new ModelAndView("welcomeMiCurriculum");
+        Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
+        LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
+        modelAndView.addObject("ciudadano",ciudadano);
+        modelAndView.addObject("curriculum", ciudadano.getCurriculum());
+        return modelAndView;
+    }
 	@GetMapping("/welcome/misCursos")
     public ModelAndView welcomeCursosPage(@AuthenticationPrincipal User user){
         ModelAndView modelAndView= new ModelAndView("welcomeMisCursosCiudadano");

@@ -27,6 +27,7 @@ public class CurriculumVitaeServiceImp implements ICurriculumVitaeService {
 		if(cv==null) {
 			curriculumVitae.setEstado(true);
 			curriculumVitaeImp.save(curriculumVitae);
+			return true;
 		}
 		return false;
 	}

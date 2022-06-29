@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICurriculumVitaeService;
 
 
@@ -29,13 +32,24 @@ public class CurriculumVitaeController {
 	@Autowired
 	private ICurriculumVitaeService curriculumVitaeService;
 	
-	
+	/*
 	@GetMapping("/nuevo")
 	public String agregar(Model model) {
 		model.addAttribute("curriculumVitae", curriculumVitaeService.getCurriculumVitae());
 		return "nuevo_curriculumVitae";
+	}*/
+	@GetMapping("/{id}/nuevo")
+	public String getFormNuevoOfertaLaboralPage(@PathVariable(value = "id")Long id,Model model) {
+		CurriculumVitae curriculumVitae = new CurriculumVitae();
+		Ciudadano ciudadano = new Ciudadano();
+		ciudadano.setId(id);
+		curriculumVitae.setCiudadano(ciudadano);
+		model.addAttribute("curriculumVitae", curriculumVitae);
+		model.addAttribute("id",id);
+		LOGGER.info("Se ha asociado un objeto Curriculum al formulario");
+		return "nuevo_curriculumVitae";
 	}
-	
+	/*
 	@PostMapping("/guardar")
 	public ModelAndView getListaCurriculumVitaePage(@Validated @ModelAttribute("curriculumVitae")CurriculumVitae curriculumVitae, 
 			BindingResult bindingResult) {
@@ -48,6 +62,24 @@ public class CurriculumVitaeController {
 		ModelAndView mav=new ModelAndView("redirect:/curriculumVitae/listaCurriculumVitae");
 		if(curriculumVitaeService.guardarCurriculumVitae(curriculumVitae)) {
 			LOGGER.info("Se agregó un objeto al arrayList de Curriculum Vitae");
+		}
+		return mav;
+	}*/
+	@PostMapping("/{id}/guardar")
+	public ModelAndView getListaOfertaLaboralPage(@Validated @ModelAttribute("curriculumVitae")CurriculumVitae curriculum,
+	BindingResult bindingresult) {
+		if(bindingresult.hasErrors()){
+			LOGGER.error("No se cumplen las reglas de validación");
+			ModelAndView mav = new ModelAndView("nuevo_curriculumVitae");
+			mav.addObject("curriculumVitae", curriculum);
+			return mav;
+		}
+		
+		ModelAndView mav = new ModelAndView("redirect:/ciudadano/welcome");
+		if(curriculumVitaeService.guardarCurriculumVitae(curriculum)) {
+			LOGGER.info("Se ha agregado un curriculum");
+		}else {
+			LOGGER.info("No se ha agregado un curriculum"); 
 		}
 		return mav;
 	}
@@ -83,5 +115,11 @@ public class CurriculumVitaeController {
 		ModelAndView mav=new ModelAndView("redirect:/curriculumVitae/listaCurriculumVitae");
 		curriculumVitaeService.eliminarCurriculumVitae(dni);
 		return mav;
+	}
+	
+	@GetMapping("/masInfo/{dni}")
+	public String getCurriculumCompleto(@PathVariable(value="dni")long dni, Model model) {
+		model.addAttribute("curriculum", curriculumVitaeService.buscarCurriculumVitae(dni));
+		return "currriculum_completo";
 	}
 }

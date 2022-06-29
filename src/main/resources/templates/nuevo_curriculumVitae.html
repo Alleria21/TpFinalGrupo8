@@ -8,15 +8,22 @@
 </head>
 <body>
 		<nav th:replace="layouts/header :: headergeneral"></nav>
-			<form th:action="@{/curriculumVitae/guardar}" th:object="${curriculumVitae}"  method="POST">
+			<form th:action="@{/curriculumVitae/{id}/guardar}" th:object="${curriculumVitae}"  method="POST">
 				<!--probando-->
 				<div>
+				<input type="hidden" th:field="*{estado}"/>
+				<input type="hidden" th:field="*{id}"/>
+				
 					<form class="row">
 							 <div class="col mb-3 mx-5">
 							 	<br/>
 								<figure class="text-center">
 								  <blockquote class="blockquote">
 								    <h3>Curriculum Vitae</h3>
+								    <div class="form-floating mb-3">
+										<input th:field="*{ciudadano.id}" type="number" class="form-control" id="id" readonly />
+										<label for="id">Id Ciudadano</label>
+									</div>
 								    <cite>1° Parte</cite>
 								  </blockquote>
 								  <figcaption class="blockquote-footer">
