@@ -9,7 +9,6 @@
 <body>
 		<nav th:replace="layouts/header :: headergeneral"></nav>
 			<form th:action="@{/curriculumVitae/{id}/guardar}" th:object="${curriculumVitae}"  method="POST">
-				<!--probando-->
 				<div>
 				<input type="hidden" th:field="*{estado}"/>
 				<input type="hidden" th:field="*{id}"/>
@@ -43,24 +42,19 @@
 									<div class="col-md-6">
 										<div class="input-group">
 										  <span class="input-group-text">Documento Nacional de Identidad </span>
-										  <input th:field="*{dni}"type="number" aria-label="D.N.I." class="form-control" id="dniId" placeholder="43698579">
-										  <div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+										  <input th:field="*{ciudadano.dni}"type="number" aria-label="D.N.I." class="form-control" id="dniId" readonly />
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="input-group">
 								  		<span class="input-group-text">Fecha de Nacimiento</span>
-								  		<input th:field="*{fechaNacimiento}" type="date" aria-label="Fecha de Nacimiento" class="form-control" id="fechaNacimientoId" placeholder="02/01/02">
-								 		<div class="text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div> 
+								  		<input th:field="*{ciudadano.fechaNac}" type="date" aria-label="Fecha de Nacimiento" class="form-control" id="fechaNacimientoId" readonly />
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="input-group">
 										  <label class="input-group-text" for="estadoCivilId">Estado Civil</label>
-										  <select class="form-select" th:field="*{estadoCivil}" id="estadoCivilId">
-												<option th:each="estado: ${T(ar.edu.unju.fi.tpfinalgrupo8.util.EstadoCivil).values()}" th:value="${estado}" th:text="${estado.displayValue}"></option>
-										  </select>
-										  <div class="text-danger" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></div>
+										 <input th:field="*{ciudadano.estadoCivil}" type="text" id="estadoCivilId" readonly />
 										</div>
 									</div>
 									<br />
@@ -78,16 +72,14 @@
 									<div class="col-md-6">
 										  <div class="input-group">
 											  <span class="input-group-text">Correo Electrónico </span>
-											  <input type="email" aria-label="email" class="form-control" id="emailId" placeholder="tobiasGomez@gmail.com">
-											  <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div> 
+											  <input th:field="*{ciudadano.email}"type="email" aria-label="email" class="form-control" id="emailId" readonly />
 										  </div>
 									      <br />
 									</div>
 									<div class="col-md-6">
 										<div class="input-group">
 											<span class="input-group-text">Telefono de Contacto </span>
-					  						<input th:field="*{telefono}" type="number" class="form-control" id="telefonoId" placeholder="3885084220">
-					  						<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div> 
+					  						<input th:field="*{ciudadano.telefono}" type="number" class="form-control" id="telefonoId" readonly />
 										</div>
 									</div>
 									<br />
@@ -196,7 +188,7 @@
 					  				<div class="text-danger" th:if="${#fields.hasErrors('escuelaColegioSecundario')}" th:errors="*{escuelaColegioSecundario}"></div> 
 								</div>
 								<br />
-								<div class="input-group"> <!-- Cambiar en el Entity -->
+								<div class="input-group"> 
 									<span class="input-group-text">Año de Egreso Colegio Secundario</span>
 					  				<input th:field="*{fechaEgresadoSecundaria}" type="number" class="form-control" id="fechaEgresadoSecundariaId" placeholder="2015">
 					  				<div class="text-danger" th:if="${#fields.hasErrors('fechaEgresadoSecundaria')}" th:errors="*{fechaEgresadoSecundaria}"></div> 
@@ -208,7 +200,7 @@
 					  				<div class="text-danger" th:if="${#fields.hasErrors('escualaUniversidadFacultad')}" th:errors="*{escualaUniversidadFacultad}"></div> 
 								</div>
 								<br />
-								<div class="input-group"> <!-- Cambiar en el Entity -->
+								<div class="input-group">
 									<span class="input-group-text">Año de Egreso la Universidad</span>
 					  				<input th:field="*{fechaEgresadoUniversidad}" type="number" class="form-control" id="fechaEgresadoUniversidadId" placeholder="2020">
 					  				<div class="text-danger" th:if="${#fields.hasErrors('fechaEgresadoUniversidad')}" th:errors="*{fechaEgresadoUniversidad}"></div> 
@@ -227,7 +219,7 @@
 								</div>
 								<br />																
 								<div class="input-group">
-									<label class="input-group-text" for="conocimientosInformaticosId">Provincia de Residencia</label>
+									<label class="input-group-text" for="conocimientosInformaticosId">Conocimiento Informático</label>
 									<select class="form-select" th:field="*{conocimientosInformaticos}" id="conocimientosInformaticosIf">
 										<option th:each="conocimientoInformatico: ${T(ar.edu.unju.fi.tpfinalgrupo8.util.ConocimientoInformatico).values()}" th:value="${conocimientoInformatico}" th:text="${conocimientoInformatico.displayValue}"></option>
 									 </select>
