@@ -41,20 +41,25 @@
 								<div class="row g-3">
 									<div class="col-md-6">
 										<div class="input-group">
-										  <span class="input-group-text">Documento Nacional de Identidad </span>
-										  <input th:field="*{ciudadano.dni}"type="number" aria-label="D.N.I." class="form-control" id="dniId" readonly />
+											<span class="input-group-text">Documento Nacional de Identidad </span>
+										   <input th:field="*{dni}"type="number" aria-label="D.N.I." class="form-control" id="dniId" placeholder="43698579">
+										  <div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="input-group">
 								  		<span class="input-group-text">Fecha de Nacimiento</span>
-								  		<input th:field="*{ciudadano.fechaNac}" type="date" aria-label="Fecha de Nacimiento" class="form-control" id="fechaNacimientoId" readonly />
+								  										  		<input th:field="*{fechaNacimiento}" type="date" aria-label="Fecha de Nacimiento" class="form-control" id="fechaNacimientoId" placeholder="02/01/02">
+								 		<div class="text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div> 
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="input-group">
 										  <label class="input-group-text" for="estadoCivilId">Estado Civil</label>
-										 <input th:field="*{ciudadano.estadoCivil}" type="text" id="estadoCivilId" readonly />
+										  <select class="form-select" th:field="*{estadoCivil}" id="estadoCivilId">
+									    	<option th:each="estado: ${T(ar.edu.unju.fi.tpfinalgrupo8.util.EstadoCivil).values()}" th:value="${estado}" th:text="${estado.displayValue}"></option>
+										  </select>
+										  <div class="text-danger" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></div>
 										</div>
 									</div>
 									<br />
@@ -72,14 +77,16 @@
 									<div class="col-md-6">
 										  <div class="input-group">
 											  <span class="input-group-text">Correo Electrónico </span>
-											  <input th:field="*{ciudadano.email}"type="email" aria-label="email" class="form-control" id="emailId" readonly />
+											  <input type="email" aria-label="email" class="form-control" id="emailId" placeholder="tobiasGomez@gmail.com">
+											  <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div> 
 										  </div>
 									      <br />
 									</div>
 									<div class="col-md-6">
 										<div class="input-group">
 											<span class="input-group-text">Telefono de Contacto </span>
-					  						<input th:field="*{ciudadano.telefono}" type="number" class="form-control" id="telefonoId" readonly />
+					  						<input th:field="*{telefono}" type="number" class="form-control" id="telefonoId" placeholder="3885084220">
+					  						<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
 										</div>
 									</div>
 									<br />

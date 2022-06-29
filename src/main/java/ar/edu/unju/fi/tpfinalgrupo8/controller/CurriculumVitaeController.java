@@ -43,14 +43,11 @@ public class CurriculumVitaeController {
 	}*/
 	@GetMapping("/{id}/nuevo")
 	public String getFormNuevoOfertaLaboralPage(@PathVariable(value = "id")Long id,Model model) {
-		Ciudadano ciudadano = new Ciudadano();
 		CurriculumVitae curriculumVitae = new CurriculumVitae();
+		Ciudadano ciudadano= new Ciudadano();
 		ciudadano.setId(id);
-		Ciudadano ciudadanoEncontrado = ciudadanoService.buscarCiudadanoPorId(ciudadano.getId());
-		LOGGER.info(ciudadanoEncontrado.getEmail());
-		curriculumVitae.setCiudadano(ciudadanoEncontrado);
+		curriculumVitae.setCiudadano(ciudadano);
 		model.addAttribute("curriculumVitae", curriculumVitae);
-		model.addAttribute("ciudadano", ciudadanoEncontrado);
 		model.addAttribute("id",id);
 		LOGGER.info("Se ha asociado un objeto Curriculum al formulario");
 		return "nuevo_curriculumVitae";
