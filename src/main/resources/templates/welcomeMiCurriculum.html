@@ -13,25 +13,39 @@
     <div class="col-12">
         <h1>Welcome <span sec:authentication="name">User que hizo login</span> </h1>
         <div class="px-5 py-4 bg-white rounded-bottom">
-     <!--         <div th:if="${curriculum!= null}" class="table table-bordered"> -->
+            <div th:if="${curriculum!= null}" class="table table-bordered">
          		<div style="text-align: center">
-		<h3 class="text-black center">Mis Datos</h3>
-		
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end me-3">
-  			<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Volver al inicio</a>
-  			<a th:href="@{/ciudadano/welcome/misCursos}" class="btn btn-secondary" type="button">Mis Cursos</a>
-  			<a th:href="@{/ciudadano/welcome/miCurriculum}"  class="btn btn-secondary" type="button">Mi curriculum</a>
+		<h3 class="text-black center">Curriculum Vitae</h3>
+		<div class="container center">
+			<div class="row">
+				<div class="row">
+						<div class="card" style="width: 18rem;">
+  							<img th:src="@{/images/curso01.jpg}" class="card-img-top" alt="...">
+  							<div class="card-body">
+    							<h5 th:text="${curriculum.nombre}" class="card-title"></h5>
+    							<p>Titulo Universitario o Secundario: </p>
+    								<p th:text="${curriculum.tituloUniversitarioOSecundario}" class="card-text"></p>
+    							<p>Experiencia Laboral: </p>
+    							<p th:text="${curriculum.experienciaLaboral}" class="card-text"></p>
+    							<br />
+    							<div>
+    								<a th:href="@{/ciudadano/welcome}" id="inscripcionCurso" class="btn btn-primary">Volver</a>
+    							</div>
+  							</div>
+					</div>
+				</div>
+			</div>
 		</div>
+		
 		
 		
 		</div>
           	</div>
-          	<!--  
     <div th:if="${curriculum== null}">
         <h2>Aun no se ha creado un curriculum</h2>
         <a th:href="@{/curriculumVitae/}+${ciudadano.id}+@{/nuevo}" class="btn btn-secondary" type="button">Crear un Curriculum</a>
     </div>
--->
+
         </div>
     </div>
 

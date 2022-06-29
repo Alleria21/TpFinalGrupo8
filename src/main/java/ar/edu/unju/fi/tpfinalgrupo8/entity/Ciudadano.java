@@ -94,11 +94,9 @@ public class Ciudadano {
 	private boolean estado;
 	
 	
-	/*Para su curriculum personal
-	@OneToOne(mappedBy = "ciudadano_Curri")
-	private CurriculumVitae curriculum;
 	
-	*/
+	@OneToOne(mappedBy = "ciudadano", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
+	private CurriculumVitae curriculum;
 	
 	public Ciudadano() {
 		// TODO Auto-generated constructor stub
@@ -227,4 +225,15 @@ public class Ciudadano {
 		this.id = id;
 	}
 
+
+	public CurriculumVitae getCurriculum() {
+		return curriculum;
+	}
+
+
+	public void setCurriculum(CurriculumVitae curriculum) {
+		this.curriculum = curriculum;
+	}
+
+	
 }
