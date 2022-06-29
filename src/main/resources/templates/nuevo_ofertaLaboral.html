@@ -17,8 +17,8 @@
 				<input type="hidden" th:field="*{disponible}"/>
 				<input type="hidden" th:field="*{id}"/>
 
-				<div class="form-floating mb-3">
-					<input th:field="*{empleador.id}" type="number" class="form-control" id="id" readonly />
+				<div class="form-floating mb-3" hidden>
+					<input th:field="*{empleador.id}" type="number" class="form-control" id="id" />
 					<label for="id">Id Empleador</label>
 				</div>
 				<div class="form-floating mb-3">

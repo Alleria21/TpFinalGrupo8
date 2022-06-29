@@ -5,6 +5,7 @@ import ar.edu.unju.fi.tpfinalgrupo8.util.Provincias;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class Empleador {
     @Column(name = "id")
     private long id;
 
+    @Min(value=1000000, message="debe ingresar un cuit válido")
     @Positive(message = "El cuit debe ser un numero valido")
     @Column(name = "cuit", nullable = false)
     private long cuit;

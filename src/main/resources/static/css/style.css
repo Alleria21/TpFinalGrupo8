@@ -17,3 +17,7 @@ body{
 label {
     font-weight: bold;
 }
+button a{
+    color: white;
+    text-decoration: none;
+}
