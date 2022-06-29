@@ -38,7 +38,12 @@ public class AuthController {
     }
     @PostMapping("/register/empleador")
     public ModelAndView registerEmpleador(@Validated @ModelAttribute("empleador")Empleador empleador, BindingResult bindingResult){
-        //TODO: Agregar la validacion
+        if(bindingResult.hasErrors()) {
+            LOGGER.info("Error agregando empleador");
+            ModelAndView modelAndView= new ModelAndView("nuevo_empleador");
+            modelAndView.addObject("empleador",empleador);
+            return modelAndView;
+        }
         if(empleadorService.guardar(empleador)){
             LOGGER.info("Registro de empleador correcto");
             ModelAndView modelAndView = new ModelAndView("layouts/registro_exitoso");

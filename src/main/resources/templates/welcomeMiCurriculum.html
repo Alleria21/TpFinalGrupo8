@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/listaCurriculum_style.css}">
 </head>
 <body>
-    <nav th:replace="layouts/headerCiudadano :: headerCiudadano"></nav>
+<nav th:replace="layouts/header :: headergeneral"></nav>
 
         <div class="px-5 py-4 bg-white rounded-bottom">
             <div th:unless="${#lists.isEmpty(curriculum)}">

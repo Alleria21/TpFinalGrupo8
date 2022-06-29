@@ -8,13 +8,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/empleadorStyle.css}">
 </head>
 <body>
-    <nav th:replace="layouts/headerEmpleador :: headerEmpleador"></nav>
+<nav th:replace="layouts/header :: headergeneral"></nav>
 
     <div class="col-12">
         <h1>Welcome <span sec:authentication="name">User que hizo login</span> </h1>
         <div class="px-5 py-4 bg-white rounded-bottom">
             <button class="btn btn-secondary"><a th:href="@{/oferta/}+${empleador.id}+@{/nuevo}">Nuevo</a></button>
-            <table th:if="${ofertas!= null}" class="table table-bordered">
+            <table th:unless="${#lists.isEmpty(ofertas)}" class="table table-bordered">
                 <thead>
                 <tr class="align-text-middle">
 
@@ -44,7 +44,7 @@
                 </tr>
                 </tbody>
             </table>
-    <div th:if="${ofertas== null}">
+    <div th:if="${#lists.isEmpty(ofertas)}">
         <h2>Aun no se han creado ofertas</h2>
     </div>
 

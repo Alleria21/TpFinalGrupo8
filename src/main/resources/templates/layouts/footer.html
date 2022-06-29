@@ -2,13 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
-    <footer id="footergeneral" th:fragment="footergeneral">
+    <footer id="footergeneral" th:fragment="footergeneral" style="background-color:  #3b83ff;">
+
 			<div class="container-fluid">
-				<div class="row p-5 pb-2" style="background-color:  #3b83ff;">
+				<div class="row p-1 ">
 					<div class="col-xs-12 col-md-6 col-lg-3">
-						<p class="h5 mb-3">Educacion</p>
+						<p class="h5 mb-1">Educacion</p>
+						<!--
 						<div class="mb-2">
 							<a class="text-white text-decoration-none" th:href="@{#}"> Inversiones & Finanzas</a>
 						</div>
@@ -21,9 +24,11 @@
 						<div class="mb-2">
 							<a class="text-white text-decoration-none" th:href="@{#}">Programacion</a>
 						</div>
+						-->
 					</div>
 					<div class="col-xs-12 col-md-6 col-lg-3">
-						<p class="h5 mb-3">Ayuda</p>
+						<p class="h5 mb-1">Ayuda</p>
+						<!--
 						<div class="mb-2">
 							<a class="text-white text-decoration-none" th:href="@{#}">Contacto</a>
 						</div>
@@ -33,9 +38,11 @@
 						<div class="mb-2">
 							<a class="text-white text-decoration-none" th:href="@{#}">Preguntas frecuentes</a>
 						</div>
+						-->
 					</div>
 					<div class="col-xs-12 col-md-6 col-lg-3">
 						<p class="h5">Nosotros</p>
+						<!--
 						<div class="mb-2">
 							<a class="text-white text-decoration-none" th:href="@{#}">Equipo</a>
 						</div>
@@ -48,17 +55,13 @@
 						<div class="mb-2">
 							<a class="text-white text-decoration-none" th:href="@{#}">Terminos y Condiciones</a>
 						</div>
+						-->
 					</div>
 					<div class="col-xs-12 col-md-6 col-lg-3">
 						<p class="h5">Subscribete</p>
-						<div class="mb-2">
-							<a class="text-white text-decoration-none" th:href="@{/register/empleador}">Registrarse como Empleador</a>
-						</div>
-						<div class="mb-2">
-							<a class="text-white text-decoration-none" th:href="@{/register/ciudadano}">Registrarse como Ciudadano</a>
-						</div>
+
 					</div>
-					<div class="col-xs-12 pt-4"> 
+					<div class="col-xs-12 pt-1">
 			    		<p class="text-white" style="text-align: center;">Copyright - Todos los derechos reservados 2022</p>
 			    	</div>
 				</div>

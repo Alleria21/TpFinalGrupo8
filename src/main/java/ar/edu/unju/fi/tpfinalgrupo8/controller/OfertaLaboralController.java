@@ -50,7 +50,7 @@ public class OfertaLaboralController {
 			return mav;
 		}
 		
-		ModelAndView mav = new ModelAndView("redirect:/oferta/ListaOfertasLaborales");
+		ModelAndView mav = new ModelAndView("redirect:/empleador/welcome");
 		if(ofertaLaboralService.guardarOfertaLaboral(ofertaLaboral)) {
 			LOGGER.info("Se ha agregado una oferta laboral");
 		}else {
@@ -86,14 +86,14 @@ public class OfertaLaboralController {
 		}
 		LOGGER.info("Se ha modificado una oferta laboral");
 		ofertaLaboralService.modificarOfertaLaboral(ofertaLaboral);
-		ModelAndView mav = new ModelAndView("redirect:/oferta/ListaOfertasLaborales");
+		ModelAndView mav = new ModelAndView("redirect:/empleador/welcome");
 		return mav;
 	}
 	
 	@GetMapping("/eliminar/{codigo}")
 	public ModelAndView getEliminarOfertaLaboral(@PathVariable(value="codigo")int codigo) {
 		LOGGER.info("Se ha eliminado una oferta laboral");
-		ModelAndView mav=new ModelAndView("redirect:/oferta/ListaOfertasLaborales");
+		ModelAndView mav=new ModelAndView("redirect:/empleador/welcome");
 		ofertaLaboralService.eliminarOfertaLaboral(codigo);
 		return mav;
 	}
