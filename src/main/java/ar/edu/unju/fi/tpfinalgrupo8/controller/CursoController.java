@@ -55,7 +55,7 @@ public class CursoController {
 		
 		ModelAndView mav = new ModelAndView("redirect:/curso/ListaCursos");
 		if(cursoService.guardarCurso(curso)) {
-			LOGGER.info("Se ha agregado un cursp");
+			LOGGER.info("Se ha agregado un curso");
 		}else {
 			LOGGER.info("No se ha agregado un curso"); 
 		}

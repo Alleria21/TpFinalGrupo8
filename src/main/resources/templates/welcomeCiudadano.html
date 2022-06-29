@@ -5,33 +5,34 @@
     <meta charset="UTF-8">
     <title>Welcome Ciudadano</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/empleadorStyle.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/perfil_ciudadano.css}">
 </head>
 <body>
-    <nav th:replace="layouts/headerEmpleador :: headerEmpleador"></nav>
+   <nav th:replace="layouts/headerCiudadano :: headerCiudadano"></nav>
 
-    <div class="col-12">
-        <h1>Welcome <span sec:authentication="name">User que hizo login</span> </h1>
+    <div class="col-12 text-center mt-2">
+        <h1>Bienvenido Ciudadano DNI N° <span sec:authentication="name">User que hizo login</span> </h1>
         <div class="px-5 py-4 bg-white rounded-bottom">
-            <div th:if="${curso!= null}" class="table table-bordered">
+         
          		<div style="text-align: center">
-		<h3 class="text-black center">Mis Datos</h3>
-		
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end me-3">
-  			<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Volver al inicio</a>
-  			<a th:href="@{/ciudadano/welcome/misCursos}" class="btn btn-secondary" type="button">Mis Cursos</a>
-		</div>
-		
-		</div>
-          	</div>
-    <div th:if="${curso== null}">
-        <h2>Aun no se ha creado un curriculum</h2>
-    </div>
-
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end me-3">
+	  					<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Volver al Inicio</a>
+					</div>
+				</div>
+				
+				<div class=" border container text-center justify-content-md-end me-4">
+					<br />
+					<h3 class="text-black center">Información de su Perfil</h3>
+					<br />
+					<img th:src="@{/images/perfil01.png}">
+					<br />
+					<a href="#" class="btn btn-info" type="button">Mis Ofertas Laborales</a>
+					<a href="#" class="btn btn-warning" type="button">Mi Curriculum Vitae</a>
+					<a th:href="@{/ciudadano/welcome/misCursos}" class="btn btn-success" type="button">Mis Cursos</a>
+				</div>
+          	
         </div>
     </div>
-
-
 
 
 <footer th:replace="layouts/footer.html ::footergeneral"></footer>

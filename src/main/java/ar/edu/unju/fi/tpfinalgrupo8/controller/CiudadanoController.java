@@ -100,7 +100,7 @@ public class CiudadanoController {
 		}else {
 			LOGGER.info("No se ha agregado un Curso"); 
 		}
-		ModelAndView mav = new ModelAndView("redirect:/ciudadano/welcome");
+		ModelAndView mav = new ModelAndView("layouts/inscripcion_exitosa");
 		LOGGER.info("Se ha asociado un objeto Curso al Ciudadano");
 		return mav;
 	}
