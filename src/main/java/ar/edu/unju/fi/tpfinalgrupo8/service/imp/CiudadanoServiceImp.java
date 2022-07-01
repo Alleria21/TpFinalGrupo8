@@ -42,14 +42,16 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 	@Override
 	public void modificarCiudadano(Ciudadano ciudadano) {
 		Ciudadano ciud=ciudadanoRepository.findByDni(ciudadano.getDni()).get();
+		ciudadano.setId(ciud.getId());
+		/*
 		ciud.setEmail(ciudadano.getEmail());
 		ciud.setEstadoCivil(ciudadano.getEstadoCivil());
 		ciud.setFechaNac(ciudadano.getFechaNac());
 		//ciud.setOfertas(ciudadano.getOfertas());
 		ciud.setPassword(ciudadano.getPassword());
 		ciud.setProvincia(ciudadano.getProvincia());
-		ciud.setTelefono(ciudadano.getTelefono());
-		ciudadanoRepository.save(ciud);
+		ciud.setTelefono(ciudadano.getTelefono());*/
+		ciudadanoRepository.save(ciudadano);
 		
 	}
 

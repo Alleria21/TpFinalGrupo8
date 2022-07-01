@@ -3,6 +3,7 @@ package ar.edu.unju.fi.tpfinalgrupo8.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -72,30 +74,15 @@ public class Ciudadano {
 	@NotNull(message = "*Debe ingresar una contraseña")
 	@Column(name="ciudadano_password")
 	private String password;
-	/*
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable( name="ciudadano_oferta",
-				joinColumns = @JoinColumn(name="ciudadano_id"),
-				inverseJoinColumns = @JoinColumn(name="oferta_id")
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="oferta_ciudadano",
+				joinColumns = @JoinColumn(name="ciudadanos_id"),
+				inverseJoinColumns = @JoinColumn(name="ofertas_id")
 			)
-	private List<OfertaLaboral> ofertas=new ArrayList<OfertaLaboral>();
-	*/
+	private Set<OfertaLaboral> ofertas;
 	
-	
-	
-	
-	
-	@ManyToMany(mappedBy="ciudadanos")
-	private List<OfertaLaboral> ofertas=new ArrayList<OfertaLaboral>();
-	
-	
-	
-	
-	
-	
-	
-	//@ManyToMany(mappedBy="ciudadanos")
-	//private List<Curso> cursos=new ArrayList<Curso>();
+
 	
 	//Agregando relacion reciente
 	@OneToMany(mappedBy = "ciudadano", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
@@ -196,16 +183,18 @@ public class Ciudadano {
 	}
 
 
-	public List<OfertaLaboral> getOfertas() {
+	
+	
+
+	public Set<OfertaLaboral> getOfertas() {
 		return ofertas;
 	}
 
 
-	public void setOfertas(List<OfertaLaboral> ofertas) {
+	public void setOfertas(Set<OfertaLaboral> ofertas) {
 		this.ofertas = ofertas;
 	}
-	
-	
+
 
 	public List<Curso> getUnCurso() {
 		return unCurso;
@@ -246,5 +235,8 @@ public class Ciudadano {
 		this.curriculum = curriculum;
 	}
 
+
+
+	
 	
 }

@@ -83,14 +83,11 @@ public class OfertaLaboral {
 	
 
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(	name = "oferta_ciudadano",
-				joinColumns = @JoinColumn(name = "oferta_id"),
-				inverseJoinColumns = @JoinColumn(name = "ciudadano_id")
-			) //ENCARGADO DE CREAR LA TABLA DE RELACION
-	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();
 	
-
+	
+	
+	@ManyToMany(mappedBy = "ofertas")
+	private List<Ciudadano> ciudadanos;
 	
 
 	@ManyToOne()
@@ -103,7 +100,7 @@ public class OfertaLaboral {
 	public OfertaLaboral() {
 		// TODO Auto-generated constructor stub
 	}
-
+/*
 	public OfertaLaboral(long id, int codigo, int cantidadVacantes, String puestoReq, String puestoResum, DisponibilidadHoraria dispHoraria, String tareasPrincipales, String email, int telefono, Jornada jornada, String requisitos, int salario, String beneficios, boolean disponible, List<Ciudadano> ciudadanos, Empleador empleador) {
 		this.id = id;
 		this.codigo = codigo;
@@ -122,7 +119,7 @@ public class OfertaLaboral {
 		this.ciudadanos = ciudadanos;
 		this.empleador = empleador;
 	}
-
+*/
 	public long getId() {
 		return id;
 	}
@@ -242,6 +239,17 @@ public class OfertaLaboral {
 	public void setEmpleador(Empleador empleador) {
 		this.empleador = empleador;
 	}
+	public List<Ciudadano> getCiudadanos() {
+		return ciudadanos;
+	}
+	public void setCiudadanos(List<Ciudadano> ciudadanos) {
+		this.ciudadanos = ciudadanos;
+	}
+
+
+
+	
+	
 }
 
 
