@@ -13,14 +13,15 @@
 <div style="text-align: center">
 		<div th:unless="${#lists.isEmpty(oferta)}">
 			<div class="container">
-			<h3 class="text-black center">Lista de Ofertas Laborales</h3>
+			<h3 class="text-black center">Lista de Ofertas Laborales Postuladas</h3>
 				<div class="row">
 					<div class="row">
 						<div th:each="oferta : ${oferta}" class="col-3 m-4">
 							<div class="card" style="width: 18rem;">
 		 							<img th:src="@{/images/trabajo04.png}" class="card-img-top" alt="...">
 		 							<div class="card-body">
-		   							<h5 th:text="${oferta.puestoResum}" class="card-title"></h5>
+		 						<!-- 	<p th:text="${oferta.dni}" class="card-text"></p>  -->
+		   					 	<h5 th:text="${oferta.puestoResum}" class="card-title"></h5>
 		   							<p>Puesto: </p>
 		   							<p th:text="${oferta.puestoReq}" class="card-text"></p>
 		   							<br />
@@ -32,8 +33,7 @@
 		   							<br />
 		   							<p>Vacantes:</p>
 		   							<p th:text="${oferta.cantidadVacantes}" class="card-text"></p>
-		   							<br />
-		   							 <a th:href="@{/ciudadano/}+${ciudadano.dni}+@{/postular/}+${oferta.codigo}" class="btn btn-warning" type="button">Postularse</a>
+		   							<br /> 
 		 							</div>
 							</div>
 						</div>
@@ -46,8 +46,7 @@
 <div th:if="${#lists.isEmpty(oferta)}">
         <div class="border text-center justify-content-md-end me-3 mt-2">
 		    	<br />
-		        <h5>Lo sentimos.</h5>
-		        <h5>Debe esperar a que un empleador de nuestra plataforma de el alta de una Oferta Laboral</h5>
+		        <h5>Aún no se ha postulado a ninguna Oferta Laboral</h5>
         <a th:href="@{/inicio/}" class="btn btn-warning" type="button">Volver al Inicio</a>
         </div>
     </div>

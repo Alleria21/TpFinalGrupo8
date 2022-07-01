@@ -127,4 +127,25 @@ public class CiudadanoController {
 		LOGGER.info("Se ha asociado un objeto Curso al Ciudadano");
 		return mav;
 	}
+
+	@GetMapping("/{dni}/postular/{codigo}")
+	public ModelAndView getPostularAOferta(@PathVariable(value="dni")Long dni,@PathVariable(value="codigo")int codigo) {
+		OfertaLaboral ofertaEncontrada=ofertaService.buscarOfertaLaboral(codigo);
+		Ciudadano ciudadano=ciudadanoService.buscarCiudadano(dni);
+		ciudadano.getOfertas().add(ofertaEncontrada);
+		ciudadanoService.modificarCiudadano(ciudadano);
+		//ofertaEncontrada.getCiudadanos().add(ciudadano);
+		//ofertaService.modificarOfertaLaboral(ofertaEncontrada);
+		ModelAndView mav=new ModelAndView("redirect:/ciudadano/MisPostulaciones");
+		return mav;
+	}
+	@GetMapping("/MisPostulaciones")
+	public ModelAndView getMisPostulacionesAOfertas(@AuthenticationPrincipal User user) {
+		ModelAndView mav=new ModelAndView("welcomeMisPostulacionesCiudadano");
+		Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
+        LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
+        mav.addObject("oferta",ciudadano.getOfertas());
+        //mav.addObject("oferta", ofertaService.buscarOfertaLaboral(1).getCiudadanos());
+        return mav;
+	}
 }
