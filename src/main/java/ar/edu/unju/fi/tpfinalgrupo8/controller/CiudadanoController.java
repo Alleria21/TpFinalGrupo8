@@ -22,6 +22,8 @@ import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICursoService;
+import ar.edu.unju.fi.tpfinalgrupo8.service.IEmpleadorService;
+import ar.edu.unju.fi.tpfinalgrupo8.service.IOfertaLaboralService;
 
 
 @Controller
@@ -35,6 +37,9 @@ public class CiudadanoController {
 	
 	@Autowired
 	private ICursoService cursoService;
+	
+	@Autowired
+	private IOfertaLaboralService ofertaService;
 
 	@GetMapping("/listaCiudadanos")
 	public String getListaCargadaCiudadanos(Model model) {
@@ -94,6 +99,16 @@ public class CiudadanoController {
         LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
         modelAndView.addObject("ciudadano",ciudadano);
         modelAndView.addObject("curso", ciudadano.getUnCurso());
+        return modelAndView;
+    }
+	
+	@GetMapping("/welcome/misOfertas")
+    public ModelAndView welcomeOfertasPage(@AuthenticationPrincipal User user){
+        ModelAndView modelAndView= new ModelAndView("welcomeMisOfertasCiudadano");
+        Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
+        LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
+        modelAndView.addObject("ciudadano",ciudadano);
+        modelAndView.addObject("oferta", ofertaService.getListaOfertaLaboral()); //MAL, MODIFICAR
         return modelAndView;
     }
 	

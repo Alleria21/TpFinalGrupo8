@@ -108,7 +108,7 @@ public class CurriculumVitaeController {
 			mav.addObject("curriculumVitae", curriculumVitae);
 			return mav;
 		}
-		ModelAndView mav=new ModelAndView("redirect:/curriculumVitae/listaCurriculumVitae");
+		ModelAndView mav=new ModelAndView("layouts/edicion_exitosa");
 		curriculumVitaeService.modificarCurriculumVitae(curriculumVitae);
 		return mav;
 	}
@@ -121,8 +121,10 @@ public class CurriculumVitaeController {
 	}
 	
 	@GetMapping("/masInfo/{dni}")
-	public String getCurriculumCompleto(@PathVariable(value="dni")long dni, Model model) {
-		model.addAttribute("curriculum", curriculumVitaeService.buscarCurriculumVitae(dni));
-		return "currriculum_completo";
+	public ModelAndView getCurriculumCompleto(@PathVariable(value="dni")long dni, Model model) {
+		ModelAndView mav = new ModelAndView("curriculum_completo");
+		model.addAttribute("ciudadano", ciudadanoService.buscarCiudadano(dni));
+		model.addAttribute("curriculumVitae", curriculumVitaeService.buscarCurriculumVitae(dni));
+		return mav;
 	}
 }
