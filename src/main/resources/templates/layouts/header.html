@@ -37,7 +37,7 @@
 					<li class="nav-item"><a class="nav-link active text-white fw-bold" aria-current="page" th:href="@{/login}" sec:authorize="!isAuthenticated()">Iniciar Sesión</a></li>
 					<li class="nav-item"><a class="nav-link active text-white fw-bold" aria-current="page" th:href="@{/ciudadano/welcome/miCurriculum}" sec:authorize="hasAuthority('CIUDADANO')">Curriculim Vitae</a></li>
 					<li class="nav-item"><a class="nav-link active text-white fw-bold" aria-current="page" th:href="@{/ciudadano/welcome/misCursos}" sec:authorize="hasAuthority('CIUDADANO')">Cursos</a></li>
-					<li class="nav-item"><a class="nav-link active text-white fw-bold" aria-current="page" th:href="@{/oferta/ListaOfertasLaborales}" sec:authorize="hasAuthority('CIUDADANO')">Buscar Propuestas</a></li>
+					<li class="nav-item"><a class="nav-link active text-white fw-bold" aria-current="page" th:href="@{/ciudadano/welcome/misOfertas}" sec:authorize="hasAuthority('CIUDADANO')">Buscar Propuestas</a></li>
       			</ul>
 
 				<form method="post" th:action="@{/logout}">

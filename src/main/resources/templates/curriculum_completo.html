@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Curriculum Vitae</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+		<nav th:replace="layouts/header :: headergeneral"></nav>
+			<form th:object="${curriculumVitae}"  method="GET">
+				<div>
+				<input type="hidden" th:field="*{estado}"/>
+				<input type="hidden" th:field="*{id}"/>
+				<input type ="hidden" th:field="*{ciudadano.id}"/>
+				
+					<form class="row">
+							 <div class="col mb-3 mx-5">
+							 	<br/>
+								<figure class="text-center">
+								  <blockquote class="blockquote">
+								    <h3>Curriculum Vitae</h3>
+								    
+								    <cite>1° Parte</cite>
+								  </blockquote>
+								  <figcaption class="blockquote-footer">
+								    Datos <cite title="Source Title">Personales</cite>
+								  </figcaption>
+								</figure>							 
+							 	<br />
+								<div class="input-group">
+								  <span class="input-group-text">Nombre y Apellido </span>
+								  <input th:value="${curriculumVitae.nombre}" type="text" aria-label="Primer Nombre" class="form-control" id="nombreId" disabled="disabled">
+								  <input th:value="${curriculumVitae.apellido}" type="text" aria-label="Apellido" class="form-control" id="apellidoId" placeholder="Gomez" disabled="disabled">
+								</div>
+								<br />
+								<div class="row g-3">
+									<div class="col-md-4">
+										<div class="input-group">
+											<span class="input-group-text">Documento Nacional de Identidad </span>
+										   <input th:value="${curriculumVitae.dni}"type="number" aria-label="D.N.I." class="form-control" id="dniId" placeholder="43698579" disabled="disabled">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
+								  		<span class="input-group-text">Fecha de Nacimiento</span>
+								  		<input th:value="${curriculumVitae.fechaNacimiento}" type="date" aria-label="Fecha de Nacimiento" class="form-control" id="fechaNacimientoId" placeholder="02/01/02" disabled="disabled">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
+										  <span class="input-group-text">Estado Civil</span>
+										  <input th:value="${curriculumVitae.estadoCivil}" class="form-control" disabled="disabled"/>
+										</div>
+									</div>
+									<br />
+								</div>
+									<br />
+									<figure>
+									  <blockquote class="blockquote">
+									    <p>Medio de Comunicación del Aspirante</p>
+									  </blockquote>
+									</figure>
+								<div class="row g-3">
+									<div class="col-md-6">
+										  <div class="input-group">
+											  <span class="input-group-text">Correo Electrónico </span>
+											  <input th:field="*{email}" type="email" aria-label="email" class="form-control" id="emailId" placeholder="tobiasGomez@gmail.com" disabled="disabled">
+										  </div>
+									      <br />
+									</div>
+									<div class="col-md-6">
+										<div class="input-group">
+											<span class="input-group-text">Telefono de Contacto </span>
+					  						<input th:field="*{telefono}" type="number" class="form-control" id="telefonoId" placeholder="3885084220" disabled="disabled">
+										</div>
+									</div>
+									<br />
+								</div>
+								
+									<blockquote class="blockquote">
+									    <p>Lugar de Nacimiento y Residencia del Aspirante</p>
+									  </blockquote>
+									</figure>
+									<br />
+									
+								<div class="row g-3">
+									<div class="col-md-4">
+										<div class="input-group">
+										  <span class="input-group-text" >País de Nacimiento</span>
+										  <input th:value="${curriculumVitae.nacionalidad}" class="form-control" disabled="disabled"/>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
+										  <span class="input-group-text">Provincia de Nacimiento</span>
+										  <input th:value="${curriculumVitae.provincias}" class="form-control" disabled="disabled"/>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
+											<span class="input-group-text">Ciudad de Nacimiento</span>
+					  						<input th:value="${curriculumVitae.nacionalidad}" class="form-control" disabled="disabled"/> 
+										</div>
+									</div>	
+							   </div>
+								<br />
+								<div class="row g-3">
+									<div class="col-md-4">
+										<div class="input-group">
+										  <label class="input-group-text" for="paisDeResidenciaId">País de Residencia</label>
+										  <input th:value="${curriculumVitae.paisDeResidencia}" class="form-control" disabled="disabled"/>
+										</div>
+										<br />
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
+										  <label class="input-group-text" for="provinciaDeResidenciaId">Provincia de Residencia</label>
+										  <input th:value="${curriculumVitae.provinciaDeResidencia}" class="form-control" disabled="disabled"/>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
+											<span class="input-group-text">Ciudad de Residencia</span>
+					  						<input th:value="${curriculumVitae.ciudadResidencia}" class="form-control" disabled="disabled"/>
+										</div>
+									</div>	
+							 	</div>
+										<div class="input-group">
+											<span class="input-group-text">Domicilio de Residencia</span>
+					  						<input th:value="${curriculumVitae.domicilio}" class="form-control" disabled="disabled"/>
+										</div>
+								
+								<figure class="text-center">
+								  <blockquote class="blockquote">
+								   		<cite>2° Parte</cite>
+								  </blockquote>
+								  <figcaption class="blockquote-footer">
+								    Datos de su <cite title="Source Title">Experiencia Laboral y Educación</cite>
+								  </figcaption>
+								</figure>
+								<br />
+								<wbr />
+								<div class="input-group">
+								  <span class="input-group-text">Experiencia Laboral</span>
+								  <input th:value="${curriculumVitae.experienciaLaboral}" class="form-control" aria-label="With textarea" id="experienciaLaboralId" disabled="disabled"></input>
+								</div>
+								<br />
+								<div class="input-group">
+								  <span class="input-group-text">Logros Obtenidos</span>
+								  <input th:value="${curriculumVitae.logrosObtenidos}" class="form-control" disabled="disabled"/>
+								</div>
+								<br />
+								<div class="input-group">
+									<span class="input-group-text">Escuela o Colegio Secundario</span>
+					  				<input th:value="${curriculumVitae.escuelaColegioSecundario}" class="form-control" disabled="disabled"/>
+								</div>
+								<br />
+								<div class="input-group"> 
+									<span class="input-group-text">Año de Egreso Colegio Secundario</span>
+					  				<input th:value="${curriculumVitae.fechaEgresadoSecundaria}" class="form-control" disabled="disabled"/>
+								</div>
+								<br />
+								<div class="input-group">
+									<span class="input-group-text">Universidad</span>
+					  				<input th:value="${curriculumVitae.escualaUniversidadFacultad}" class="form-control" disabled="disabled"/>
+								</div>
+								<br />
+								<div class="input-group">
+									<span class="input-group-text">Año de Egreso la Universidad</span>
+					  				<input th:value="${curriculumVitae.fechaEgresadoUniversidad}" class="form-control" disabled="disabled"/>
+								</div>
+								<br />
+								<div class="input-group">
+									<span class="input-group-text">Titulo Universitario</span>
+					  				<input th:value="${curriculumVitae.tituloUniversitarioOSecundario}" class="form-control" disabled="disabled"/>
+								</div>
+								<br />
+								<div class="input-group">
+									<span class="input-group-text">Idiomas</span>
+					  				<input th:value="${curriculumVitae.idiomas}" class="form-control" disabled="disabled"/>
+								</div>
+								<br />																
+								<div class="input-group">
+									<label class="input-group-text" for="conocimientosInformaticosId">Conocimiento Informático</label>
+									<input th:value="${curriculumVitae.conocimientosInformaticos}" class="form-control" disabled="disabled"/>
+								</div>
+							</div>
+							</div>
+							<div class="col mb-3 mx-5">
+								  <br />
+								 <div class="d-grid gap-2 d-md-flex center-content-md-end">
+			  						<a th:href="@{/ciudadano/welcome/miCurriculum}" class="btn btn-warning" type="button">Volver</a>
+								</div>
+							</div>
+					</form>
+				</div>
+			</form>
+	<br />
+	<footer th:replace="layouts/footer.html ::footergeneral"></footer>
+	
+  	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+  	
+</body>
+</html>

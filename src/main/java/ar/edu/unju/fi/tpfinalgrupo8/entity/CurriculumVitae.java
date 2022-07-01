@@ -135,7 +135,7 @@ public class CurriculumVitae {
 	@NotNull(message = "*Debe ingresar una año") 
 	@Column(name = "cv_fechaEgresoFac")
 	private int fechaEgresadoUniversidad;
-
+	
 	@NotNull(message="Debe completar este parámetro")
 	@Column(name = "cv_titulo")
 	private String tituloUniversitarioOSecundario;
@@ -154,15 +154,14 @@ public class CurriculumVitae {
 	private Ciudadano ciudadano;
 	
 	
-	
 	public CurriculumVitae(long id, Ciudadano ciudadano, String nombre, String apellido, String email, long dni,
 			int cantidadDeHijos, LocalDate fechaNacimiento, EstadoCivil estadoCivil, long telefono,
 			EstadoVidaPadres estadoVidaPadres, Nacionalidad nacionalidad, Provincias provincias, String ciudad,
 			String domicilio, Nacionalidad paisDeResidencia, Provincias provinciaDeResidencia, String ciudadResidencia,
 			String experienciaLaboral, NivelEducacion educacion, String logrosObtenidos,
-			String escuelaColegioSecundario, int fechaEgresadoSecundaria, String escualaUniversidadFacultad,
+			String escuelaColegioSecundario, String escualaUniversidadFacultad,
 			int fechaEgresadoUniversidad, String tituloUniversitarioOSecundario, String idiomas,
-			ConocimientoInformatico conocimientosInformaticos, boolean estado) {
+			ConocimientoInformatico conocimientosInformaticos, boolean estado, int fechaEgresadoSecundaria) {
 		super();
 		this.id = id;
 		this.ciudadano = ciudadano;
@@ -360,6 +359,7 @@ public class CurriculumVitae {
 		return escualaUniversidadFacultad;
 	}
 
+	
 	public void setEscualaUniversidadFacultad(String escualaUniversidadFacultad) {
 		this.escualaUniversidadFacultad = escualaUniversidadFacultad;
 	}
@@ -371,7 +371,7 @@ public class CurriculumVitae {
 	public void setFechaEgresadoUniversidad(int fechaEgresadoUniversidad) {
 		this.fechaEgresadoUniversidad = fechaEgresadoUniversidad;
 	}
-
+	
 	public String getTituloUniversitarioOSecundario() {
 		return tituloUniversitarioOSecundario;
 	}
