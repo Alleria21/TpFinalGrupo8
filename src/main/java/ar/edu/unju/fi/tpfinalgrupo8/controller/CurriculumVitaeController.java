@@ -52,22 +52,7 @@ public class CurriculumVitaeController {
 		LOGGER.info("Se ha asociado un objeto Curriculum al formulario");
 		return "nuevo_curriculumVitae";
 	}
-	/*
-	@PostMapping("/guardar")
-	public ModelAndView getListaCurriculumVitaePage(@Validated @ModelAttribute("curriculumVitae")CurriculumVitae curriculumVitae, 
-			BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			LOGGER.info("Error generando Curriculum Vitae");
-			ModelAndView mav= new ModelAndView("nuevo_curriculumVitae");
-			mav.addObject("curriculumVitae", curriculumVitae);
-			return mav;
-		}
-		ModelAndView mav=new ModelAndView("redirect:/curriculumVitae/listaCurriculumVitae");
-		if(curriculumVitaeService.guardarCurriculumVitae(curriculumVitae)) {
-			LOGGER.info("Se agregó un objeto al arrayList de Curriculum Vitae");
-		}
-		return mav;
-	}*/
+	
 	@PostMapping("/{id}/guardar")
 	public ModelAndView getListaOfertaLaboralPage(@Validated @ModelAttribute("curriculumVitae")CurriculumVitae curriculum,
 	BindingResult bindingresult) {
@@ -78,7 +63,7 @@ public class CurriculumVitaeController {
 			return mav;
 		}
 		
-		ModelAndView mav = new ModelAndView("redirect:/ciudadano/welcome");
+		ModelAndView mav = new ModelAndView("layouts/creacion_curriculum");
 		if(curriculumVitaeService.guardarCurriculumVitae(curriculum)) {
 			LOGGER.info("Se ha agregado un curriculum");
 		}else {

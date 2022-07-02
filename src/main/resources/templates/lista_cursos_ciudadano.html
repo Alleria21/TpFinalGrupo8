@@ -9,41 +9,52 @@
 <body>
 	<nav th:replace="layouts/header :: headergeneral"></nav>
 
-		<br />
-		 <div style="text-align: center">
-		<h3 class="text-black center">Lista de Cursos</h3>
-		
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end me-3">
-  			<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Volver al inicio</a>
-		</div>
-		
-		<div class="container">
-			<div class="row">
-				<div class="row">
-					<div th:each="curso : ${unCurso}" class="col-3 m-4">
-						<div class="card" style="width: 18rem;">
-  							<img th:src="@{/images/curso01.jpg}" class="card-img-top" alt="...">
-  							<div class="card-body">
-    							<h5 th:text="${curso.titulo}" class="card-title"></h5>
-    							<p>Categoria: </p>
-    								<p th:text="${curso.categoria}" class="card-text"></p>
-    							<p>Fecha de Incio: </p>
-    							<p th:text="${curso.fechaInicio}" class="card-text"></p>
-    							<p>Fecha de Finalizacion: </p>
-    							<p th:text="${curso.fechaFin}" class="card-text"></p>
-    							<p>Docente: Actividad Autoadministrada (Online)</p>
-    							<br />
-    							<div>
-    								<a th:href="@{/ciudadano/}+${id}+@{/inscribirse/}+${curso.codigo}" id="inscripcionCurso" class="btn btn-primary">Inscribirse</a>
-    							</div>
-  							</div>
+ <div class="col-12">
+		<div class="px-5 py-4 bg-white rounded-bottom">
+            <div th:unless="${#lists.isEmpty(unCurso)}">
+         		<div style="text-align: center">
+					<h1 class="text-black center">Cursos Disponibles</h1>
+					<br />
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end me-0">
+			  			<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Volver al inicio</a>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="row">
+								<div th:each="cursos : ${unCurso}" class="col-3 m-4">
+									<div class="card" style="width: 18rem;">
+			  							<img th:src="@{/images/curso01.jpg}" class="card-img-top" alt="...">
+			  							<div class="card-body">
+			    							<h5 th:text="${cursos.titulo}" class="card-title"></h5>
+			    							<p>Categoria: </p>
+			    								<p th:text="${cursos.categoria}" class="card-text"></p>
+			    							<p>Fecha de Incio: </p>
+			    							<p th:text="${cursos.fechaInicio}" class="card-text"></p>
+			    							<p>Fecha de Finalizacion: </p>
+			    							<p th:text="${cursos.fechaFin}" class="card-text"></p>
+			    							<p>Docente: Actividad Autoadministrada (Online)</p>
+			    							<br />
+			    							<a th:href="@{/ciudadano/}+${ciudadano.dni}+@{/inscribirse/}+${cursos.codigo}" class="btn btn-primary mt-3" type="button">Inscribirse</a>
+			  							</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+					
 				</div>
+          	</div>
+		    <div th:if="${#lists.isEmpty(unCurso)}">
+		    	<div class="border text-center justify-content-md-end me-3 mt-2">
+			    	<br />
+			        <h5>Lo sentimos.</h5>
+			        <h5>Debe esperar a que nuestra plataforma de el alta de un Curso</h5>
+			        <a th:href="@{/inicio/}" class="btn btn-warning" type="button">Volver al Inicio</a>
+		        </div>
 			</div>
-		</div>
-		</div>
-		
+        </div>
+	</div>
+	
 		<footer th:replace="layouts/footer.html ::footergeneral"></footer>
 		
 		

@@ -4,6 +4,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,7 @@ import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Curso;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
+import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICursoService;
 
 @Controller
@@ -29,14 +32,18 @@ public class CursoController {
 	@Qualifier("CursoServiceImpList")
 	private ICursoService cursoService;
 	
+	@Autowired
+	private ICiudadanoService ciudadanoService;
+	
 	private static final Log LOGGER = LogFactory.getLog(Curso.class);
 	
+	//Empece desde aquí
 	@GetMapping("/{id}/nuevo")
 	public String getCursoPage(@PathVariable(value = "id")Long id,Model model) {
 		Curso curso = new Curso();
-		Ciudadano ciudadano = new Ciudadano();
-		ciudadano.setId(id);
-		curso.setCiudadano(ciudadano);
+		Empleador empleador = new Empleador();
+		empleador.setId(id);
+		curso.setCreador(empleador);
 		model.addAttribute("curso", curso);
 		model.addAttribute("id",id);
 		LOGGER.info("Se ha asociado un objeto Curso al formulario");
@@ -69,11 +76,11 @@ public class CursoController {
 		return mav;
 	}
 	
-	@GetMapping("/ListaCursos/{id}")
-	public ModelAndView getListaCursos(@PathVariable(value = "id")Long id) {
+	@GetMapping("/ListaCursos")
+	public ModelAndView getListaCursos(@AuthenticationPrincipal User user) {
 		ModelAndView mav = new ModelAndView("lista_cursos_ciudadano");
+		mav.addObject("ciudadano", ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername())));
 		mav.addObject("unCurso", cursoService.getListaCurso());
-		mav.addObject("id",id);
 		return mav;
 	}
 	

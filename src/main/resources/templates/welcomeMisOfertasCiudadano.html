@@ -14,6 +14,12 @@
 		<div th:unless="${#lists.isEmpty(oferta)}">
 			<div class="container">
 			<h3 class="text-black center">Lista de Ofertas Laborales</h3>
+			<br />
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end me-0">
+						<a th:href="@{/ciudadano/MisPostulaciones}" class="btn btn-primary" type="button">Mis Postulaciones</a>
+			  			<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Volver al inicio</a>
+			</div>
+			<br />
 				<div class="row">
 					<div class="row">
 						<div th:each="oferta : ${oferta}" class="col-3 m-4">
@@ -51,6 +57,8 @@
         <a th:href="@{/inicio/}" class="btn btn-warning" type="button">Volver al Inicio</a>
         </div>
     </div>
+	
+	<footer th:replace="layouts/footer.html ::footergeneral"></footer>
 	
 	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>

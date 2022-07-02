@@ -143,7 +143,7 @@
 									<div class="col-md-4">
 										<div class="input-group">
 										  <label class="input-group-text" for="provinciaDeResidenciaId">Provincia de Residencia</label>
-										  <select class="form-select" th:field="*{provincias}" id="provinciaDeResidenciaId">
+										  <select class="form-select" th:field="*{provinciaDeResidencia}" id="provinciaDeResidenciaId">
 												<option th:each="provincias: ${T(ar.edu.unju.fi.tpfinalgrupo8.util.Provincias).values()}" th:value="${provincias}" th:text="${provincias.displayValue}"></option>
 										  </select>
 										  <div class="text-danger" th:if="${#fields.hasErrors('provinciaDeResidencia')}" th:errors="*{provinciaDeResidencia}"></div>
@@ -171,11 +171,6 @@
 								    Ingresa Datos de su <cite title="Source Title">Experiencia Laboral y Educación</cite>
 								  </figcaption>
 								</figure>
-								<br />
-								<div class="input-group">
-								  <span class="input-group-text">Acerca de mi: </span>
-								  <textarea class="form-control" aria-label="With textarea" placeholder="Soy Tobias Gomez, Tecnico en Electromecánica ..."></textarea>
-								</div>
 								<wbr />
 								<div class="input-group">
 								  <span class="input-group-text">Experiencia Laboral</span>

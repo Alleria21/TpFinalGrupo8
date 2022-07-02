@@ -92,15 +92,6 @@ public class CiudadanoController {
         modelAndView.addObject("curriculum", ciudadano.getCurriculum());
         return modelAndView;
     }
-	@GetMapping("/welcome/misCursos")
-    public ModelAndView welcomeCursosPage(@AuthenticationPrincipal User user){
-        ModelAndView modelAndView= new ModelAndView("welcomeMisCursosCiudadano");
-        Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
-        LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
-        modelAndView.addObject("ciudadano",ciudadano);
-        modelAndView.addObject("curso", ciudadano.getUnCurso());
-        return modelAndView;
-    }
 	
 	@GetMapping("/welcome/misOfertas")
     public ModelAndView welcomeOfertasPage(@AuthenticationPrincipal User user){
@@ -112,22 +103,39 @@ public class CiudadanoController {
         return modelAndView;
     }
 	
-	@GetMapping("/{id}/inscribirse/{idCurso}")
-	public ModelAndView getCursoInscripcionPage(@PathVariable(value = "id")Long id,@PathVariable(value = "idCurso")int idCurso) {
-		Curso cursoEncontrado = cursoService.buscarCurso(idCurso);
-		Ciudadano ciudadano = new Ciudadano();
-		ciudadano.setId(id);
-		cursoEncontrado.setCiudadano(ciudadano);
-		if(cursoService.guardarInscripto(cursoEncontrado)) {
-			LOGGER.info("Se ha agregado un Curso");
-		}else {
-			LOGGER.info("No se ha agregado un Curso"); 
+	@GetMapping("/{dni}/inscribirse/{codigo}")
+	public ModelAndView getCursoInscripcionPage(@PathVariable(value="dni")Long dni,@PathVariable(value="codigo")int codigo) {
+		Ciudadano ciudadano=ciudadanoService.buscarCiudadano(dni);
+		boolean bandera=true;
+		for(Curso curs: ciudadano.getUnCurso()) {
+			if(curs.getCodigo()==codigo) {
+				bandera=false;
+			}
 		}
-		ModelAndView mav = new ModelAndView("layouts/inscripcion_exitosa");
-		LOGGER.info("Se ha asociado un objeto Curso al Ciudadano");
-		return mav;
+		if(bandera==true) {
+			Curso cursoEncontrado=cursoService.buscarCurso(codigo);
+			ciudadano.getUnCurso().add(cursoEncontrado);
+			ciudadanoService.modificarCiudadano(ciudadano);
+			ModelAndView mav=new ModelAndView("layouts/inscripcion_exitosa");
+			 LOGGER.info("El usuario se ha inscripto a un curso");
+			return mav;
+		}else {
+			ModelAndView mav=new ModelAndView("layouts/inscripcion_rechazada");
+			 LOGGER.info("El usuario ya se encuentra inscripto en el curso");
+			return mav;
+		}
 	}
-
+	
+	@GetMapping("/welcome/misCursos")
+    public ModelAndView welcomeCursosPage(@AuthenticationPrincipal User user){
+        ModelAndView modelAndView= new ModelAndView("welcomeMisCursosCiudadano");
+        Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
+        LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
+        modelAndView.addObject("ciudadano",ciudadano);
+        modelAndView.addObject("curso", ciudadano.getUnCurso());
+        return modelAndView;
+    }
+	
 	@GetMapping("/{dni}/postular/{codigo}")
 	public ModelAndView getPostularAOferta(@PathVariable(value="dni")Long dni,@PathVariable(value="codigo")int codigo) {
 		OfertaLaboral ofertaEncontrada=ofertaService.buscarOfertaLaboral(codigo);
@@ -153,6 +161,7 @@ public class CiudadanoController {
 			return mav;
 		}
 	}
+	
 	@GetMapping("/MisPostulaciones")
 	public ModelAndView getMisPostulacionesAOfertas(@AuthenticationPrincipal User user) {
 		ModelAndView mav=new ModelAndView("welcomeMisPostulacionesCiudadano");
