@@ -10,6 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "empleador")
@@ -67,6 +68,10 @@ public class Empleador {
     //TODO : revisar cascada
     @OneToMany(mappedBy = "empleador", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
     private List<OfertaLaboral> ofertasLaborales;
+    
+    //Agregando relacion reciente
+  	@OneToMany(mappedBy = "creador", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
+      private Set<Curso> unCurso;
 
     public Empleador() {
     }

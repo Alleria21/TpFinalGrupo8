@@ -82,15 +82,15 @@ public class Ciudadano {
 			)
 	private Set<OfertaLaboral> ofertas;
 	
-
-	
-	//Agregando relacion reciente
-	@OneToMany(mappedBy = "ciudadano", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
-    private List<Curso> unCurso;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="curso_ciudadano",
+				joinColumns = @JoinColumn(name="inscripto_id"),
+				inverseJoinColumns = @JoinColumn(name="curso_id")
+			)
+	private Set<Curso> unCurso;
 	
 	@Column(name="estado")
 	private boolean estado;
-	
 	
 	
 	@OneToOne(mappedBy = "ciudadano", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
@@ -99,23 +99,6 @@ public class Ciudadano {
 	public Ciudadano() {
 		// TODO Auto-generated constructor stub
 	}
-
-
-	/*
-	public Ciudadano(long id, int dni, String email, EstadoCivil estadoCivil, Provincias provincia, int telefono, LocalDate fechaNac, String password, List<OfertaLaboral> ofertas, List<Curso> cursos, boolean estado) {
-		this.id = id;
-		this.dni = dni;
-		this.email = email;
-		this.estadoCivil = estadoCivil;
-		this.provincia = provincia;
-		this.telefono = telefono;
-		this.fechaNac = fechaNac;
-		this.password = password;
-		this.ofertas = ofertas;
-		this.cursos = cursos;
-		this.estado = estado;
-	}
-	*/
 
 	public String getEmail() {
 		return email;
@@ -181,11 +164,7 @@ public class Ciudadano {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 	
-	
-
 	public Set<OfertaLaboral> getOfertas() {
 		return ofertas;
 	}
@@ -194,17 +173,6 @@ public class Ciudadano {
 	public void setOfertas(Set<OfertaLaboral> ofertas) {
 		this.ofertas = ofertas;
 	}
-
-
-	public List<Curso> getUnCurso() {
-		return unCurso;
-	}
-
-
-	public void setUnCurso(List<Curso> unCurso) {
-		this.unCurso = unCurso;
-	}
-
 
 	public boolean isEstado() {
 		return estado;
@@ -236,7 +204,13 @@ public class Ciudadano {
 	}
 
 
+	public Set<Curso> getUnCurso() {
+		return unCurso;
+	}
 
-	
-	
+
+	public void setUnCurso(Set<Curso> unCurso) {
+		this.unCurso = unCurso;
+	}
+
 }

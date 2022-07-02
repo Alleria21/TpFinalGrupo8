@@ -2,20 +2,21 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edición Exitosa</title>
+    <title>Creacion Exitosa</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/signup_style.css}">
 </head>
 <body>
 
-<div class="container text-center">
-  			<div class="m-0 vh-100 row justify-content-center align-items-center">
-  				<div class="col-auto">
-					<h1>CurriculumVitae editado correctamente</h1>
-					<a th:href="@{/ciudadano/welcome}" class="btn btn-secondary px-3" type="button">Volver al perfil</a>
-				</div>
+	<div class="container text-center">
+	  	<div class="m-0 vh-100 row justify-content-center align-items-center">
+	  		<div class="col-auto">
+				<h1>Ha creado su CirruculumVitae Exitosamente</h1>
+					<a th:href="@{/ciudadano/welcome/miCurriculum}" class="btn btn-secondary px-3" type="button">Ver CurriculumVitae</a>
 			</div>
-</div>
+		</div>
+	</div>
+	
 <script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>

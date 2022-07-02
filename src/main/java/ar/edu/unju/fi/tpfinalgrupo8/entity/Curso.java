@@ -82,14 +82,18 @@ public class Curso {
 	*/
 	
 	@ManyToOne()
-	@JoinColumn(name = "ciudadano_id")
+	@JoinColumn(name = "empleador_id")
 	//ENCARGADO DE CREAR LA TABLA DE RELACION
-	private Ciudadano ciudadano;
+	private Empleador creador;
+	
+	@ManyToMany(mappedBy = "unCurso")
+	private List<Ciudadano> inscripto;
 	
 	public Curso() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/*
 	public Curso(long id, int codigo, String titulo, Categoria categoria, LocalDate fechaInicio, LocalDate fechaFin, int horas, Modalidad modalidad, boolean disponible, Ciudadano ciudadano) {
 		super();
 		this.id = id;
@@ -103,7 +107,8 @@ public class Curso {
 		this.disponible = disponible;
 		this.ciudadano = ciudadano;
 	}
-
+	 */
+	
 	public long getId() {
 		return id;
 	}
@@ -176,6 +181,23 @@ public class Curso {
 		this.disponible = disponible;
 	}
 
+	public Empleador getCreador() {
+		return creador;
+	}
+
+	public void setCreador(Empleador creador) {
+		this.creador = creador;
+	}
+
+	public List<Ciudadano> getInscripto() {
+		return inscripto;
+	}
+
+	public void setInscripto(List<Ciudadano> inscripto) {
+		this.inscripto = inscripto;
+	}
+
+	/*
 	public Ciudadano getCiudadano() {
 		return ciudadano;
 	}
@@ -183,7 +205,9 @@ public class Curso {
 	public void setCiudadano(Ciudadano ciudadano) {
 		this.ciudadano = ciudadano;
 	}
-
+	*/		
+	
+	
 	
 	
 }
