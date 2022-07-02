@@ -3,11 +3,12 @@ package ar.edu.unju.fi.tpfinalgrupo8.service.imp;
 import java.util.List;
 import java.util.Optional;
 
+import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
-import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.repository.CiudadanoRepository;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 
@@ -80,5 +81,16 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 	public Optional<List<Ciudadano>> findByProvincia(String provincia) {
 		return ciudadanoRepository.findByProvincia(provincia);
 	}
+
+	@Override
+	public List<Ciudadano> findByOferta(OfertaLaboral ofertaLaboral) {
+		return ciudadanoRepository.findByOfertas(ofertaLaboral);
+	}
+
+	@Override
+	public Ciudadano findById(long id) {
+		return ciudadanoRepository.findById(id).get();
+	}
+
 
 }

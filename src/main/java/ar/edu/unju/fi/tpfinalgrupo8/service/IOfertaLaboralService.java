@@ -13,5 +13,6 @@ public interface IOfertaLaboralService {
 	public OfertaLaboral buscarOfertaLaboral(int codigo);
 	//public Ciudadano getCiudadano();
 	//public List<Ciudadano> getListaCiudadano();
+	OfertaLaboral findById(long id);
 }
 

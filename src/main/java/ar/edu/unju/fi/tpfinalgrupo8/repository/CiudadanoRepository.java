@@ -3,6 +3,7 @@ package ar.edu.unju.fi.tpfinalgrupo8.repository;
 import java.util.List;
 import java.util.Optional;
 
+import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -23,5 +24,5 @@ public interface CiudadanoRepository extends JpaRepository<Ciudadano, Long>{
 	@Query("select c from Ciudadano c order by c.dni")
 	public List<Ciudadano> ordenarPorDni();
 	Optional<List<Ciudadano>> findByProvincia(String provincia);
-	
+	List<Ciudadano> findByOfertas(OfertaLaboral ofertaLaboral);
 }

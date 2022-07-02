@@ -1,7 +1,27 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right,#3b83ff,#B3CDE0);
+
+}
+
 h1{
     text-align: center;
+
 }
 button a{
     color: white;
     text-decoration: none;
+}
+thead{
+    background-color: cornflowerblue;
+}
+thead tr th {
+    text-align: center;
+}
+tbody tr td{
+    text-align: center ;
+}
+table{
+    background-color: #B3CDE0;
 }
