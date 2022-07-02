@@ -132,12 +132,26 @@ public class CiudadanoController {
 	public ModelAndView getPostularAOferta(@PathVariable(value="dni")Long dni,@PathVariable(value="codigo")int codigo) {
 		OfertaLaboral ofertaEncontrada=ofertaService.buscarOfertaLaboral(codigo);
 		Ciudadano ciudadano=ciudadanoService.buscarCiudadano(dni);
-		ciudadano.getOfertas().add(ofertaEncontrada);
-		ciudadanoService.modificarCiudadano(ciudadano);
-		//ofertaEncontrada.getCiudadanos().add(ciudadano);
-		//ofertaService.modificarOfertaLaboral(ofertaEncontrada);
-		ModelAndView mav=new ModelAndView("redirect:/ciudadano/MisPostulaciones");
-		return mav;
+		boolean band=true;
+		for(OfertaLaboral of: ciudadano.getOfertas()) {
+			if(of.getCodigo()==codigo) {
+				band=false;
+			}
+		}
+		if(ciudadano.getCurriculum()==null) {
+			ModelAndView mav=new ModelAndView("layouts/curriculum_faltante");//Para el caso en que el usuario le falte el curriculum
+			return mav;
+		}
+		if(band==true) {
+			ciudadano.getOfertas().add(ofertaEncontrada);
+			ciudadanoService.modificarCiudadano(ciudadano);
+			ModelAndView mav=new ModelAndView("layouts/postulacion_exitosa");//Para el caso en que la inscripcion sea exitosa
+			return mav;
+		}else {
+			ModelAndView mav=new ModelAndView("layouts/postulacion_rechazada");//Para el caso en que el usuario ya este inscripto a esa oferta, se mostrara un mensaje por medio de la vista
+			LOGGER.info("El ciudadano "+ciudadano.getEmail()+" ya se encuentra inscripto");
+			return mav;
+		}
 	}
 	@GetMapping("/MisPostulaciones")
 	public ModelAndView getMisPostulacionesAOfertas(@AuthenticationPrincipal User user) {
@@ -145,7 +159,6 @@ public class CiudadanoController {
 		Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
         LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
         mav.addObject("oferta",ciudadano.getOfertas());
-        //mav.addObject("oferta", ofertaService.buscarOfertaLaboral(1).getCiudadanos());
         return mav;
 	}
 }
