@@ -5,9 +5,8 @@ public enum NivelEducacion{
 	SECUNDARIOCOMPLETO("Secundario Completo"),
 	TERCIARIOCOMPLETO("Terciario Completo"),
 	UNIVERSITARIOCOMPLETO("Universitario Completo"),
-	SINESTUDIOS("Sin Estudios"),
-	OTROS("Otros");
-	
+	SINESTUDIOS("Sin Estudios");
+
     private final String displayValue;
     NivelEducacion(String displayValue) {
         this.displayValue = displayValue;
