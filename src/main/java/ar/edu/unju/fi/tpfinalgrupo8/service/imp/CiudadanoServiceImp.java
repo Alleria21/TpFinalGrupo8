@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.repository.CiudadanoRepository;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 
@@ -79,6 +80,5 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 	public Optional<List<Ciudadano>> findByProvincia(String provincia) {
 		return ciudadanoRepository.findByProvincia(provincia);
 	}
-
 
 }
