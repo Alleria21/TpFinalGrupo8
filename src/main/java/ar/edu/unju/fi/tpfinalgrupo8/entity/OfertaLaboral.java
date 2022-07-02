@@ -3,7 +3,6 @@ package ar.edu.unju.fi.tpfinalgrupo8.entity;
 import ar.edu.unju.fi.tpfinalgrupo8.util.DisponibilidadHoraria;
 import ar.edu.unju.fi.tpfinalgrupo8.util.Jornada;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -80,15 +79,9 @@ public class OfertaLaboral {
 	
 	@Column(name = "oferta_disponible")
 	private boolean disponible;
-	
 
-	
-	
-	
-	
-	@ManyToMany(mappedBy = "ofertas")
+	@ManyToMany(mappedBy = "ofertas",fetch = FetchType.LAZY)
 	private List<Ciudadano> ciudadanos;
-	
 
 	@ManyToOne()
 	@JoinColumn(name = "empleador_id")

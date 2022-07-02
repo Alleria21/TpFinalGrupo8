@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://thymeleaft.org/extras/spring-security">
 <head>
 	<meta charset="UTF-8">
 	<title>Curriculum Vitae</title>
@@ -108,14 +109,14 @@
 								<div class="row g-3">
 									<div class="col-md-4">
 										<div class="input-group">
-										  <label class="input-group-text" for="paisDeResidenciaId">País de Residencia</label>
+										  <label class="input-group-text" >País de Residencia</label>
 										  <input th:value="${curriculumVitae.paisDeResidencia}" class="form-control" disabled="disabled"/>
 										</div>
 										<br />
 									</div>
 									<div class="col-md-4">
 										<div class="input-group">
-										  <label class="input-group-text" for="provinciaDeResidenciaId">Provincia de Residencia</label>
+										  <label class="input-group-text" >Provincia de Residencia</label>
 										  <input th:value="${curriculumVitae.provinciaDeResidencia}" class="form-control" disabled="disabled"/>
 										</div>
 									</div>
@@ -182,10 +183,9 @@
 								</div>
 								<br />																
 								<div class="input-group">
-									<label class="input-group-text" for="conocimientosInformaticosId">Conocimiento Informático</label>
+									<label class="input-group-text" >Conocimiento Informático</label>
 									<input th:value="${curriculumVitae.conocimientosInformaticos}" class="form-control" disabled="disabled"/>
 								</div>
-							</div>
 							</div>
 							<div class="col mb-3 mx-5">
 								  <br />
@@ -196,6 +196,11 @@
 					</form>
 				</div>
 			</form>
+		<div class="text-center" sec:authorize="hasAuthority('EMPLEADOR')">
+			<button class="btn btn-warning" >
+				<a th:href="@{/empleador/welcome}"> Volver a mis Ofertas</a>
+			</button>
+		</div>
 	<br />
 	<footer th:replace="layouts/footer.html ::footergeneral"></footer>
 	

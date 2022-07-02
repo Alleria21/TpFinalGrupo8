@@ -10,11 +10,13 @@
 <body>
 <nav th:replace="layouts/header :: headergeneral"></nav>
 
-    <div class="col-12">
-        <h1>Welcome <span sec:authentication="name">User que hizo login</span> </h1>
+    <div class="col-12" >
+        <h1 class="fw-bold">Welcome <span sec:authentication="name">User que hizo login</span> </h1>
         <div class="px-5 py-4 bg-white rounded-bottom">
-            <button class="btn btn-secondary"><a th:href="@{/oferta/}+${empleador.id}+@{/nuevo}">Nuevo</a></button>
-            <table th:unless="${#lists.isEmpty(ofertas)}" class="table table-bordered">
+            <div class="mb-4 d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-secondary btn-lg"><a th:href="@{/oferta/}+${empleador.id}+@{/nuevo}">Nuevo</a></button>
+            </div>
+            <table th:unless="${#lists.isEmpty(ofertas)}" class="table table-bordered border border-3">
                 <thead>
                 <tr class="align-text-middle">
 
@@ -36,9 +38,11 @@
                         <button class="btn btn-warning" >
                             <a th:href="@{/oferta/editar/}+${oferta.codigo}"> Modificar</a>
                         </button>
-
                         <button class="btn btn-danger" >
                             <a th:href="@{/oferta/eliminar/}+${oferta.codigo}"> Eliminar</a>
+                        </button>
+                        <button class="btn btn-success" >
+                            <a th:href="@{/empleador/}+${oferta.id}+@{/postulantes}"> Ver Postulantes</a>
                         </button>
                     </td>
                 </tr>
