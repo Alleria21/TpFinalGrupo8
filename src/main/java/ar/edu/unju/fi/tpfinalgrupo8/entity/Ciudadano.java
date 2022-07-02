@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinalgrupo8.entity;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -213,4 +214,8 @@ public class Ciudadano {
 		this.unCurso = unCurso;
 	}
 
+	public int getEdad() {
+		Period period = Period.between(this.fechaNac, LocalDate.now());
+		return period.getYears();
+	}
 }

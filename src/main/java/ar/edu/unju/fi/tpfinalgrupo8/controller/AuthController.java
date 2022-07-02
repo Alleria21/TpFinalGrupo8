@@ -68,12 +68,16 @@ public class AuthController {
             mav.addObject("ciudadano", ciudadano);
             return mav;
         }
-        if(ciudadanoService.guardarCiudadano(ciudadano)) {
-            LOGGER.info("Registro de ciudadano correcto");
-            return new ModelAndView("layouts/registro_exitoso");
+        if(ciudadano.getEdad()>=18) {
+        	if(ciudadanoService.guardarCiudadano(ciudadano)) {
+       		 	LOGGER.info("Registro de ciudadano correcto");
+                return new ModelAndView("layouts/registro_exitoso");
+        	}else {
+        		LOGGER.info("El ciudadano ingresado ya existe en la base de datos ");
+                return new ModelAndView("layouts/registro_fracasado");
+        	}
         }
-        LOGGER.info("El ciudadano ingresado ya existe en la base de datos ");
-        return new ModelAndView("layouts/registro_fracasado");
-
+        LOGGER.info("El ciudadano ingresado no es mayor de edad");
+        return new ModelAndView("layouts/registroEdad_fracasado");
     }
 }
