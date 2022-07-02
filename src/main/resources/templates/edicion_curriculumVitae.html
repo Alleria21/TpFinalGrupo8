@@ -19,8 +19,7 @@
 							 	<br/>
 								<figure class="text-center">
 								  <blockquote class="blockquote">
-								    <h3>Curriculum Vitae</h3>
-								    
+								    <h3>Curriculum Vitae</h3>   
 								    <cite>1° Parte</cite>
 								  </blockquote>
 								  <figcaption class="blockquote-footer">
@@ -183,27 +182,11 @@
 								</div>
 								<br />
 								<div class="input-group">
-									<span class="input-group-text">Escuela o Colegio Secundario</span>
-					  				<input th:field="*{escuelaColegioSecundario}" type="text" class="form-control" id="escuelaColegioSecundarioId" placeholder="Colegio Saleciano">
-					  				<div class="text-danger" th:if="${#fields.hasErrors('escuelaColegioSecundario')}" th:errors="*{escuelaColegioSecundario}"></div> 
-								</div>
-								<br />
-								<div class="input-group"> 
-									<span class="input-group-text">Año de Egreso Colegio Secundario</span>
-					  				<input th:field="*{fechaEgresadoSecundaria}" type="number" class="form-control" id="fechaEgresadoSecundariaId" placeholder="2015">
-					  				<div class="text-danger" th:if="${#fields.hasErrors('fechaEgresadoSecundaria')}" th:errors="*{fechaEgresadoSecundaria}"></div> 
-								</div>
-								<br />
-								<div class="input-group">
-									<span class="input-group-text">Universidad</span>
-					  				<input th:field="*{escualaUniversidadFacultad}" type="text" class="form-control" id="escualaUniversidadFacultadId" placeholder="Universidad Nacional de Jujuy">
-					  				<div class="text-danger" th:if="${#fields.hasErrors('escualaUniversidadFacultad')}" th:errors="*{escualaUniversidadFacultad}"></div> 
-								</div>
-								<br />
-								<div class="input-group">
-									<span class="input-group-text">Año de Egreso la Universidad</span>
-					  				<input th:field="*{fechaEgresadoUniversidad}" type="number" class="form-control" id="fechaEgresadoUniversidadId" placeholder="2020">
-					  				<div class="text-danger" th:if="${#fields.hasErrors('fechaEgresadoUniversidad')}" th:errors="*{fechaEgresadoUniversidad}"></div> 
+									<label class="input-group-text" for="nivelEducacionId">Nivel de Educación</label>
+									<select class="form-select" th:field="*{nivelEducacion}" id="nivelEducacionId">
+										<option th:each="nivelEducacion: ${T(ar.edu.unju.fi.tpfinalgrupo8.util.NivelEducacion).values()}" th:value="${nivelEducacion}" th:text="${nivelEducacion.displayValue}"></option>
+									 </select>
+									<div class="text-danger" th:if="${#fields.hasErrors('nivelEducacion')}" th:errors="*{nivelEducacion}"></div>
 								</div>
 								<br />
 								<div class="input-group">
