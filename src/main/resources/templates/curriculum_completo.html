@@ -20,7 +20,6 @@
 								<figure class="text-center">
 								  <blockquote class="blockquote">
 								    <h3>Curriculum Vitae</h3>
-								    
 								    <cite>1° Parte</cite>
 								  </blockquote>
 								  <figcaption class="blockquote-footer">
@@ -31,7 +30,7 @@
 								<div class="input-group">
 								  <span class="input-group-text">Nombre y Apellido </span>
 								  <input th:value="${curriculumVitae.nombre}" type="text" aria-label="Primer Nombre" class="form-control" id="nombreId" disabled="disabled">
-								  <input th:value="${curriculumVitae.apellido}" type="text" aria-label="Apellido" class="form-control" id="apellidoId" placeholder="Gomez" disabled="disabled">
+								  <input th:value="${curriculumVitae.apellido}" type="text" aria-label="Apellido" class="form-control" id="apellidoId"  disabled="disabled">
 								</div>
 								<br />
 								<div class="row g-3">
@@ -61,13 +60,13 @@
 									    <p>Medio de Comunicación del Aspirante</p>
 									  </blockquote>
 									</figure>
-								<div class="row g-3">
-									<div class="col-md-6">
-										  <div class="input-group">
+											<div class="row g-3">
+											<div class="col-md-6">
+										  	<div class="input-group">
 											  <span class="input-group-text">Correo Electrónico </span>
 											  <input th:field="*{email}" type="email" aria-label="email" class="form-control" id="emailId" placeholder="tobiasGomez@gmail.com" disabled="disabled">
-										  </div>
-									      <br />
+										  	</div>
+									      	<br />
 									</div>
 									<div class="col-md-6">
 										<div class="input-group">
@@ -152,23 +151,8 @@
 								</div>
 								<br />
 								<div class="input-group">
-									<span class="input-group-text">Escuela o Colegio Secundario</span>
-					  				<input th:value="${curriculumVitae.escuelaColegioSecundario}" class="form-control" disabled="disabled"/>
-								</div>
-								<br />
-								<div class="input-group"> 
-									<span class="input-group-text">Año de Egreso Colegio Secundario</span>
-					  				<input th:value="${curriculumVitae.fechaEgresadoSecundaria}" class="form-control" disabled="disabled"/>
-								</div>
-								<br />
-								<div class="input-group">
-									<span class="input-group-text">Universidad</span>
-					  				<input th:value="${curriculumVitae.escualaUniversidadFacultad}" class="form-control" disabled="disabled"/>
-								</div>
-								<br />
-								<div class="input-group">
-									<span class="input-group-text">Año de Egreso la Universidad</span>
-					  				<input th:value="${curriculumVitae.fechaEgresadoUniversidad}" class="form-control" disabled="disabled"/>
+								  <span class="input-group-text">Nivel de Educación</span>
+								  <input th:value="${curriculumVitae.nivelEducacion}" class="form-control" disabled="disabled"/>
 								</div>
 								<br />
 								<div class="input-group">
