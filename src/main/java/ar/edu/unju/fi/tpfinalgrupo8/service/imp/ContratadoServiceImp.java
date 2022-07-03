@@ -61,6 +61,8 @@ public class ContratadoServiceImp implements IContratadoService {
         contratado.setEstadoCivil(ciudadano.getEstadoCivil());
         contratado.setProvincia(ciudadano.getProvincia());
         contratado.setFechaNac(ciudadano.getFechaNac());
+        //agregando telefono
+        contratado.setTelefono(ciudadano.getTelefono());
         OfertaLaboral ofertaLaboral = new OfertaLaboral();
         ofertaLaboral.setId(idOferta);
         contratado.getOfertasAceptadas().add(ofertaLaboral);

@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinalgrupo8.entity;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -208,5 +209,9 @@ public class Ciudadano {
 	public void setUnCurso(Set<Curso> unCurso) {
 		this.unCurso = unCurso;
 	}
-
+	
+	public int getEdad() {
+		Period period = Period.between(this.fechaNac, LocalDate.now());
+		return period.getYears();
+	}
 }
