@@ -9,8 +9,25 @@
 
 <body>
 	<nav th:replace="layouts/header :: headergeneral"></nav>
+	<hr />
+	<div class="row g-2">
+		<div class="col md-6">
+			<div class="row p-5 pb-5" >
+				<h1>Millones de empleos y</h1>
+				<h1>técnicos que buscan</h1>
+				<h1>personal</h1>
+			</div>
+		</div>
+		<div class="col md-6">
+			<div>
+				<img th:src="@{/images/trabajo05.png}" width="650px" height="280px">
+			</div>
+		</div>
+	</div>
 	<br />
-
+	
+	<hr />
+	<br />
 	<div class="container">
 		<!-- inicia carousel -->
 		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -21,21 +38,28 @@
 		  </div>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="/images/trabajo01.jpeg" class="d-block w-100" alt="imagen1">
-		      <div class="carousel-caption d-none d-md-block" style="background-color: #B3CDE0;">
-		        <h4>Postulaciones disponibles</h4>
-		        <p>¿Buscas trabajo? Ofrecemos todo tipos de trabajos para que te postules.</p>
+		    	<a th:href="@{/register/ciudadano}">
+			    	<img src="/images/trabajo01.jpg" class="d-block w-100" 
+			    	alt="imagen1" width="620px" height="480px"
+			    	></a>
+			    	<div class="carousel-caption d-none d-md-block" style="background-color: #B3CDE0;">
+		       		 <h4>¿Buscas empleo?</h4>
+		       		 <p>Registrate ahora mismo en nuestra plataforma y busca las ofertas más adecuadas para tí</p>
+		       	
 		      </div>
 		    </div>
 		    <div class="carousel-item">
-		      <img src="/images/trabajo02.png" class="d-block w-100" alt="imagen2">
-		      <div class="carousel-caption d-none d-md-block" style="background-color: #B3CDE0;">
-		        <h4>Nuestras ofertas de trabajo</h4>
-		        <p>Informate sobre las nuevas ofertas que ofrecemos para tí.</p>
-		      </div>
+		    	<a th:href="@{/register/empleador}">
+		    		 <img src="/images/trabajo03.png" class="d-block w-100" 
+		    		 alt="imagen2" width="620px" height="480px">
+		    	</a>
+		    	<div class="carousel-caption d-none d-md-block" style="background-color: #B3CDE0;">
+			      	<h4>No te quedes atrás: publica tus Ofertas Laborales</h4>
+			        <p>Registrate y se parte del grupo de Empleadores de Workffer</p>
+			    </div>
 		    </div>
 		    <div class="carousel-item">
-		      <img src="/images/trabajo03.jpg" class="d-block w-100" alt="imagen3">
+		      <img src="/images/trabajo02.jpeg" class="d-block w-100" alt="imagen3" width="620px" height="480px">
 		      <div class="carousel-caption d-none d-md-block" style="background-color: #B3CDE0;">
 		        <h4>Nuevos trabajos remotos</h4>
 		        <p>¿Deseas trabajar desde casa? Enterate de los empleos disponibles mas recientes</p>
@@ -54,32 +78,32 @@
 	
 	</div>
 	<br />
-	
+	<hr />
 	<div class="cointainer border">
 		<div class="container-fluid">
 			<div class="row p-4 pb-4" style="background-color:  #E8F6FF;">
-				<h1 class="text-center text-black">Acerca de Workffer</h1>
+				<h1 class="text-start text-black">Acerca de Workffer</h1>
 				<br />
-				<h6 class="text-center"> Te damos la bienvenida a Workffer, la mayor red profesional del mundo con más 
+				<h6 class="text-start"> Te damos la bienvenida a Workffer, la mayor red profesional del mundo con más 
 				de 774 millones de miembros en más de 200 países y territorios. </h6>
 			</div>
 		</div>
-		
-		<div class="container-fluid border">
+		<hr />
+		<div class="container-fluid">
 			<div class="row p-4 pb-4" style="background-color: #E8F6FF;">
-				<h2 class="text-center text-black">Vision</h2>
+				<h1 class="text-center text-black">Visión</h1>
 				<br />
 				<br />
 				<h6 class="text-center"> Crear oportunidades económicas para cada profesional del mercado laboral internacional.</h6>
 			</div>
 		</div>
-	
+		<hr />
 		<div class="container-fluid">
 			<div class="row p-4 pb-4" style="background-color: #E8F6FF;">
-				<h2 class="text-center text-black">Mision</h2>
+				<h1 class="text-end text-black">Misión</h1>
 				<br />
 				<br />
-				<h6 class="text-center"> La misión de Workffer es sencilla: conectar a profesionales de todo el mundo para ayudarles a ser más
+				<h6 class="text-end"> La misión de Workffer es sencilla: conectar a profesionales de todo el mundo para ayudarles a ser más
 				 productivos y a alcanzar todas sus metas laborales.</h6>
 			</div>
 		</div>
