@@ -78,7 +78,7 @@ public class OfertaLaboralServiceImp implements IOfertaLaboralService {
 
 	@Override
 	public OfertaLaboral findById(long id) {
-		return ofertaLaboralRepository.getById(id);
+		return ofertaLaboralRepository.findById(id).get();
 	}
 
 }

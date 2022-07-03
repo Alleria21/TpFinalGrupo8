@@ -1,27 +1,57 @@
 body{
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right,#3b83ff,#B3CDE0);
+    background-color:#dee2ff;
 
 }
 
 h1{
     text-align: center;
-
+}
+h2{
+    text-align: center;
 }
 button a{
     color: white;
     text-decoration: none;
 }
-thead{
-    background-color: cornflowerblue;
+a:hover{
+    text-decoration: none;
+    color: white;
 }
+
 thead tr th {
     text-align: center;
 }
 tbody tr td{
     text-align: center ;
 }
-table{
-    background-color: #B3CDE0;
+
+thead tr{
+    background-color: #3f37c9;
+    color: white;
+}
+nav {
+    background-color: #3f37c9 !important;
+}
+footer{
+    background-color: #3f37c9 !important;
+    color: white;
+}
+.screen {
+    margin-bottom: 5rem;
+}
+.btn-color{
+    background-color: #3f37c9;
+}
+.btn-blue-ligth{
+    background-color: #4895ef;
+}
+.btn-color:hover {
+    background-color: #3a0ca3;
+    text-decoration: none;
+}
+.btn-blue-ligth:hover {
+    background-color: #3a0ca3;
+    text-decoration: none;
 }

@@ -2,8 +2,11 @@ package ar.edu.unju.fi.tpfinalgrupo8.controller;
 
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.Contratado;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
+import ar.edu.unju.fi.tpfinalgrupo8.service.IContratadoService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.IEmpleadorService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.IOfertaLaboralService;
 import org.apache.commons.logging.Log;
@@ -30,7 +33,8 @@ public class EmpleadorController {
     private IOfertaLaboralService ofertaLaboralService;
     @Autowired
     private ICiudadanoService ciudadanoService;
-
+    @Autowired
+    private IContratadoService contratadoService;
     private static final Log LOGGER = LogFactory.getLog(EmpleadorController.class);
 
     @GetMapping("/welcome")
@@ -47,6 +51,7 @@ public class EmpleadorController {
         ModelAndView modelAndView = new ModelAndView("postulantes");
         List<Ciudadano> postulantes = ciudadanoService.findByOferta(ofertaLaboralService.findById(id));
         modelAndView.addObject("postulantes",postulantes);
+        modelAndView.addObject("ofertaId", id);
         return modelAndView;
     }
     @GetMapping("/postulante/{id}")
@@ -55,5 +60,44 @@ public class EmpleadorController {
         Ciudadano ciudadano= ciudadanoService.findById(id);
         modelAndView.addObject("curriculumVitae", ciudadano.getCurriculum());
         return modelAndView;
+    }
+    @GetMapping("/{ofertaId}/contratar/{ciudadanoId}")
+    public ModelAndView contratado(@PathVariable(value = "ofertaId") Long ofertaId,
+                                   @PathVariable(value = "ciudadanoId") Long ciudadanoId){
+        ModelAndView modelAndView = new ModelAndView();
+        Ciudadano ciudadano= ciudadanoService.findById(ciudadanoId);
+        if(contratadoService.save(ciudadano, ofertaId)){
+            modelAndView.setViewName("layouts/contratado_exitoso");
+            this.updateVacantes(ofertaId);
+        }
+        else{
+            modelAndView.setViewName("layouts/contratado_fracasado");
+        }
+        return modelAndView;
+    }
+    @GetMapping("/contratados/{id}")
+    public ModelAndView contratados(@PathVariable(value = "id") Long id){
+        ModelAndView modelAndView = new ModelAndView("contratados");
+        List<Contratado> contratados = contratadoService.findByOferta(ofertaLaboralService.findById(id));
+        modelAndView.addObject("contratados", contratados);
+        return modelAndView;
+    }
+    @GetMapping("/contratados")
+    public ModelAndView allContratados(@AuthenticationPrincipal User user){
+        Empleador empleador= empleadorService.buscarPorCuit(Long.parseLong(user.getUsername()));
+        ModelAndView modelAndView = new ModelAndView("contratados");
+        List<Contratado> contratados = contratadoService.findAllByOferta(empleador.getOfertasLaborales());
+        modelAndView.addObject("contratados", contratados);
+        return modelAndView;
+    }
+
+    private void updateVacantes(long ofertaId){
+        System.out.println("hi");
+        OfertaLaboral ofertaLaboral = ofertaLaboralService.findById(ofertaId);
+        ofertaLaboral.setCantidadVacantes(ofertaLaboral.getCantidadVacantes()-1);
+        if(ofertaLaboral.getCantidadVacantes()==0){
+            ofertaLaboral.setDisponible(false);
+        }
+        ofertaLaboralService.modificarOfertaLaboral(ofertaLaboral);
     }
 }

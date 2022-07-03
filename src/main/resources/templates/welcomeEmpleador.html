@@ -10,13 +10,15 @@
 <body>
 <nav th:replace="layouts/header :: headergeneral"></nav>
 
-    <div class="col-12" >
-        <h1 class="fw-bold">Welcome <span sec:authentication="name">User que hizo login</span> </h1>
-        <div class="px-5 py-4 bg-white rounded-bottom">
+    <div class="col-12 screen" >
+        <h3 class="fw-bold text-center my-2">Mis Ofertas Laborales </h3>
+
+        <div class="px-5 py-4 rounded-bottom">
             <div class="mb-4 d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-secondary btn-lg"><a th:href="@{/oferta/}+${empleador.id}+@{/nuevo}">Nuevo</a></button>
+            <button class="btn btn-blue-ligth btn-lg"><a th:href="@{/oferta/}+${empleador.id}+@{/nuevo}">Nueva Oferta</a></button>
             </div>
             <table th:unless="${#lists.isEmpty(ofertas)}" class="table table-bordered border border-3">
+
                 <thead>
                 <tr class="align-text-middle">
 
@@ -35,30 +37,29 @@
                     <td th:text="${oferta.dispHoraria}"></td>
                     <td th:text="${oferta.salario}"></td>
                     <td >
-                        <button class="btn btn-warning" >
+                        <button class="btn btn-color">
                             <a th:href="@{/oferta/editar/}+${oferta.codigo}"> Modificar</a>
                         </button>
-                        <button class="btn btn-danger" >
+                        <button class="btn btn-color" >
                             <a th:href="@{/oferta/eliminar/}+${oferta.codigo}"> Eliminar</a>
                         </button>
-                        <button class="btn btn-success" >
-                            <a th:href="@{/empleador/}+${oferta.id}+@{/postulantes}"> Ver Postulantes</a>
+                        <button class="btn btn-color" >
+                            <a th:href="@{/empleador/}+${oferta.id}+@{/postulantes}">Postulantes</a>
                         </button>
+                        <button class="btn btn-color" >
+                            <a th:href="@{/empleador/contratados/}+${oferta.id}">Contratados</a>
+                        </button>
+
                     </td>
                 </tr>
                 </tbody>
             </table>
-    <div th:if="${#lists.isEmpty(ofertas)}">
-        <h2>Aun no se han creado ofertas</h2>
-    </div>
-
+            <div th:if="${#lists.isEmpty(ofertas)}">
+                <h2>Aun no se han creado ofertas</h2>
+            </div>
         </div>
     </div>
 
-
-
-
-<footer th:replace="layouts/footer.html ::footergeneral"></footer>
 
 <script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
