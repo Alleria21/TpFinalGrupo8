@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contratados</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/empleadorStyle.css}">
+</head>
+<body>
+<nav th:replace="layouts/header :: headergeneral"></nav>
+
+<div class="col-12 screen" >
+    <h1 class="fw-bold">Contratados</h1>
+    <div class="px-5 py-4 rounded-bottom">
+
+        <table th:unless="${#lists.isEmpty(contratados)}" class="table table-bordered border border-3">
+            <thead>
+            <tr class="align-text-middle">
+
+                <th>Dni</th>
+                <th>E-mail</th>
+                <th>Provincia</th>
+                <th>Teléfono</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contratado: ${contratados}">
+                <td th:text="${contratado.dni}"></td>
+                <td th:text="${contratado.email}"></td>
+                <td th:text="${contratado.provincia}"></td>
+                <td th:text="${contratado.telefono}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:if="${#lists.isEmpty(contratados)}">
+            <h2>No hay postulantes</h2>
+        </div>
+
+    </div>
+    <div class="text-center">
+        <button class="btn btn-blue-ligth" >
+            <a th:href="@{/empleador/welcome}"> Volver a mis Ofertas</a>
+        </button>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</body>
+</html>

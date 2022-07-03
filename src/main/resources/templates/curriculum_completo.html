@@ -171,7 +171,7 @@
 									<input th:value="${curriculumVitae.conocimientosInformaticos}" class="form-control" disabled="disabled"/>
 								</div>
 							</div>
-							<div class="col mb-3 mx-5">
+							<div class="col mb-3 mx-5" sec:authorize="hasAuthority('CIUDADANO')">
 								  <br />
 								 <div class="d-grid gap-2 d-md-flex center-content-md-end">
 			  						<a th:href="@{/ciudadano/welcome/miCurriculum}" class="btn btn-warning" type="button">Volver</a>

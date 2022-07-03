@@ -27,7 +27,7 @@ public class OfertaLaboral {
 	@Column(name = "cur_codigo")
 	private int codigo; //DUDA
 	
-	@Min(value = 1, message = "*La cantidad de vacantes debe ser mayor o igual a 1")
+	@Min(value = 0, message = "*La cantidad de vacantes debe ser mayor o igual a 0")
 	@Max(value = 150, message = "*La cantidad de vacantes debe ser menor o igual a 150")
 	@Column(name = "oferta_vacantes")
 	private int cantidadVacantes;
@@ -80,15 +80,16 @@ public class OfertaLaboral {
 	@Column(name = "oferta_disponible")
 	private boolean disponible;
 
-	@ManyToMany(mappedBy = "ofertas",fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "ofertas")
 	private List<Ciudadano> ciudadanos;
 
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "empleador_id")
 	//ENCARGADO DE CREAR LA TABLA DE RELACION
 	private Empleador empleador;
 
-
+	@ManyToMany(mappedBy = "ofertasAceptadas")
+	private List<Contratado> contratados;
 	
 	public OfertaLaboral() {
 		// TODO Auto-generated constructor stub
@@ -239,10 +240,13 @@ public class OfertaLaboral {
 		this.ciudadanos = ciudadanos;
 	}
 
+	public List<Contratado> getContratados() {
+		return contratados;
+	}
 
-
-	
-	
+	public void setContratados(List<Contratado> contratados) {
+		this.contratados = contratados;
+	}
 }
 
 
