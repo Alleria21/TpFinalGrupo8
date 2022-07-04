@@ -11,9 +11,39 @@
 <nav th:replace="layouts/header :: headergeneral"></nav>
 
     <div class="col-12 screen" >
-        <h3 class="fw-bold text-center my-2">Mis Ofertas Laborales </h3>
-
+        <h3 class="fw-bold text-center my-2">Busquedas </h3>
+        <hr/>
+        <div>
+            <div class="row">
+                <div class="col-6 px-5" >
+                    <h4 class="fw-bold px-5">Candidatos por Provincia</h4>
+                    <form th:action="@{/empleador/postulantes}">
+                        <div class="px-5">
+                            <select class="form-control mb-3" th:name="provincia" id="provinciaId">
+                                <option th:each="provincia : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.Provincias).values()}" th:value="${provincia}" th:text="${provincia.displayValue}"></option>
+                            </select>
+                        </div>
+                        <div class="px-5">
+                            <input class="btn btn-color text-white" type="submit" value="Buscar">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-6 " >
+                    <h4 class="fw-bold px-5">Candidatos por Experiencia</h4>
+                    <form th:action="@{/empleador/postulantes}">
+                        <div class="px-5">
+                            <input type="text" class="form-control mb-3" th:name="experiencia">
+                        </div>
+                        <div class="px-5">
+                            <input class="btn btn-color text-white" type="submit" value="Buscar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr/>
         <div class="px-5 py-4 rounded-bottom">
+            <h3 class="fw-bold text-center my-2">Mis Ofertas Laborales </h3>
             <div class="mb-4 d-grid gap-2 d-md-flex justify-content-md-end">
             <button class="btn btn-blue-ligth btn-lg"><a th:href="@{/oferta/}+${empleador.id}+@{/nuevo}">Nueva Oferta</a></button>
             </div>
@@ -26,6 +56,7 @@
                     <th>Cantidad de Vacantes</th>
                     <th>Disponibilidad Horaria</th>
                     <th>Salario</th>
+                    <th>Disponible?</th>
                     <th>Opciones</th>
 
                 </tr>
@@ -36,12 +67,13 @@
                     <td th:text="${oferta.cantidadVacantes}"></td>
                     <td th:text="${oferta.dispHoraria}"></td>
                     <td th:text="${oferta.salario}"></td>
+                    <td th:text="${oferta.disponible}"></td>
                     <td >
                         <button class="btn btn-color">
                             <a th:href="@{/oferta/editar/}+${oferta.codigo}"> Modificar</a>
                         </button>
                         <button class="btn btn-color" >
-                            <a th:href="@{/oferta/eliminar/}+${oferta.codigo}"> Eliminar</a>
+                            <a th:href="@{/oferta/eliminar/}+${oferta.codigo}"> Dar de baja</a>
                         </button>
                         <button class="btn btn-color" >
                             <a th:href="@{/empleador/}+${oferta.id}+@{/postulantes}">Postulantes</a>

@@ -10,7 +10,8 @@
 <nav th:replace="layouts/header :: headergeneral"></nav>
 
 <div class="col-12 screen" >
-    <h1 class="fw-bold">Postulantes</h1>
+    <h3 class="fw-bold text-center mt-2" th:unless="${id==null}">Postulantes</h3>
+    <h3 class="fw-bold text-center mt-2" th:unless="${id != null}">Candidatos</h3>
     <div class="px-5 py-4 rounded-bottom">
 
         <table th:unless="${#lists.isEmpty(postulantes)}" class="table table-bordered border border-3">
@@ -35,7 +36,7 @@
                     <button class="btn btn-color" >
                         <a th:href="@{/empleador/postulante/} + ${postulante.id}"> Ver CV</a>
                     </button>
-                    <button class="btn btn-blue-ligth" >
+                    <button class="btn btn-blue-ligth" th:unless="${id==null}">
                         <a th:href="@{/empleador/}+${id}+@{/contratar/}+${postulante.id}"> Contratar</a>
                     </button>
 
@@ -44,10 +45,12 @@
             </tr>
             </tbody>
         </table>
-        <div th:if="${#lists.isEmpty(postulantes)}">
+        <div class="text-center my-5" th:if="${#lists.isEmpty(postulantes)}" th:unless="${id==null}">
             <h2>No hay postulantes</h2>
         </div>
-
+        <div class="text-center my-5" th:if="${#lists.isEmpty(postulantes)}" th:unless="${id != null}">
+            <h2>No hay candidatos para esta busqueda</h2>
+        </div>
     </div>
     <div class="text-center">
         <button class="btn btn-blue-ligth" >

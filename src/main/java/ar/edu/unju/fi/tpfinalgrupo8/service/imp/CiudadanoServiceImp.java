@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
+import ar.edu.unju.fi.tpfinalgrupo8.util.Provincias;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
@@ -78,7 +79,7 @@ public class CiudadanoServiceImp implements ICiudadanoService{
 	
 	
 	@Override
-	public Optional<List<Ciudadano>> findByProvincia(String provincia) {
+	public Optional<List<Ciudadano>> findByProvincia(Provincias provincia) {
 		return ciudadanoRepository.findByProvincia(provincia);
 	}
 

@@ -1,14 +1,9 @@
 package ar.edu.unju.fi.tpfinalgrupo8.controller;
 
 
-import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
-import ar.edu.unju.fi.tpfinalgrupo8.entity.Contratado;
-import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
-import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
-import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
-import ar.edu.unju.fi.tpfinalgrupo8.service.IContratadoService;
-import ar.edu.unju.fi.tpfinalgrupo8.service.IEmpleadorService;
-import ar.edu.unju.fi.tpfinalgrupo8.service.IOfertaLaboralService;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.*;
+import ar.edu.unju.fi.tpfinalgrupo8.service.*;
+import ar.edu.unju.fi.tpfinalgrupo8.util.Provincias;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +32,8 @@ public class EmpleadorController {
     private ICiudadanoService ciudadanoService;
     @Autowired
     private IContratadoService contratadoService;
+    @Autowired
+    private ICurriculumVitaeService curriculumVitaeService;
     private static final Log LOGGER = LogFactory.getLog(EmpleadorController.class);
 
     @GetMapping("/welcome")
@@ -90,7 +89,23 @@ public class EmpleadorController {
         modelAndView.addObject("contratados", contratados);
         return modelAndView;
     }
+    @GetMapping("/postulantes")
+    public ModelAndView findByProvincia(@RequestParam(required = false) Provincias provincia, @RequestParam(required = false) String experiencia){
+        ModelAndView modelAndView = new ModelAndView("postulantes");
+        List<Ciudadano> postulantes = new ArrayList<>();
+        if(experiencia!=null) {
+            List<CurriculumVitae> curriculums = curriculumVitaeService.findByExperiencia(experiencia).get();
+            for(CurriculumVitae curriculum: curriculums){
+                postulantes.add(curriculum.getCiudadano());
+            }
+        }
+        if(experiencia==null){
+            postulantes = ciudadanoService.findByProvincia(provincia).get();
+        }
 
+        modelAndView.addObject("postulantes", postulantes);
+        return modelAndView;
+    }
     private void updateVacantes(long ofertaId){
         System.out.println("hi");
         OfertaLaboral ofertaLaboral = ofertaLaboralService.findById(ofertaId);
@@ -100,4 +115,5 @@ public class EmpleadorController {
         }
         ofertaLaboralService.modificarOfertaLaboral(ofertaLaboral);
     }
+
 }
