@@ -1,8 +1,6 @@
 package ar.edu.unju.fi.tpfinalgrupo8.entity;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -22,13 +19,16 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import ar.edu.unju.fi.tpfinalgrupo8.util.Categoria;
 import ar.edu.unju.fi.tpfinalgrupo8.util.Modalidad;
 
 @Entity
 @Table(name = "cursos")
 public class Curso {
+	
+	//Atributos del Curso
+	//con sus respectivas validaciones
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "curso_id")
@@ -72,15 +72,6 @@ public class Curso {
 	@Column(name = "curso_disponible")
 	private boolean disponible;
 	
-	/*
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(	name = "curso_ciudadano",
-				joinColumns = @JoinColumn(name = "curso_id"),
-				inverseJoinColumns = @JoinColumn(name = "ciudadano_id")
-			)
-	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();
-	*/
-	
 	@ManyToOne()
 	@JoinColumn(name = "empleador_id")
 	//ENCARGADO DE CREAR LA TABLA DE RELACION
@@ -92,22 +83,8 @@ public class Curso {
 	public Curso() {
 		// TODO Auto-generated constructor stub
 	}
-
-	/*
-	public Curso(long id, int codigo, String titulo, Categoria categoria, LocalDate fechaInicio, LocalDate fechaFin, int horas, Modalidad modalidad, boolean disponible, Ciudadano ciudadano) {
-		super();
-		this.id = id;
-		this.codigo = codigo;
-		this.titulo = titulo;
-		this.categoria = categoria;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
-		this.horas = horas;
-		this.modalidad = modalidad;
-		this.disponible = disponible;
-		this.ciudadano = ciudadano;
-	}
-	 */
+	
+	//Metodos accesores
 	
 	public long getId() {
 		return id;
@@ -196,18 +173,5 @@ public class Curso {
 	public void setInscripto(List<Ciudadano> inscripto) {
 		this.inscripto = inscripto;
 	}
-
-	/*
-	public Ciudadano getCiudadano() {
-		return ciudadano;
-	}
-
-	public void setCiudadano(Ciudadano ciudadano) {
-		this.ciudadano = ciudadano;
-	}
-	*/		
-	
-	
-	
 	
 }

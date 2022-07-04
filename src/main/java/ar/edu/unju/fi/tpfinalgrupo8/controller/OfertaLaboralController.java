@@ -43,13 +43,15 @@ public class OfertaLaboralController {
 	@PostMapping("/{id}/agregar")
 	public ModelAndView getListaOfertaLaboralPage(@Validated @ModelAttribute("oferta")OfertaLaboral ofertaLaboral,
 	BindingResult bindingresult) {
+		//Se validan los posibles errores 
+		//de los datos ingresados
 		if(bindingresult.hasErrors()){
 			LOGGER.error("No se cumplen las reglas de validación");
 			ModelAndView mav = new ModelAndView("nuevo_ofertaLaboral");
 			mav.addObject("oferta", ofertaLaboral);
 			return mav;
 		}
-		
+		//Se agrega si los datos son correctos
 		ModelAndView mav = new ModelAndView("redirect:/empleador/welcome");
 		if(ofertaLaboralService.guardarOfertaLaboral(ofertaLaboral)) {
 			LOGGER.info("Se ha agregado una oferta laboral");
@@ -77,13 +79,15 @@ public class OfertaLaboralController {
 	@PostMapping("/modificar")
 	public ModelAndView getEditarDatosOfertaLaboral(@Validated @ModelAttribute("oferta")OfertaLaboral ofertaLaboral,
 	BindingResult bindingresult) {
-		
+		//Se validan los posibles errores 
+		//de los datos ingresados
 		if(bindingresult.hasErrors()){
 			LOGGER.info("Ha ocurrido un error en la edicion" + ofertaLaboral);
 			ModelAndView mav = new ModelAndView("edicion_ofertaLaboral");
 			mav.addObject("oferta", ofertaLaboral);
 			return mav; 
 		}
+		//En caso de ser correcto, se modifica
 		LOGGER.info("Se ha modificado una oferta laboral");
 		ofertaLaboralService.modificarOfertaLaboral(ofertaLaboral);
 		ModelAndView mav = new ModelAndView("redirect:/empleador/welcome");

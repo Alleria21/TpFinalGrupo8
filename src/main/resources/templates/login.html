@@ -8,31 +8,24 @@
 </head>
     <body>
         <div class="container-fluid">
-            <div class="text-center">
-                <img th:src="@{/images/login.jpg}" >
-            </div>
-            <div class="row justify-content-center">
-
                 <div class="col text-center mt-5">
-
-
+                	<div class="row justify-content-center md-5">
+            	<div class="text-center">
+                	<img th:src="@{/images/trabajo06.png}">
+            	</div>
                     <h4 class="text-center">Login Empleador/Ciudadano</h4>
-
                     <form method="POST" th:action="@{/login}">
                         <div class="mt-2">
                             <label class="form-label" >Cuit/Cuil:</label>
                             <input type="number" name="username" id="username"/>
                         </div>
-
                         <div class="mt-2 mb-3">
                             <label for="password_empleador" class="form-label">Password:</label>
                             <input type="password" name="password" id="password_empleador"/>
                         </div>
-
                         <div class="text-center">
                             <button class="btn btn-primary " type="submit">Login</button>
                         </div>
-
                         <div class="text-center  mt-3">
                             <button class="btn btn-secondary " ><a th:href="@{/inicio}">Volver</a></button>
                         </div>

@@ -9,20 +9,21 @@ import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.repository.OfertaLaboralRepository;
 import ar.edu.unju.fi.tpfinalgrupo8.service.IOfertaLaboralService;
 
+//Servicio de implementacion de una Oferta Laboral
 @Service("OfertaLaboralServiceImpList")
 public class OfertaLaboralServiceImp implements IOfertaLaboralService {
 	
+	//Inyeccion de OfertaLaboralRepository
 	@Autowired
 	private OfertaLaboralRepository ofertaLaboralRepository;
 	
-	//@Autowired
-	//private CiudadanoRepository ciudadanoRepository;
-	
+	//Metodo para crear un nuevo objeto OfertaLaboral
 	@Override
 	public OfertaLaboral getOfertaLaboral() {
 		return new OfertaLaboral();
 	}
-
+	
+	//Metodo para guardar una OfertaLaboral mediante su codigo
 	@Override
 	public boolean guardarOfertaLaboral(OfertaLaboral ofertaLaboral) {
 		OfertaLaboral oferta = ofertaLaboralRepository.findByCodigo(ofertaLaboral.getCodigo());
@@ -32,50 +33,37 @@ public class OfertaLaboralServiceImp implements IOfertaLaboralService {
 			return true;
 		}
 		return false;
-		/*
-		if(ofertaLaboralRepository.save(ofertaLaboral) != null) {
-			return true;
-		}
-		return false;
-		*/
 	}
 
+	//Metodo para modificar una OfertaLaboral mediante su ID en la BD
 	@Override
 	public void modificarOfertaLaboral(OfertaLaboral ofertaLaboral) {
 		OfertaLaboral oferta = ofertaLaboralRepository.findByCodigo(ofertaLaboral.getCodigo());
 		ofertaLaboral.setId(oferta.getId());
-		/*oferta.setCodigo(ofertaLaboral.getCodigo());
-		oferta.setCantidadVacantes(ofertaLaboral.getCantidadVacantes());
-		oferta.setPuestoReq(ofertaLaboral.getPuestoReq());
-		oferta.setPuestoResum(ofertaLaboral.getPuestoReq());
-		oferta.setDispHoraria(ofertaLaboral.getDispHoraria());
-		oferta.setTareasPrincipales(ofertaLaboral.getTareasPrincipales());
-		oferta.setEmail(ofertaLaboral.getEmail());
-		oferta.setTelefono(ofertaLaboral.getTelefono());
-		oferta.setJornada(ofertaLaboral.getJornada());
-		oferta.setRequisitos(ofertaLaboral.getRequisitos());
-		oferta.setSalario(ofertaLaboral.getSalario());
-		oferta.setBeneficios(ofertaLaboral.getBeneficios());*/
 		ofertaLaboralRepository.save(ofertaLaboral);
 	}
 
+	//Metodo para eliminar una OfertaLaboral mediante su codigo
 	@Override
 	public void eliminarOfertaLaboral(int codigo) {
 		OfertaLaboral ofertaLaboral = buscarOfertaLaboral(codigo);
 		ofertaLaboral.setDisponible(false);
 		ofertaLaboralRepository.save(ofertaLaboral);
 	}
-
+	
+	//Metodo para obtener la lista de Ofertas disponibles
 	@Override
 	public List<OfertaLaboral> getListaOfertaLaboral() {
 		return ofertaLaboralRepository.findByDisponible(true);
 	}
-
+	
+	//Metodo para buscar una OfertaLaboral mediante su codigo
 	@Override
 	public OfertaLaboral buscarOfertaLaboral(int codigo) {
 		return ofertaLaboralRepository.findByCodigo(codigo);
 	}
 
+	//Metodo para encontrar una OfertaLaboral por su ID en la BD
 	@Override
 	public OfertaLaboral findById(long id) {
 		return ofertaLaboralRepository.findById(id).get();

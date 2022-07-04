@@ -7,22 +7,15 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Curso;
-import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICursoService;
-import ar.edu.unju.fi.tpfinalgrupo8.service.IEmpleadorService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.IOfertaLaboralService;
 
 
@@ -47,42 +40,15 @@ public class CiudadanoController {
 		return "lista_ciudadanos";
 	}
 	
-	@GetMapping("/editar/{dni}")
-	public ModelAndView getEditarCiudadanoPage(@PathVariable(value="dni")int dni) {
-		ModelAndView mav = new ModelAndView("edicion_ciudadano");
-		mav.addObject("ciudadano", ciudadanoService.buscarCiudadano(dni));
-		return mav;
-	}
-	@PostMapping("/modificar")
-	public ModelAndView editarDatosCiudadanos(@Validated @ModelAttribute("ciudadano")Ciudadano ciudadano, 
-			BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			LOGGER.info("Error agregando un ciudadano");
-			ModelAndView mav= new ModelAndView("edicion_ciudadano");
-			mav.addObject("ciudadano", ciudadano);
-			return mav;
-		}
-		ModelAndView mav=new ModelAndView("redirect:/ciudadano/listaCiudadanos");
-		ciudadanoService.modificarCiudadano(ciudadano);
-		return mav;
-	}
-	
-	@GetMapping("/eliminar/{dni}")
-	public ModelAndView getEliminarAlumno(@PathVariable(value="dni")int dni) {
-		ModelAndView mav=new ModelAndView("redirect:/ciudadano/listaCiudadanos");
-		ciudadanoService.eliminarCiudadano(dni);
-		return mav;
-	}
-	
 	@GetMapping("/welcome")
     public ModelAndView welcomePage(@AuthenticationPrincipal User user){
         ModelAndView modelAndView= new ModelAndView("welcomeCiudadano");
         Ciudadano ciudadano= ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername()));
         LOGGER.info("usuario que hizo login: " + ciudadano.getEmail());
         modelAndView.addObject("ciudadano",ciudadano);
-       // modelAndView.addObject("curriculum", ciudadano.getCurriculum());
         return modelAndView;
     }
+	
 	@GetMapping("/welcome/miCurriculum")
     public ModelAndView welcomeCurriculumPage(@AuthenticationPrincipal User user){
         ModelAndView modelAndView= new ModelAndView("welcomeMiCurriculum");
@@ -112,6 +78,8 @@ public class CiudadanoController {
 				bandera=false;
 			}
 		}
+	//Comprobamos que el Ciudadano no este ya
+	//inscripto en ese curso
 		if(bandera==true) {
 			Curso cursoEncontrado=cursoService.buscarCurso(codigo);
 			ciudadano.getUnCurso().add(cursoEncontrado);
@@ -120,6 +88,7 @@ public class CiudadanoController {
 			 LOGGER.info("El usuario se ha inscripto a un curso");
 			return mav;
 		}else {
+	//Si ya esta inscripto saltara mensaje de aviso
 			ModelAndView mav=new ModelAndView("layouts/inscripcion_rechazada");
 			 LOGGER.info("El usuario ya se encuentra inscripto en el curso");
 			return mav;
@@ -141,22 +110,28 @@ public class CiudadanoController {
 		OfertaLaboral ofertaEncontrada=ofertaService.buscarOfertaLaboral(codigo);
 		Ciudadano ciudadano=ciudadanoService.buscarCiudadano(dni);
 		boolean band=true;
+		//Se verifica que el ciudadano
+		//no se encuentra ya postulado a esa oferta
 		for(OfertaLaboral of: ciudadano.getOfertas()) {
 			if(of.getCodigo()==codigo) {
 				band=false;
 			}
 		}
+		//Situacion en que el usuario le falte el Curriculum
 		if(ciudadano.getCurriculum()==null) {
-			ModelAndView mav=new ModelAndView("layouts/curriculum_faltante");//Para el caso en que el usuario le falte el curriculum
+			ModelAndView mav=new ModelAndView("layouts/curriculum_faltante");
 			return mav;
 		}
+		//Situacion en que la inscripcion sea exitosa
 		if(band==true) {
 			ciudadano.getOfertas().add(ofertaEncontrada);
 			ciudadanoService.modificarCiudadano(ciudadano);
-			ModelAndView mav=new ModelAndView("layouts/postulacion_exitosa");//Para el caso en que la inscripcion sea exitosa
+			ModelAndView mav=new ModelAndView("layouts/postulacion_exitosa");
 			return mav;
 		}else {
-			ModelAndView mav=new ModelAndView("layouts/postulacion_rechazada");//Para el caso en que el usuario ya este inscripto a esa oferta, se mostrara un mensaje por medio de la vista
+		//Situacion en que el usuario ya este inscripto a esa oferta
+		//se mostrara un mensaje por medio de la vista
+			ModelAndView mav=new ModelAndView("layouts/postulacion_rechazada");
 			LOGGER.info("El ciudadano "+ciudadano.getEmail()+" ya se encuentra inscripto");
 			return mav;
 		}

@@ -13,9 +13,6 @@ public interface ICursoService {
 	public void eliminarCurso(int codigo);
 	public List<Curso> getListaCurso();
 	public Curso buscarCurso(int codigo);
-	//public Ciudadano getCiudadano();
-	//public List<Ciudadano> getListaCiudadano();
 	boolean guardarInscripto(Curso curso);
-	
 	Optional<List<Curso>> findByCategoria(Categoria categoria);
 }

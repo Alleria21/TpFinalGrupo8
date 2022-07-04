@@ -29,12 +29,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import ar.edu.unju.fi.tpfinalgrupo8.util.Provincias;
 
-
-
 @Entity
 @Table(name="ciudadano")
 public class Ciudadano {
 
+	//Atributos del Ciudadano
+	//con sus respectivas validaciones
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ciudadano_id")
@@ -52,7 +53,6 @@ public class Ciudadano {
 	@Column(name="ciudadano_estadoCivil")
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
-	
 	
 	@NotNull(message = "debe ingresar una provincia")
 	@Column(name="ciudadano_provincia")
@@ -89,33 +89,30 @@ public class Ciudadano {
 	@Column(name="estado")
 	private boolean estado;
 	
-	
 	@OneToOne(mappedBy = "ciudadano", fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
 	private CurriculumVitae curriculum;
 	
 	public Ciudadano() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	//Metodos accesores
+	
 	public String getEmail() {
 		return email;
 	}
-
 
 	public long getDni() {
 		return dni;
 	}
 
-
 	public void setDni(long dni) {
 		this.dni = dni;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
@@ -137,26 +134,21 @@ public class Ciudadano {
 		return telefono;
 	}
 
-
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-
 
 	public LocalDate getFechaNac() {
 		return fechaNac;
 	}
 
-
 	public void setFechaNac(LocalDate fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
@@ -166,7 +158,6 @@ public class Ciudadano {
 		return ofertas;
 	}
 
-
 	public void setOfertas(Set<OfertaLaboral> ofertas) {
 		this.ofertas = ofertas;
 	}
@@ -174,7 +165,6 @@ public class Ciudadano {
 	public boolean isEstado() {
 		return estado;
 	}
-
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
@@ -185,31 +175,28 @@ public class Ciudadano {
 		return id;
 	}
 
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public CurriculumVitae getCurriculum() {
 		return curriculum;
 	}
 
-
 	public void setCurriculum(CurriculumVitae curriculum) {
 		this.curriculum = curriculum;
 	}
-
 
 	public Set<Curso> getUnCurso() {
 		return unCurso;
 	}
 
-
 	public void setUnCurso(Set<Curso> unCurso) {
 		this.unCurso = unCurso;
 	}
 	
+	//Metodo para obtener
+	//la edad del Ciudadano
 	public int getEdad() {
 		Period period = Period.between(this.fechaNac, LocalDate.now());
 		return period.getYears();

@@ -10,17 +10,21 @@ import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
 import ar.edu.unju.fi.tpfinalgrupo8.repository.CurriculumVitaeRepository;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICurriculumVitaeService;
 
+//Servicio de implementacion del CurriculumVitae
 @Service
 public class CurriculumVitaeServiceImp implements ICurriculumVitaeService {
-
+	
+	//Inyeccion del curriculimVitae Repository
 	@Autowired
 	private CurriculumVitaeRepository curriculumVitaeImp;
 	
+	//Metodo para crear un nuevo objeto CurriculimVitae
 	@Override
 	public CurriculumVitae getCurriculumVitae() {
 		return new CurriculumVitae();
 	}
 	
+	//Metodo para guardar un CurriculumVitae
 	@Override
 	public boolean guardarCurriculumVitae(CurriculumVitae curriculumVitae) {
 		
@@ -32,6 +36,8 @@ public class CurriculumVitaeServiceImp implements ICurriculumVitaeService {
 		}
 		return false;
 	}
+	
+	//Metodo para modificar un CirrulumVitae
 	@Override
 	public void modificarCurriculumVitae(CurriculumVitae curriculumVitae) {
 		CurriculumVitae cv = curriculumVitaeImp.findByDni(curriculumVitae.getDni());
@@ -57,30 +63,33 @@ public class CurriculumVitaeServiceImp implements ICurriculumVitaeService {
 		curriculumVitaeImp.save(cv);
 	}
 
+	//Metodo para eliminar un CirruculimVitae de un Ciudadano
+	//especifico utilizando su DNI
 	@Override
 	public void eliminarCurriculumVitae(long dni) {
 		CurriculumVitae cuv = buscarCurriculumVitae(dni);
 		cuv.setEstado(false);
-		curriculumVitaeImp.delete(cuv); // en comoparacion con el imp ciudadano posee save yo delete
+		curriculumVitaeImp.delete(cuv);
 	}
 
+	//Metodo para obtener la lista de CV disponibles
 	@Override
 	public List<CurriculumVitae> obtenerCurriculumVitae() {
-		return curriculumVitaeImp.findByEstado(true); // controlar con Ciudadano
+		return curriculumVitaeImp.findByEstado(true);
 	}
 
+	//Metodo para la busqueda de Ofertas mediante su experiencia Laboral
 	@Override
 	public Optional<List<CurriculumVitae>> findByExperiencia(String experiencia) {
 		return curriculumVitaeImp.findByExperienciaLaboral(experiencia);
 	}
 
-
+	//Metodo para buscar el CurriculumVitae de un Ciudadano especifico
+	//mediante su DNI
 	@Override
 	public CurriculumVitae buscarCurriculumVitae(long dni) {
 		// TODO Auto-generated method stub
 		return curriculumVitaeImp.findByDni(dni);
 	}
-
-
 	
 }
