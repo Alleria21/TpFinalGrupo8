@@ -1,12 +1,14 @@
 package ar.edu.unju.fi.tpfinalgrupo8.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Curso;
 import ar.edu.unju.fi.tpfinalgrupo8.repository.CursoRepository;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICursoService;
+import ar.edu.unju.fi.tpfinalgrupo8.util.Categoria;
 
 @Service("CursoServiceImpList")
 public class CursoServiceImp implements ICursoService {
@@ -60,6 +62,12 @@ public class CursoServiceImp implements ICursoService {
 	@Override
 	public Curso buscarCurso(int codigo) {
 		return cursoRepository.findByCodigo(codigo);
+	}
+
+	@Override
+	public Optional<List<Curso>> findByCategoria(Categoria categoria) {
+		// TODO Auto-generated method stub
+		return cursoRepository.findByCategoria(categoria);
 	}
 
 }

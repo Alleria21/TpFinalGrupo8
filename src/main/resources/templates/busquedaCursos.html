@@ -16,25 +16,8 @@
 					<h1 class="text-black center">Cursos Disponibles</h1>
 					<br />
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end me-0">
-			  			<a th:href="@{/inicio}" class="btn btn-secondary" type="button">Volver al inicio</a>
+			  			<a th:href="@{/curso/ListaCursos}" class="btn btn-secondary" type="button">Volver</a>
 					</div>
-					
-					<form th:action="@{/curso/BusquedaCursos}">
-						<h3 class="fw-bold text-center my-2">Busquedas </h3>
-						<br/>
-                        <div class="px-5">
-                            <label class="form-label">Seleccione Categoria</label>
-							<select class="form-control mb-3" th:name="categoria" id="categoriaId">
-			
-								<option th:each="categoria : ${T(ar.edu.unju.fi.tpfinalgrupo8.util.Categoria).values()}" th:value="${categoria}" th:text="${categoria.displayValue}"></option>
-						  	</select>
-                        </div>
-                        <div class="px-5">
-                            <button class="btn btn-info" type="submit">Buscar</button>
-                        </div>
-                    </form>
-					
-					
 					<div class="container">
 						<div class="row">
 							<div class="row">
@@ -64,9 +47,8 @@
 		    <div th:if="${#lists.isEmpty(unCurso)}">
 		    	<div class="border text-center justify-content-md-end me-3 mt-2">
 			    	<br />
-			        <h5>Lo sentimos.</h5>
-			        <h5>Debe esperar a que nuestra plataforma de el alta de un Curso</h5>
-			        <a th:href="@{/inicio/}" class="btn btn-warning" type="button">Volver al Inicio</a>
+			        <h5>No se ha encontrado ninguna coincidencia para su busqueda</h5>
+			        <a th:href="@{/curso/ListaCursos}" class="btn btn-warning" type="button">Volver</a>
 		        </div>
 			</div>
         </div>
