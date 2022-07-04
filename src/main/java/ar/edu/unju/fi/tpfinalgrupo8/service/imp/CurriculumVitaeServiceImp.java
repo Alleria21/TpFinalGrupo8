@@ -81,7 +81,7 @@ public class CurriculumVitaeServiceImp implements ICurriculumVitaeService {
 	//Metodo para la busqueda de Ofertas mediante su experiencia Laboral
 	@Override
 	public Optional<List<CurriculumVitae>> findByExperiencia(String experiencia) {
-		return curriculumVitaeImp.findByExperienciaLaboral(experiencia);
+		return curriculumVitaeImp.findByExperienciaLaboralContains(experiencia);
 	}
 
 	//Metodo para buscar el CurriculumVitae de un Ciudadano especifico

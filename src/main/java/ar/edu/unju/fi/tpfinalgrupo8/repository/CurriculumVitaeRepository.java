@@ -20,6 +20,6 @@ public interface CurriculumVitaeRepository extends JpaRepository<CurriculumVitae
 	@Query("delete from CurriculumVitae f where f.dni = ?1")
 	public void deleteByDni(long dni);
 	
-	Optional<List<CurriculumVitae>> findByExperienciaLaboral(String experiencia);
+	Optional<List<CurriculumVitae>> findByExperienciaLaboralContains(String experiencia);
 
 }
