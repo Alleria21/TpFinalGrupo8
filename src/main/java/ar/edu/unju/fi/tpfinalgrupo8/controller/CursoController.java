@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.tpfinalgrupo8.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +18,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
+import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Curso;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICursoService;
+import ar.edu.unju.fi.tpfinalgrupo8.util.Categoria;
+import ar.edu.unju.fi.tpfinalgrupo8.util.Provincias;
 
 @Controller
 @RequestMapping("/curso")
@@ -115,5 +122,15 @@ public class CursoController {
 		cursoService.eliminarCurso(codigo);
 		return mav;
 	}
+	
+	
+	@GetMapping("/BusquedaCursos")
+    public ModelAndView findByCategoria(@RequestParam(required = false) Categoria categoria,@AuthenticationPrincipal User user){
+        ModelAndView modelAndView = new ModelAndView("busquedaCursos");
+        modelAndView.addObject("unCurso",cursoService.findByCategoria(categoria).get() );
+        modelAndView.addObject("ciudadano", ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername())));
+        return modelAndView;
+    }
+	
 	
 }
