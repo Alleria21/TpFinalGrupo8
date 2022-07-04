@@ -7,10 +7,7 @@ import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
 
 public interface ICurriculumVitaeService {
 	
-	//agregados a funcionar
-	
 	public CurriculumVitae getCurriculumVitae();
-	
 	public boolean guardarCurriculumVitae(CurriculumVitae curriculumVitae);
 	public void modificarCurriculumVitae(CurriculumVitae curriculumVitae);
 	public void eliminarCurriculumVitae(long dni);

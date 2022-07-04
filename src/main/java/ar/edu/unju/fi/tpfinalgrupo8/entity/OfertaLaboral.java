@@ -17,6 +17,9 @@ import javax.validation.constraints.Positive;
 @Table(name = "ofertas_laborales")
 public class OfertaLaboral {
 	
+	//Atributos de la Oferta Laboral
+	//con sus respectivas validaciones
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "oferta_id")
@@ -94,26 +97,9 @@ public class OfertaLaboral {
 	public OfertaLaboral() {
 		// TODO Auto-generated constructor stub
 	}
-/*
-	public OfertaLaboral(long id, int codigo, int cantidadVacantes, String puestoReq, String puestoResum, DisponibilidadHoraria dispHoraria, String tareasPrincipales, String email, int telefono, Jornada jornada, String requisitos, int salario, String beneficios, boolean disponible, List<Ciudadano> ciudadanos, Empleador empleador) {
-		this.id = id;
-		this.codigo = codigo;
-		this.cantidadVacantes = cantidadVacantes;
-		this.puestoReq = puestoReq;
-		this.puestoResum = puestoResum;
-		this.dispHoraria = dispHoraria;
-		this.tareasPrincipales = tareasPrincipales;
-		this.email = email;
-		this.telefono = telefono;
-		this.jornada = jornada;
-		this.requisitos = requisitos;
-		this.salario = salario;
-		this.beneficios = beneficios;
-		this.disponible = disponible;
-		this.ciudadanos = ciudadanos;
-		this.empleador = empleador;
-	}
-*/
+
+	//Metodos accesores
+	
 	public long getId() {
 		return id;
 	}

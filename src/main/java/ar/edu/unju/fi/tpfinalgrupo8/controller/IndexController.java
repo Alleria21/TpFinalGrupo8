@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+//Metodo para mostrar la vista
+//de la pagina de inicio de la plataforma
 @Controller
 public class IndexController {
 		@GetMapping("/inicio")

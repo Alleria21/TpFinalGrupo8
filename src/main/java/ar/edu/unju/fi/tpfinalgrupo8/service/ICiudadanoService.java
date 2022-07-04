@@ -16,7 +16,6 @@ public interface ICiudadanoService {
 	public List<Ciudadano> getListaCiudadano();
 	public Ciudadano buscarCiudadano(long dni);
 	Optional<List<Ciudadano>> findByProvincia(Provincias provincia) ;
-	//Ciudadano buscarCiudadanoPorId(long id);
 	List<Ciudadano> findByOferta(OfertaLaboral ofertaLaboral);
 	Ciudadano findById(long id);
 }

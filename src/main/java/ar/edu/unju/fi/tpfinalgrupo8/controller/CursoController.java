@@ -1,8 +1,5 @@
 package ar.edu.unju.fi.tpfinalgrupo8.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
-import ar.edu.unju.fi.tpfinalgrupo8.entity.CurriculumVitae;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Curso;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Empleador;
-import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICiudadanoService;
 import ar.edu.unju.fi.tpfinalgrupo8.service.ICursoService;
 import ar.edu.unju.fi.tpfinalgrupo8.util.Categoria;
-import ar.edu.unju.fi.tpfinalgrupo8.util.Provincias;
 
 @Controller
 @RequestMapping("/curso")
@@ -44,7 +36,6 @@ public class CursoController {
 	
 	private static final Log LOGGER = LogFactory.getLog(Curso.class);
 	
-	//Empece desde aquí
 	@GetMapping("/{id}/nuevo")
 	public String getCursoPage(@PathVariable(value = "id")Long id,Model model) {
 		Curso curso = new Curso();
@@ -76,6 +67,9 @@ public class CursoController {
 		return mav;
 	}
 	
+	//Metodo para listar Cursos con opciones
+	//No debe mostrarse en la vista
+	//(Para un rol administrativo)
 	@GetMapping("/ListaCursosAdmin")
 	public ModelAndView getListaCursosAdmin() {
 		ModelAndView mav = new ModelAndView("lista_cursos_empleador");
@@ -83,14 +77,10 @@ public class CursoController {
 		return mav;
 	}
 	
-	@GetMapping("/ListaCursos")
-	public ModelAndView getListaCursos(@AuthenticationPrincipal User user) {
-		ModelAndView mav = new ModelAndView("lista_cursos_ciudadano");
-		mav.addObject("ciudadano", ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername())));
-		mav.addObject("unCurso", cursoService.getListaCurso());
-		return mav;
-	}
-	
+	//Metodo para editar un Curso
+	//No debe mostrarse en la vista
+	//Tener cursos ya cargados desde la BD
+	//(Para un rol administrativo)
 	@GetMapping("/editar/{codigo}")
 	public ModelAndView getEditarCursoPage(@PathVariable(value = "codigo")int codigo) {
 		ModelAndView mav = new ModelAndView("edicion_curso");
@@ -99,6 +89,10 @@ public class CursoController {
 		return mav;
 	}
 	
+	//Metodo para modificar un Curso
+	//No debe mostrarse en la vista
+	//Tener cursos ya cargados desde la BD
+	//(Para un rol administrativo)
 	@PostMapping("/modificar")
 	public ModelAndView getEditarDatosCursos(@Validated @ModelAttribute("curso")Curso curso,
 	BindingResult bindingresult) {
@@ -115,6 +109,10 @@ public class CursoController {
 		return mav;
 	}
 	
+	//Metodo para eliminar un Curso
+	//No debe mostrarse en la vista
+	//Tener cursos ya cargados desde la BD
+	//(Para un rol administrativo)
 	@GetMapping("/eliminar/{codigo}")
 	public ModelAndView getEliminarCurso(@PathVariable(value="codigo")int codigo) {
 		LOGGER.info("Se ha eliminado un curso");
@@ -123,6 +121,13 @@ public class CursoController {
 		return mav;
 	}
 	
+	@GetMapping("/ListaCursos")
+	public ModelAndView getListaCursos(@AuthenticationPrincipal User user) {
+		ModelAndView mav = new ModelAndView("lista_cursos_ciudadano");
+		mav.addObject("ciudadano", ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername())));
+		mav.addObject("unCurso", cursoService.getListaCurso());
+		return mav;
+	}
 	
 	@GetMapping("/BusquedaCursos")
     public ModelAndView findByCategoria(@RequestParam(required = false) Categoria categoria,@AuthenticationPrincipal User user){
@@ -131,6 +136,5 @@ public class CursoController {
         modelAndView.addObject("ciudadano", ciudadanoService.buscarCiudadano(Long.parseLong(user.getUsername())));
         return modelAndView;
     }
-	
 	
 }
