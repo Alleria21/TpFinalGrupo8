@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import ar.edu.unju.fi.tpfinalgrupo8.entity.Ciudadano;
 import ar.edu.unju.fi.tpfinalgrupo8.entity.OfertaLaboral;
+import ar.edu.unju.fi.tpfinalgrupo8.util.Provincias;
 
 public interface ICiudadanoService {
 
@@ -14,7 +15,7 @@ public interface ICiudadanoService {
 	public void eliminarCiudadano(long dni);
 	public List<Ciudadano> getListaCiudadano();
 	public Ciudadano buscarCiudadano(long dni);
-	Optional<List<Ciudadano>> findByProvincia(String provincia) ;
+	Optional<List<Ciudadano>> findByProvincia(Provincias provincia) ;
 	//Ciudadano buscarCiudadanoPorId(long id);
 	List<Ciudadano> findByOferta(OfertaLaboral ofertaLaboral);
 	Ciudadano findById(long id);

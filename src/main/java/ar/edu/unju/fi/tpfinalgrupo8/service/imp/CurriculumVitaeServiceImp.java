@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinalgrupo8.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,11 @@ public class CurriculumVitaeServiceImp implements ICurriculumVitaeService {
 	@Override
 	public List<CurriculumVitae> obtenerCurriculumVitae() {
 		return curriculumVitaeImp.findByEstado(true); // controlar con Ciudadano
+	}
+
+	@Override
+	public Optional<List<CurriculumVitae>> findByExperiencia(String experiencia) {
+		return curriculumVitaeImp.findByExperienciaLaboral(experiencia);
 	}
 
 
